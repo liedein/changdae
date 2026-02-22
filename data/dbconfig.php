@@ -1,9 +1,14 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
-define('G5_MYSQL_HOST', 'localhost');
-define('G5_MYSQL_USER', 'changdae');
-define('G5_MYSQL_PASSWORD', 'cdcc9182!');
-define('G5_MYSQL_DB', 'changdae');
+if (file_exists(__DIR__ . '/../local.dbconfig.php')) {
+    require_once __DIR__ . '/../local.dbconfig.php';
+} else {
+    define('G5_MYSQL_HOST', 'localhost');
+    define('G5_MYSQL_USER', 'changdae');
+    define('G5_MYSQL_PASSWORD', 'cdcc9182!');
+    define('G5_MYSQL_DB', 'changdae');
+}
+
 define('G5_MYSQL_SET_MODE', true);
 
 define('G5_TABLE_PREFIX', 'g5_');
