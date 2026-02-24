@@ -32,3 +32,9 @@ select { font-size: 14px; }
 .dropdown-item { font-size: 1rem; }
 .title { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%; }
 */
+
+#bo_list, #bo_write, #bo_view {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}

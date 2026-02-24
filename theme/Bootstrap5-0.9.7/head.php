@@ -5,6 +5,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?php echo $config['cf_title']; ?></title>
+<link rel="stylesheet" href="<?php echo G5_CSS_URL; ?>/print.css" media="print">
+<link rel="stylesheet" href="<?php echo G5_CSS_URL; ?>/board.css">
+
+<!-- 그누보드 기본 CSS -->
+<link rel="stylesheet" href="<?php echo G5_CSS_URL; ?>/print.css" media="print">
+<link rel="stylesheet" href="<?php echo G5_CSS_URL; ?>/board.css">
 
 <!-- Bootstrap 5 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
