@@ -1,0 +1,47 @@
+.page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--gray-line);
+    min-height: 300px;
+}
+.page-nav {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.page-nav a {
+    display: block;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--gray-line);
+    border-radius: 4px;
+    transition: all 0.2s;
+    width: 40%;
+}
+.page-nav a:hover {
+    border-color: var(--point);
+    background: var(--gray-bg);
+}
+.page-nav a.btn-list {
+    width: auto;
+    padding: 0.6rem 1.8rem;
+}
+.page-nav a .label {
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+    display: block;
+}
+.page-nav a .title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.page-nav .btn-prev, .page-nav .btn-prev-empty { text-align: left; }
+.page-nav .btn-next, .page-nav .btn-next-empty { text-align: right; }
+.page-nav .btn-prev-empty, .page-nav .btn-next-empty { width: 40%; }

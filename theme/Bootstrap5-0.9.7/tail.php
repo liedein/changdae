@@ -21,6 +21,13 @@
             <li><a href="#">목장모임</a></li>
             <li><a href="#">창대소식</a></li>
           </ul>
+            <ul>
+                <li><a href="#">핵심가치</a></li>
+                <li><a href="#">사명</a></li>
+                <li><a href="<?php echo G5_URL; ?>#section-people">섬기는 사람들</a></li>
+                <li><a href="#">목장모임</a></li>
+                <li><a href="<?php echo G5_URL; ?>/page_news.php">창대소식</a></li>
+            </ul>
         </div>
         <div class="fn-group">
           <p class="fn-title">예배합니다</p>
@@ -30,6 +37,12 @@
             <li><a href="#">설교동영상</a></li>
             <li><a href="#">주보</a></li>
           </ul>
+            <ul>
+                <li><a href="<?php echo G5_URL; ?>/page_sermon.php">주일설교</a></li>
+                <li><a href="#">목장연합기도회</a></li>
+                <li><a href="<?php echo get_pretty_url('sermon'); ?>">설교동영상</a></li>
+                <li><a href="<?php echo G5_URL; ?>/page_bulletin.php">주보</a></li>
+            </ul>
         </div>
         <div class="fn-group">
           <p class="fn-title">SNS</p>

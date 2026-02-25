@@ -4,10 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><?php echo $config['cf_title']; ?></title>
-<link rel="stylesheet" href="<?php echo G5_CSS_URL; ?>/print.css" media="print">
-<link rel="stylesheet" href="<?php echo G5_CSS_URL; ?>/board.css">
-
+<title><?php echo $g5['title']; ?></title>
 <!-- 그누보드 기본 CSS -->
 <link rel="stylesheet" href="<?php echo G5_CSS_URL; ?>/print.css" media="print">
 <link rel="stylesheet" href="<?php echo G5_CSS_URL; ?>/board.css">
@@ -15,10 +12,8 @@
 <!-- Bootstrap 5 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Pretendard -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-
-<!-- Cormorant Garamond (Serif) -->
+<!-- Fonts -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
 <!-- Bootstrap Icons -->
@@ -32,7 +27,7 @@
   --point-dark:  #3a7aaa;
   --gray-bg:     #f7f7f7;
   --gray-mid:    #888888;
-  --gray-line:   #e8e8e8;
+  --gray-line:   #ebebeb;
   --font-ko:     'Pretendard', sans-serif;
   --font-en:     'Cormorant Garamond', serif;
 }
@@ -242,68 +237,64 @@ img { max-width: 100%; display: block; }
 
 <!-- 네비게이션 -->
 <nav id="mainNav">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">창대교회<span>.</span></a>
+    <div class="nav-inner">
+        <a href="<?php echo G5_URL; ?>" class="nav-logo">창대교회<span>.</span></a>
 
-    <!-- PC 메뉴 -->
-    <ul class="pc-menu">
-      <li>
-        <a href="#">환영합니다</a>
-      </li>
-      <li>
-        <a href="#">소개합니다 <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i></a>
-        <ul class="pc-dropdown">
-          <li><a href="#">핵심가치</a></li>
-          <li><a href="#">사명</a></li>
-          <li><a href="#">섬기는 사람들</a></li>
-          <li><a href="#">목장모임</a></li>
-          <li><a href="#">창대소식</a></li>
+        <!-- PC 메뉴 -->
+        <ul class="pc-menu">
+            <li><a href="<?php echo G5_URL; ?>">환영합니다</a></li>
+            <li>
+                <a href="#">소개합니다 <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i></a>
+                <ul class="pc-dropdown">
+                    <li><a href="#">핵심가치</a></li>
+                    <li><a href="#">사명</a></li>
+                    <li><a href="<?php echo G5_URL; ?>#section-people">섬기는 사람들</a></li>
+                    <li><a href="#">목장모임</a></li>
+                    <li><a href="<?php echo G5_URL; ?>/page_news.php">창대소식</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">예배합니다 <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i></a>
+                <ul class="pc-dropdown">
+                    <li><a href="<?php echo G5_URL; ?>/page_sermon.php">주일설교</a></li>
+                    <li><a href="#">목장연합기도회</a></li>
+                    <li><a href="<?php echo get_pretty_url('sermon'); ?>">설교동영상</a></li>
+                    <li><a href="<?php echo G5_URL; ?>/page_bulletin.php">주보</a></li>
+                </ul>
+            </li>
         </ul>
-      </li>
-      <li>
-        <a href="#">예배합니다 <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i></a>
-        <ul class="pc-dropdown">
-          <li><a href="#">주일예배</a></li>
-          <li><a href="#">목장연합기도회</a></li>
-          <li><a href="#">설교동영상</a></li>
-          <li><a href="#">주보</a></li>
-        </ul>
-      </li>
-    </ul>
 
-    <!-- 햄버거 -->
-    <button class="hamburger" id="hamburger" aria-label="메뉴">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+        <!-- 햄버거 -->
+        <button class="hamburger" id="hamburger" aria-label="메뉴">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
 </nav>
 
 <!-- 모바일 풀스크린 메뉴 -->
 <div id="mobileMenu">
-  <ul class="mobile-nav-list">
-    <li>
-      <a href="#">환영합니다</a>
-    </li>
-    <li>
-      <a href="#">소개합니다</a>
-      <ul class="mobile-sub">
-        <li><a href="#">핵심가치</a></li>
-        <li><a href="#">사명</a></li>
-        <li><a href="#">섬기는 사람들</a></li>
-        <li><a href="#">목장모임</a></li>
-        <li><a href="#">창대소식</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#">예배합니다</a>
-      <ul class="mobile-sub">
-        <li><a href="#">주일예배</a></li>
-        <li><a href="#">목장연합기도회</a></li>
-        <li><a href="#">설교동영상</a></li>
-        <li><a href="#">주보</a></li>
-      </ul>
-    </li>
-  </ul>
+    <ul class="mobile-nav-list">
+        <li><a href="<?php echo G5_URL; ?>">환영합니다</a></li>
+        <li>
+            <a href="#">소개합니다</a>
+            <ul class="mobile-sub">
+                <li><a href="#">핵심가치</a></li>
+                <li><a href="#">사명</a></li>
+                <li><a href="<?php echo G5_URL; ?>#section-people">섬기는 사람들</a></li>
+                <li><a href="#">목장모임</a></li>
+                <li><a href="<?php echo G5_URL; ?>/page_news.php">창대소식</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">예배합니다</a>
+            <ul class="mobile-sub">
+                <li><a href="<?php echo G5_URL; ?>/page_sermon.php">주일설교</a></li>
+                <li><a href="#">목장연합기도회</a></li>
+                <li><a href="<?php echo get_pretty_url('sermon'); ?>">설교동영상</a></li>
+                <li><a href="<?php echo G5_URL; ?>/page_bulletin.php">주보</a></li>
+            </ul>
+        </li>
+    </ul>
 </div>
 
 <!-- 본문 시작 (네비 높이만큼 여백) -->
