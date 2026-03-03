@@ -1,22 +1,50 @@
 import { useState, useCallback, useMemo } from "react";
 import { useAdminLogin, useAdminMe, useAdminLogout } from "@/hooks/use-admin";
 import { useBulletins, useCreateBulletin, useDeleteBulletin, useNews, useCreateNews, useDeleteNews, useColumns, useCreateColumn, useDeleteColumn, useSermons, useCreateSermon, useDeleteSermon } from "@/hooks/use-boards";
-import { Loader2, LogOut, Trash2, Bold, Italic, Underline, List, AlignLeft, AlignCenter, AlignRight } from "lucide-react";
+import { Loader2, LogOut, Trash2, Bold, Italic, Underline as UnderlineIcon, List, AlignLeft, AlignCenter, AlignRight } from "lucide-react";
 import { format } from "date-fns";
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import UnderlineExt from '@tiptap/extension-underline';
-import FontFamily from '@tiptap/extension-font-family';
-import TextStyle from '@tiptap/extension-text-style';
-import TextAlign from '@tiptap/extension-text-align';
+import { Underline } from '@tiptap/extension-underline';
+import { TextStyle } from '@tiptap/extension-text-style';
+import { FontFamily } from '@tiptap/extension-font-family';
+import { TextAlign } from '@tiptap/extension-text-align';
+import { Extension } from '@tiptap/core';
+
+const FontSize = Extension.create({
+  name: 'fontSize',
+  addOptions() {
+    return {
+      types: ['textStyle'],
+    };
+  },
+  addGlobalAttributes() {
+    return [
+      {
+        types: this.options.types,
+        attributes: {
+          fontSize: {
+            default: null,
+            parseHTML: element => element.style.fontSize.replace(/['"]+/g, ''),
+            renderHTML: attributes => {
+              if (!attributes.fontSize) return {};
+              return { style: `font-size: ${attributes.fontSize}` };
+            },
+          },
+        },
+      },
+    ];
+  },
+});
 
 const Tiptap = ({ content, onChange }: { content: string, onChange: (html: string) => void }) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
-      UnderlineExt,
+      Underline,
       TextStyle,
       FontFamily,
+      FontSize,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
     content,
@@ -32,7 +60,7 @@ const Tiptap = ({ content, onChange }: { content: string, onChange: (html: strin
       <div className="bg-muted/50 p-2 border-b flex flex-wrap gap-1">
         <button type="button" onClick={() => editor.chain().focus().toggleBold().run()} className={`p-1.5 rounded ${editor.isActive('bold') ? 'bg-primary/20' : 'hover:bg-muted'}`}><Bold className="w-4 h-4" /></button>
         <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()} className={`p-1.5 rounded ${editor.isActive('italic') ? 'bg-primary/20' : 'hover:bg-muted'}`}><Italic className="w-4 h-4" /></button>
-        <button type="button" onClick={() => editor.chain().focus().toggleUnderline().run()} className={`p-1.5 rounded ${editor.isActive('underline') ? 'bg-primary/20' : 'hover:bg-muted'}`}><Underline className="w-4 h-4" /></button>
+        <button type="button" onClick={() => editor.chain().focus().toggleUnderline().run()} className={`p-1.5 rounded ${editor.isActive('underline') ? 'bg-primary/20' : 'hover:bg-muted'}`}><UnderlineIcon className="w-4 h-4" /></button>
         <div className="w-px h-4 bg-border mx-1 self-center" />
         <button type="button" onClick={() => editor.chain().focus().setTextAlign('left').run()} className={`p-1.5 rounded ${editor.isActive({ textAlign: 'left' }) ? 'bg-primary/20' : 'hover:bg-muted'}`}><AlignLeft className="w-4 h-4" /></button>
         <button type="button" onClick={() => editor.chain().focus().setTextAlign('center').run()} className={`p-1.5 rounded ${editor.isActive({ textAlign: 'center' }) ? 'bg-primary/20' : 'hover:bg-muted'}`}><AlignCenter className="w-4 h-4" /></button>
