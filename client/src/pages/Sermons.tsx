@@ -50,7 +50,7 @@ export default function Sermons() {
         {/* Sermon Info */}
         <div className="bg-card border border-border/50 rounded-2xl p-8 mb-12 shadow-sm">
           <p className="text-primary font-medium mb-2">
-            {format(new Date(current.sermonDate), 'yyyy년 MM월 dd일')} 주일예배
+            {format(new Date(current.publishDate), 'yyyy년 MM월 dd일')} 주일예배
           </p>
           <h1 className="text-3xl font-bold text-foreground mb-6 ko-heading">{current.title}</h1>
           

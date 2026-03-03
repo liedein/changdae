@@ -59,7 +59,8 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
 
   // Bulletins
   app.get(api.bulletins.list.path, async (req, res) => {
-    const data = await storage.getBulletins();
+    const isAdmin = !!(req.session as any)?.adminLoggedIn;
+    const data = await storage.getBulletins(isAdmin);
     res.json(data);
   });
   app.post(api.bulletins.create.path, requireAdmin, async (req, res) => {
@@ -79,7 +80,8 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
 
   // News
   app.get(api.news.list.path, async (req, res) => {
-    const data = await storage.getNews();
+    const isAdmin = !!(req.session as any)?.adminLoggedIn;
+    const data = await storage.getNews(isAdmin);
     res.json(data);
   });
   app.post(api.news.create.path, requireAdmin, async (req, res) => {
@@ -99,7 +101,8 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
 
   // Columns
   app.get(api.columns.list.path, async (req, res) => {
-    const data = await storage.getColumns();
+    const isAdmin = !!(req.session as any)?.adminLoggedIn;
+    const data = await storage.getColumns(isAdmin);
     res.json(data);
   });
   app.post(api.columns.create.path, requireAdmin, async (req, res) => {
@@ -119,7 +122,8 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
 
   // Sermons
   app.get(api.sermons.list.path, async (req, res) => {
-    const data = await storage.getSermons();
+    const isAdmin = !!(req.session as any)?.adminLoggedIn;
+    const data = await storage.getSermons(isAdmin);
     res.json(data);
   });
   app.post(api.sermons.create.path, requireAdmin, async (req, res) => {
@@ -144,26 +148,31 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
 }
 
 async function seedDatabase() {
-  const newsData = await storage.getNews();
+  const newsData = await storage.getNews(true);
   if (newsData.length === 0) {
+    const today = new Date().toISOString().split('T')[0];
     await storage.createNews({
       title: "환영합니다! 창대교회 새 홈페이지가 오픈되었습니다.",
       content: "창대교회의 새로운 홈페이지를 통해 성도님들과 더 깊이 소통하길 소망합니다.",
+      publishDate: today,
     });
     await storage.createSermon({
       title: "하나님의 은혜",
       passage: "요한복음 3:16",
       preacher: "이대비 목사",
       videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      sermonDate: new Date().toISOString().split('T')[0],
+      publishDate: today,
     });
     await storage.createBulletin({
       title: "2024년 10월 첫째주 주보",
+      content: "은혜로운 한 주 되세요.",
       imageUrls: ["https://images.unsplash.com/photo-1438032005730-c779502df39b?q=80&w=2071&auto=format&fit=crop"],
+      publishDate: today,
     });
     await storage.createColumn({
       title: "목회 단상 - 가을을 맞이하며",
       content: "결실의 계절 가을입니다. 우리 삶에도 풍성한 열매가 맺히기를 기도합니다.",
+      publishDate: today,
     });
   }
 }

@@ -29,16 +29,12 @@ export default function News() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12 border-b border-border/50 pb-8">
           <p className="text-primary font-medium mb-3">
-            {format(new Date(current.createdAt), 'yyyy.MM.dd')}
+            {format(new Date(current.publishDate), 'yyyy.MM.dd')}
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground ko-heading">{current.title}</h1>
         </div>
 
-        <div className="prose dark:prose-invert max-w-none mb-20 min-h-[30vh]">
-          {current.content.split('\n').map((line: string, i: number) => (
-            <p key={i}>{line}</p>
-          ))}
-        </div>
+        <div className="prose dark:prose-invert max-w-none mb-20 min-h-[30vh]" dangerouslySetInnerHTML={{ __html: current.content }} />
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-border/50 pt-8">
           <button

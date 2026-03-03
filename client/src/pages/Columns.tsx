@@ -31,15 +31,11 @@ export default function Columns() {
           <p className="text-primary font-medium mb-3">목회칼럼</p>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 ko-heading">{current.title}</h1>
           <p className="text-muted-foreground">
-            {format(new Date(current.createdAt), 'yyyy.MM.dd')}
+            {format(new Date(current.publishDate), 'yyyy.MM.dd')}
           </p>
         </div>
 
-        <div className="prose dark:prose-invert max-w-none mb-20 text-lg leading-loose min-h-[30vh]">
-          {current.content.split('\n').map((line: string, i: number) => (
-            <p key={i}>{line}</p>
-          ))}
-        </div>
+        <div className="prose dark:prose-invert max-w-none mb-20 text-lg leading-loose min-h-[30vh]" dangerouslySetInnerHTML={{ __html: current.content }} />
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-border/50 pt-8">
           <button

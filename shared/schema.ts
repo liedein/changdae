@@ -5,7 +5,9 @@ import { z } from "zod";
 export const bulletins = pgTable("bulletins", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
+  content: text("content"),
   imageUrls: text("image_urls").array().notNull(),
+  publishDate: date("publish_date").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -13,6 +15,7 @@ export const news = pgTable("news", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   content: text("content").notNull(),
+  publishDate: date("publish_date").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -20,6 +23,7 @@ export const columns = pgTable("columns", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   content: text("content").notNull(),
+  publishDate: date("publish_date").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -29,7 +33,7 @@ export const sermons = pgTable("sermons", {
   passage: text("passage").notNull(),
   preacher: text("preacher").notNull(),
   videoUrl: text("video_url").notNull(),
-  sermonDate: date("sermon_date").notNull(),
+  publishDate: date("publish_date").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

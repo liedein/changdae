@@ -29,13 +29,13 @@ export default function Bulletins() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 border-b border-border/50 pb-12">
           <p className="text-primary font-medium mb-3">
-            {format(new Date(current.createdAt), 'yyyy년 MM월 dd일')}
+            {format(new Date(current.publishDate), 'yyyy년 MM월 dd일')}
           </p>
           <h1 className="text-4xl font-bold text-foreground ko-heading">{current.title}</h1>
         </div>
 
         {/* Vertical Images */}
-        <div className="space-y-8 mb-16 flex flex-col items-center">
+        <div className="space-y-8 mb-8 flex flex-col items-center">
           {current.imageUrls.map((url: string, i: number) => (
             <img 
               key={i} 
@@ -46,6 +46,10 @@ export default function Bulletins() {
             />
           ))}
         </div>
+
+        {current.content && (
+          <div className="prose dark:prose-invert max-w-none mb-16 p-8 bg-card border border-border/50 rounded-2xl shadow-sm" dangerouslySetInnerHTML={{ __html: current.content }} />
+        )}
 
         {/* Navigation Buttons */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-border/50 pt-8">
