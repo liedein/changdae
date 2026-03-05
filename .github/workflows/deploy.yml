@@ -23,15 +23,22 @@ jobs:
         run: npm ci
 
       - name: 🏗️ Build Static Website
+        # package.json에 정의된 빌드 스크립트를 실행합니다.
         run: npm run build
 
-      - name: 📂 Sync files via FTP
+      - name: 🔍 Check Build Output
+        # 빌드 후 dist 폴더에 index.html 등의 파일이 실제로 존재하는지 로그로 확인합니다.
+        run: ls -R dist
+
+      - name: � Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # 로컬에서 빌드된 결과물 폴더 (Next.js export 기본값)
-          local-dir: ./out/
+          # 로컬에서 빌드된 결과물 폴더 (Vite의 기본값은 'dist' 입니다)
+          local-dir: ./dist/
           # 닷홈의 실제 웹루트 경로
           server-dir: /html/
+          # Dothome 호환성을 위해 FTPS 대신 일반 FTP 프로토콜 사용
+          protocol: ftp
