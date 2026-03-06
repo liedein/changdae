@@ -28,7 +28,7 @@ if (!$post) {
         <?php $images = json_decode($post['image_files']); ?>
         <div class="flex flex-col gap-4">
             <?php foreach ($images as $img): ?>
-                <img src="/uploads/<?= $img ?>" alt="주보 이미지" class="w-full shadow-lg">
+                <img src="/uploads/<?= $img ?>" alt="주보 이미지" class="w-full shadow-lg zoomable-image cursor-zoom-in">
             <?php endforeach; ?>
         </div>
     <?php endif; ?>

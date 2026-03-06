@@ -16,9 +16,10 @@ jobs:
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }} # 예: changdae.dothome.co.kr
-          username: ${{ secrets.FTP_USERNAME }} # 닷홈 아이디
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }} # FTP 비밀번호
+          port: ${{ secrets.FTP_PORT }}
           local-dir: ./html/ # 로컬 업로드 대상 폴더
           server-dir: /html/ # 서버 저장 경로 (닷홈은 보통 /html/)
           exclude: |
