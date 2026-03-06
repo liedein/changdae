@@ -1,9 +1,9 @@
 <?php
 // html/includes/db.php
 $host = 'localhost'; // 닷홈은 보통 localhost
-$db   = 'your_db_name';
-$user = 'your_db_user';
-$pass = 'your_db_pass';
+$db   = 'changdae';
+$user = 'changdae';
+$pass = 'DB_PASSWORD_PLACEHOLDER'; // GitHub Actions 배포 시 실제 비밀번호로 자동 교체됨
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
