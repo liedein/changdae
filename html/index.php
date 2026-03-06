@@ -56,7 +56,7 @@ if (!in_array($page, $allowed_pages)) {
     <main class="min-h-screen pt-20">
         <?php 
             // 페이지 동적 로드
-            $page_path = "pages/{$page}.php";
+            $page_path = __DIR__ . "/pages/{$page}.php";
             if (file_exists($page_path)) {
                 include $page_path;
             } else {

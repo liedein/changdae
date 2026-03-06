@@ -49,17 +49,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", function () {
-      // 아이콘 토글
-      themeToggleDarkIcon.classList.toggle("hidden");
-      themeToggleLightIcon.classList.toggle("hidden");
+      // 현재 다크모드인지 확인 (클래스 기준)
+      const isDark = document.documentElement.classList.contains("dark");
 
-      // 테마 변경 및 저장
-      if (localStorage.getItem("theme") === "dark") {
+      if (isDark) {
+        // 다크 -> 라이트로 변경
         document.documentElement.classList.remove("dark");
         localStorage.setItem("theme", "light");
+
+        // 아이콘 변경: 해(Light) 숨김, 달(Dark) 표시
+        themeToggleLightIcon.classList.add("hidden");
+        themeToggleDarkIcon.classList.remove("hidden");
       } else {
+        // 라이트 -> 다크로 변경
         document.documentElement.classList.add("dark");
         localStorage.setItem("theme", "dark");
+
+        // 아이콘 변경: 달(Dark) 숨김, 해(Light) 표시
+        themeToggleDarkIcon.classList.add("hidden");
+        themeToggleLightIcon.classList.remove("hidden");
       }
     });
   }
