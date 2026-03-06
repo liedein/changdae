@@ -43,17 +43,13 @@ if ($id) {
     <title>관리자 대시보드 - 창대교회</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#content',
-            language: 'ko_KR',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-            toolbar: 'undo redo | fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-            height: 500,
-            menubar: false
-        });
-    </script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <style>
+        .ql-editor { min-height: 400px; font-size: 16px; }
+        .bg-white .ql-toolbar { background: #f8f9fa; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .bg-white .ql-container { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+    </style>
 </head>
 <body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
     <!-- 상단 헤더 -->
@@ -157,8 +153,34 @@ if ($id) {
                     <!-- 내용 -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">내용</label>
-                        <textarea id="content" name="content"><?= htmlspecialchars($post['content'] ?? '') ?></textarea>
+                        <div class="bg-white">
+                            <div id="editor-container"><?= $post['content'] ?? '' ?></div>
+                            <input type="hidden" name="content" id="content-input">
+                        </div>
                     </div>
+
+                    <script>
+                        // 에디터 초기화
+                        var quill = new Quill('#editor-container', {
+                            modules: {
+                                toolbar: [
+                                    [{ 'header': [1, 2, 3, false] }],
+                                    ['bold', 'italic', 'underline', 'strike'],
+                                    ['link', 'image', 'video'],
+                                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                                    ['clean']
+                                ]
+                            },
+                            theme: 'snow'
+                        });
+
+                        // 폼 전송 시 에디터 내용을 hidden input에 담아주는 로직
+                        const form = document.querySelector('form');
+                        form.onsubmit = function() {
+                            const contentInput = document.getElementById('content-input');
+                            contentInput.value = quill.root.innerHTML;
+                        };
+                    </script>
 
                     <div class="flex justify-end">
                         <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium">

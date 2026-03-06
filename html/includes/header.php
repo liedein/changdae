@@ -114,84 +114,65 @@ $menuItems = [
 </header>
 
 <script>
-    // Header Scroll Effect
+document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('main-header');
     const headerContainer = document.getElementById('header-container');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-            header.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm');
-            header.classList.remove('border-transparent');
-            header.classList.add('border-gray-200', 'dark:border-gray-800');
-            headerContainer.classList.remove('h-20');
-            headerContainer.classList.add('h-16');
-        } else {
-            header.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm');
-            header.classList.add('border-transparent');
-            header.classList.remove('border-gray-200', 'dark:border-gray-800');
-            headerContainer.classList.remove('h-16');
-            headerContainer.classList.add('h-20');
-        }
-    });
-
-    // --- 다크모드 통합 로직 시작 ---
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-    // [추가] 페이지 로드 시 localStorage 확인 후 테마 즉시 적용
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-        themeToggleLightIcon.classList.remove('hidden'); // 해 아이콘 표시
-        themeToggleDarkIcon.classList.add('hidden');    // 달 아이콘 숨김
-    } else {
-        document.documentElement.classList.remove('dark');
-        themeToggleDarkIcon.classList.remove('hidden'); // 달 아이콘 표시
-        themeToggleLightIcon.classList.add('hidden');   // 해 아이콘 숨김
-    }
-
-    // 클릭 이벤트
-    themeToggleBtn.addEventListener('click', function() {
-        if (document.documentElement.classList.contains('dark')) {
-            // 다크 -> 라이트 모드로 변경
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-            themeToggleDarkIcon.classList.remove('hidden');
-            themeToggleLightIcon.classList.add('hidden');
-        } else {
-            // 라이트 -> 다크 모드로 변경
+    // 1. 테마 초기 설정 및 아이콘 동기화
+    function applyTheme() {
+        const isDark = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) {
             document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
             themeToggleLightIcon.classList.remove('hidden');
             themeToggleDarkIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+            themeToggleLightIcon.classList.add('hidden');
         }
-    });
-    // --- 다크모드 통합 로직 끝 ---
+    }
+    applyTheme();
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        // 메뉴 열기/닫기 토글
-        mobileMenu.classList.toggle('hidden');
-        
-        // 메뉴가 열렸을 때 배경색 처리
-        if (!mobileMenu.classList.contains('hidden')) {
-            header.classList.add('bg-white', 'dark:bg-gray-900', 'shadow-md');
-        } else if (window.scrollY <= 10) {
-            header.classList.remove('bg-white', 'dark:bg-gray-900', 'shadow-md');
-        }
-    });
-
-    // 메뉴 내부 링크 클릭 시 메뉴 닫기 (사용자 경험 개선)
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
+    // 2. 테마 토글 버튼 클릭 이벤트
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            applyTheme();
         });
+    }
+
+    // 3. 햄버거 버튼 (모바일 메뉴) 토글
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            if (!mobileMenu.classList.contains('hidden') && window.scrollY <= 10) {
+                header.classList.add('bg-white', 'dark:bg-gray-900');
+            }
+        });
+    }
+
+    // 4. 스크롤 효과
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            header.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm', 'border-gray-200', 'dark:border-gray-800');
+            header.classList.remove('border-transparent');
+            headerContainer.classList.replace('h-20', 'h-16');
+        } else {
+            header.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm', 'border-gray-200', 'dark:border-gray-800');
+            header.classList.add('border-transparent');
+            headerContainer.classList.replace('h-16', 'h-20');
+        }
     });
-}
+});
 </script>
