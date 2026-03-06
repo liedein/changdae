@@ -197,14 +197,8 @@ switch ($mode) {
     case 'delete':
         checkAuth();
         $id = $_POST['id'];
-        // 삭제 시 카테고리 정보가 필요함 (POST로 받거나 REFERER에서 유추해야 함. 여기선 hidden input 추가 필요)
-        // index.php에서 form에 category hidden input을 추가했다고 가정하거나, 
-        // 간단히 모든 테이블에서 시도(비효율적) 혹은 세션/파라미터 활용.
-        // 여기서는 index.php의 삭제 폼에 category input을 추가하는 것이 좋음.
-        // 임시로 REFERER의 cat 파라미터 확인
-        $referer_query = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_QUERY);
-        parse_str($referer_query, $query_params);
-        $category = $query_params['cat'] ?? 'news';
+        $category = $_POST['category'] ?? 'news'; // 폼에서 전송된 카테고리 사용
+
         $table = ($category === 'column') ? '`column`' : $category;
 
         $stmt = $pdo->prepare("DELETE FROM {$table} WHERE id = ?");
