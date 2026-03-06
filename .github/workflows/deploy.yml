@@ -1,4 +1,4 @@
-name: Deploy to Dothome FTP
+name: Deploy to Dothome
 
 on:
   push:
@@ -7,37 +7,22 @@ on:
 
 jobs:
   web-deploy:
-    name: 🎉 Deploying Next.js to Dothome
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v3
+      - name: Get latest code
+        uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          node-version: 18
-          cache: "npm"
-
-      - name: 📦 Install Dependencies
-        run: npm ci
-
-      - name: 🏗️ Build Static Website
-        # package.json에 정의된 빌드 스크립트를 실행합니다.
-        run: npm run build
-
-      - name: 🔍 Check Build Output
-        # 빌드 후 dist 폴더에 index.html 등의 파일이 실제로 존재하는지 로그로 확인합니다.
-        run: ls -R dist
-
-      - name: 📂 닷홈 FTP로 파일 전송
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: ./out/
-          server-dir: /html/
-          # Dothome 호환성을 위해 FTPS 대신 일반 FTP 프로토콜 사용
-          protocol: ftp
+          server: ${{ secrets.FTP_SERVER }} # 예: changdae.dothome.co.kr
+          username: ${{ secrets.FTP_USERNAME }} # 닷홈 아이디
+          password: ${{ secrets.FTP_PASSWORD }} # FTP 비밀번호
+          local-dir: ./html/ # 로컬 업로드 대상 폴더
+          server-dir: /html/ # 서버 저장 경로 (닷홈은 보통 /html/)
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/*.md
