@@ -6,8 +6,8 @@ $menuItems = [
         'sub' => [
             'vision' => ['title' => '비전과 철학', 'url' => '?page=intro&sub=vision'],
             'mission' => ['title' => '사명', 'url' => '?page=intro&sub=mission'],
-            'staff' => ['title' => '섬기는 사람들', 'url' => '?page=intro&sub=staff'],
-            'cell' => ['title' => '목장', 'url' => '?page=intro&sub=cell'],
+            'staff' => ['title' => '섬기는 사람들', 'url' => '?page=staff'],
+            'cell' => ['title' => '목장', 'url' => '?page=cell'],
             'study' => ['title' => '삶공부', 'url' => '?page=intro&sub=study'],
             'news' => ['title' => '창대소식', 'url' => '?page=board_view&cat=news'],
             'location' => ['title' => '오시는 길', 'url' => '?page=intro&sub=location'],
