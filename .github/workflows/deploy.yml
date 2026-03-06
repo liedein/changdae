@@ -15,7 +15,7 @@ jobs:
 
       - name: Inject DB Password
         run: |
-          sed -i "s/DB_PASSWORD_PLACEHOLDER/${{ secrets.DB_PASSWORD }}/g" html/includes/db.php
+          sed -i "s|DB_PASSWORD_PLACEHOLDER|${{ secrets.DB_PASSWORD }}|g" html/includes/db.php
 
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
