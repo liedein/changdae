@@ -17,10 +17,12 @@ if (!array_key_exists($category, $category_map)) {
     die('잘못된 접근입니다.');
 }
 
+$table = $category; // 테이블명 매핑
+
 $post = null;
 if ($is_editing) {
-    $stmt = $pdo->prepare("SELECT * FROM posts WHERE id = ? AND category = ?");
-    $stmt->execute([$id, $category]);
+    $stmt = $pdo->prepare("SELECT * FROM {$table} WHERE id = ?");
+    $stmt->execute([$id]);
     $post = $stmt->fetch();
     if (!$post) {
         die('게시물을 찾을 수 없습니다.');
@@ -44,7 +46,7 @@ $page_title = $is_editing ? $category_map[$category] . ' 수정' : $category_map
             selector: '#content',
             language: 'ko_KR',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            toolbar: 'undo redo | fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
             height: 500,
             menubar: false
         });
@@ -67,11 +69,11 @@ $page_title = $is_editing ? $category_map[$category] . ' 수정' : $category_map
 
                 <!-- 게시일자 (예약 게시) -->
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">게시일자 (예약)</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">게시일자</label>
                     <div class="flex items-center gap-2">
                         <input type="date" name="publish_date" required value="<?= date('Y-m-d', strtotime($post['published_at'] ?? date('Y-m-d'))) ?>"
                                class="w-48 rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <span class="text-sm text-gray-500">* 선택한 날짜의 00시 05분에 게시됩니다.</span>
+                        <span class="text-sm text-gray-500">* 선택한 날짜의 00시 00분에 게시됩니다.</span>
                     </div>
                 </div>
 
@@ -83,8 +85,26 @@ $page_title = $is_editing ? $category_map[$category] . ' 수정' : $category_map
                            placeholder="제목을 입력하세요">
                 </div>
 
-                <!-- 유튜브 URL (설교, 소식, 칼럼 등) -->
-                <?php if ($category !== 'bulletin'): ?>
+                <!-- 설교 전용 필드: 성경 본문 & 설교자 -->
+                <?php if ($category === 'sermon'): ?>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">성경 본문</label>
+                        <input type="text" name="passage" value="<?= htmlspecialchars($post['passage'] ?? '') ?>"
+                               class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               placeholder="예: 요한복음 3:16">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">설교자</label>
+                        <input type="text" name="preacher" value="<?= htmlspecialchars($post['preacher'] ?? '김은택 담임목사') ?>"
+                               class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               placeholder="설교자 이름">
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <!-- 유튜브 URL (설교, 소식) -->
+                <?php if ($category === 'sermon' || $category === 'news'): ?>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크 (선택)</label>
                     <input type="url" name="youtube_url" value="<?= htmlspecialchars($post['youtube_url'] ?? '') ?>"

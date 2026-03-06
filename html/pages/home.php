@@ -31,8 +31,8 @@
             <?php
             // 최신 소식 3개 가져오기 (카테고리 'news')
             try {
-                // 게시일자가 현재 시간보다 이전인 것만 조회 (예약 게시 기능)
-                $stmt = $pdo->query("SELECT * FROM posts WHERE category = 'news' AND published_at <= NOW() ORDER BY published_at DESC LIMIT 3");
+                // news 테이블 조회
+                $stmt = $pdo->query("SELECT * FROM news WHERE published_at <= NOW() ORDER BY published_at DESC LIMIT 3");
                 $newsItems = $stmt->fetchAll();
             } catch (PDOException $e) {
                 $newsItems = [];

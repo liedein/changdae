@@ -18,7 +18,7 @@ $menuItems = [
         'sub' => [
             'sermon' => ['title' => '주일예배', 'url' => '?page=board_view&cat=sermon'],
             'prayer' => ['title' => '목장연합기도회', 'url' => '?page=worship&sub=prayer'],
-            'bulletin' => ['title' => '주보', 'url' => '?page=board_view&cat=bulletin'],
+            'bulletin' => ['title' => '주보', 'url' => '?page=bulletin'],
         ]
     ],
     'together' => [
@@ -140,7 +140,7 @@ $menuItems = [
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
     // 초기 아이콘 설정
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (document.documentElement.classList.contains('dark')) {
         themeToggleLightIcon.classList.remove('hidden');
     } else {
         themeToggleDarkIcon.classList.remove('hidden');
@@ -152,7 +152,7 @@ $menuItems = [
         themeToggleLightIcon.classList.toggle('hidden');
 
         // 테마 변경 및 저장
-        if (localStorage.getItem('theme') === 'dark') {
+        if (document.documentElement.classList.contains('dark')) {
             document.documentElement.classList.remove('dark');
             localStorage.setItem('theme', 'light');
         } else {

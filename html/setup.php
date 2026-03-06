@@ -4,26 +4,63 @@ require_once 'includes/db.php';
 try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // 1. posts 테이블 생성
-    $sql = "CREATE TABLE IF NOT EXISTS `posts` (
+    // 1. bulletin (주보) 테이블 생성
+    $sql = "CREATE TABLE IF NOT EXISTS `bulletin` (
       `id` INT(11) NOT NULL AUTO_INCREMENT,
-      `category` VARCHAR(20) NOT NULL COMMENT 'news, bulletin, sermon, column',
       `title` VARCHAR(255) NOT NULL,
-      `content` LONGTEXT NULL COMMENT '본문 내용 (HTML)',
-      `youtube_url` VARCHAR(255) NULL COMMENT '설교 영상 링크',
+      `content` LONGTEXT NULL COMMENT '본문 내용',
       `image_files` JSON NULL COMMENT '주보 이미지 경로 배열 (JSON)',
-      `view_count` INT(11) DEFAULT 0,
       `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
-      `published_at` DATETIME NULL COMMENT '예약 게시 일자',
+      `published_at` DATETIME NULL COMMENT '게시일자',
       PRIMARY KEY (`id`),
-      INDEX `idx_category` (`category`),
       INDEX `idx_published_at` (`published_at`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
-    
     $pdo->exec($sql);
-    echo "✅ 'posts' 테이블 확인/생성 완료<br>";
+    echo "✅ 'bulletin' (주보) 테이블 확인/생성 완료<br>";
 
-    // 2. admin_config 테이블 생성
+    // 2. column (목회칼럼) 테이블 생성
+    $sql = "CREATE TABLE IF NOT EXISTS `column` (
+      `id` INT(11) NOT NULL AUTO_INCREMENT,
+      `title` VARCHAR(255) NOT NULL,
+      `content` LONGTEXT NULL COMMENT '본문 내용',
+      `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+      `published_at` DATETIME NULL COMMENT '게시일자',
+      PRIMARY KEY (`id`),
+      INDEX `idx_published_at` (`published_at`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+    $pdo->exec($sql);
+    echo "✅ 'column' (목회칼럼) 테이블 확인/생성 완료<br>";
+
+    // 3. sermon (설교) 테이블 생성
+    $sql = "CREATE TABLE IF NOT EXISTS `sermon` (
+      `id` INT(11) NOT NULL AUTO_INCREMENT,
+      `title` VARCHAR(255) NOT NULL,
+      `passage` VARCHAR(255) NULL COMMENT '성경 본문',
+      `preacher` VARCHAR(100) NULL COMMENT '설교자',
+      `youtube_url` VARCHAR(255) NULL COMMENT '설교 영상 링크',
+      `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+      `published_at` DATETIME NULL COMMENT '게시일자',
+      PRIMARY KEY (`id`),
+      INDEX `idx_published_at` (`published_at`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+    $pdo->exec($sql);
+    echo "✅ 'sermon' (설교) 테이블 확인/생성 완료<br>";
+
+    // 4. news (창대소식) 테이블 생성
+    $sql = "CREATE TABLE IF NOT EXISTS `news` (
+      `id` INT(11) NOT NULL AUTO_INCREMENT,
+      `title` VARCHAR(255) NOT NULL,
+      `content` LONGTEXT NULL COMMENT '본문 내용',
+      `youtube_url` VARCHAR(255) NULL COMMENT '관련 영상 링크',
+      `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+      `published_at` DATETIME NULL COMMENT '게시일자',
+      PRIMARY KEY (`id`),
+      INDEX `idx_published_at` (`published_at`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+    $pdo->exec($sql);
+    echo "✅ 'news' (창대소식) 테이블 확인/생성 완료<br>";
+
+    // 5. admin_config 테이블 생성 (이미 생성됨)
     $sql = "CREATE TABLE IF NOT EXISTS `admin_config` (
       `config_key` VARCHAR(50) PRIMARY KEY,
       `config_value` VARCHAR(255) NOT NULL
@@ -31,7 +68,7 @@ try {
     $pdo->exec($sql);
     echo "✅ 'admin_config' 테이블 확인/생성 완료<br>";
 
-    // 3. 관리자 비밀번호 초기화 (admin1234)
+    // 6. 관리자 비밀번호 초기화 (이미 생성됨)
     $stmt = $pdo->prepare("SELECT count(*) FROM admin_config WHERE config_key = 'admin_pw'");
     $stmt->execute();
     if ($stmt->fetchColumn() == 0) {
