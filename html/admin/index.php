@@ -137,55 +137,65 @@ if ($id) {
                     <!-- 주보 이미지 -->
                     <?php if ($category === 'bulletin'): ?>
                     <div class="space-y-4">
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 업로드 및 순서 변경</label>
-                        <input type="file" name="images[]" multiple accept="image/*"
-                               class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors">
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 (드래그로 순서 조정)</label>
                         
-                        <?php if ($mode === 'update' && !empty($post['image_files'])): ?>
-                            <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner">
-                                <p class="text-xs text-blue-600 mb-4 font-bold uppercase tracking-wider">📦 마우스로 드래그하여 출력 순서를 조정하세요 (등록된 이미지)</p>
-                                <div id="image-sort-list" class="flex flex-wrap gap-4">
-                                    <?php 
-                                    $imgs = json_decode($post['image_files'], true);
-                                    if (is_array($imgs)): 
-                                        foreach ($imgs as $img): 
-                                            $displayPath = (strpos($img, 'bulletins/') === false ? 'bulletins/'.$img : $img);
-                                    ?>
-                                        <div class="relative cursor-move bg-white p-2 rounded-lg border border-slate-200 shadow-sm hover:shadow-md transition-all group">
-                                            <img src="/uploads/<?= htmlspecialchars($displayPath) ?>" class="h-40 w-auto rounded object-cover">
-                                            <input type="hidden" name="existing_images[]" value="<?= htmlspecialchars($img) ?>">
-                                            <div class="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
-                                                <span class="bg-white/90 text-blue-600 px-2 py-1 rounded text-[10px] font-bold shadow-sm">MOVE</span>
-                                            </div>
-                                        </div>
-                                    <?php 
-                                        endforeach; 
-                                    endif; 
-                                    ?>
+                        <input type="file" id="bulletin-upload" name="images[]" multiple accept="image/*"
+                            class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors mb-4">
+                        
+                        <div id="image-sort-list" class="flex flex-wrap gap-4 p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200 min-h-[100px]">
+                            <?php 
+                            // 수정 모드일 때 기존 이미지 먼저 표시
+                            if ($mode === 'update' && !empty($post['image_files'])):
+                                $imgs = json_decode($post['image_files'], true);
+                                foreach ($imgs as $img): 
+                                    $path = (strpos($img, 'bulletins/') === false ? 'bulletins/'.$img : $img);
+                            ?>
+                                <div class="relative cursor-move bg-white p-2 rounded-lg border border-slate-200 shadow-sm group item-existing">
+                                    <img src="/uploads/<?= htmlspecialchars($path) ?>" class="h-32 w-auto rounded object-cover">
+                                    <input type="hidden" name="existing_images[]" value="<?= htmlspecialchars($img) ?>">
+                                    <button type="button" onclick="this.parentElement.remove()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center shadow-md">×</button>
                                 </div>
-                            </div>
-                            
-                            <script>
-                                (function() {
-                                    function initSortable() {
-                                        const sortContainer = document.getElementById('image-sort-list');
-                                        if (sortContainer && typeof Sortable !== 'undefined') {
-                                            new Sortable(sortContainer, {
-                                                animation: 150,
-                                                ghostClass: 'opacity-40',
-                                                dragClass: 'rotate-1'
-                                            });
-                                            console.log("SortableJS 초기화 성공");
-                                        } else {
-                                            console.error("SortableJS 로드 대기 중...");
-                                            setTimeout(initSortable, 500); // 라이브러리 로드 지연 시 재시도
-                                        }
-                                    }
-                                    window.onload = initSortable;
-                                })();
-                            </script>
-                        <?php endif; ?>
+                            <?php endforeach; endif; ?>
+                        </div>
                     </div>
+
+                    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const uploadInput = document.getElementById('bulletin-upload');
+                        const sortContainer = document.getElementById('image-sort-list');
+
+                        // 1. 드래그 앤 드롭 활성화
+                        if (sortContainer) {
+                            new Sortable(sortContainer, {
+                                animation: 150,
+                                ghostClass: 'bg-blue-100'
+                            });
+                        }
+
+                        // 2. 신규 파일 선택 시 미리보기 생성
+                        uploadInput.addEventListener('change', function(e) {
+                            const files = Array.from(e.target.files);
+                            files.forEach((file, index) => {
+                                const reader = new FileReader();
+                                reader.onload = function(event) {
+                                    const div = document.createElement('div');
+                                    div.className = "relative cursor-move bg-white p-2 rounded-lg border-2 border-blue-200 shadow-sm item-new";
+                                    div.innerHTML = `
+                                        <img src="${event.target.result}" class="h-32 w-auto rounded object-cover">
+                                        <span class="absolute top-1 left-1 bg-blue-600 text-white text-[10px] px-1 rounded font-bold">NEW</span>
+                                        <button type="button" onclick="this.parentElement.remove()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">×</button>
+                                    `;
+                                    sortContainer.appendChild(div);
+                                };
+                                reader.readAsDataURL(file);
+                            });
+                            // 주의: 브라우저 보안상 input[type=file]의 순서를 JS로 직접 바꿀 순 없습니다.
+                            // 따라서 실제 운영 시에는 신규 이미지도 서버 전송 후 다시 정렬하거나, 
+                            // Base64로 전송하는 방식이 필요하나, 현재 구조에서는 등록 후 수정화면에서 최종 정렬을 권장합니다.
+                        });
+                    });
+                    </script>
                     <?php endif; ?>
 
                     <!-- 내용 -->

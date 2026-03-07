@@ -8,15 +8,15 @@ $menuItems = [
             'mission' => ['title' => '사명', 'url' => '?page=intro&sub=mission'],
             'staff' => ['title' => '섬기는 사람들', 'url' => '?page=staff'],
             'cell' => ['title' => '목장', 'url' => '?page=cell'],
-            'study' => ['title' => '삶공부', 'url' => '?page=intro&sub=study'],
-            'news' => ['title' => '창대소식', 'url' => '?page=board_view&cat=news'],
-            'location' => ['title' => '오시는 길', 'url' => '?page=intro&sub=location'],
+            'study' => ['title' => '삶공부', 'url' => '?page=study'],
+            'news' => ['title' => '창대소식', 'url' => '?page=news'],
+            'location' => ['title' => '오시는 길', 'url' => '?page=location'],
         ]
     ],
     'worship' => [
         'title' => '예배합니다',
         'sub' => [
-            'sermon' => ['title' => '주일예배', 'url' => '?page=board_view&cat=sermon'],
+            'worship' => ['title' => '주일예배', 'url' => '?page=worship'],
             'prayer' => ['title' => '목장연합기도회', 'url' => '?page=worship&sub=prayer'],
             'bulletin' => ['title' => '주보', 'url' => '?page=bulletin'],
         ]
@@ -26,7 +26,7 @@ $menuItems = [
         'sub' => [
             'missionary' => ['title' => '파송 및 후원선교사', 'url' => '?page=together&sub=missionary'],
             'neighbor' => ['title' => '이웃섬김', 'url' => '?page=together&sub=neighbor'],
-            'column' => ['title' => '목회칼럼', 'url' => '?page=board_view&cat=column'],
+            'column' => ['title' => '목회칼럼', 'url' => '?page=column'],
         ]
     ]
 ];

@@ -51,8 +51,10 @@ if (!$data || !$data['current']) {
                 <a href="?page=bulletin&id=<?= $prevPost['id'] ?>" class="group flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                     <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     <div class="flex flex-col items-start">
-                        <span class="text-[10px] text-gray-400 uppercase">Previous</span>
-                        <span class="text-sm font-medium hidden sm:block"><?= htmlspecialchars($prevPost['title']) ?></span>
+                        <div class="flex flex-col items-start">
+                            <span class="text-[10px] text-blue-500 font-bold mb-1">이전 주보</span>
+                            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300"><?= htmlspecialchars($prevPost['title']) ?></span>
+                        </div>
                     </div>
                 </a>
             <?php endif; ?>
