@@ -143,7 +143,7 @@ if ($id) {
                         
                         <?php if ($mode === 'update' && !empty($post['image_files'])): ?>
                             <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner">
-                                <p class="text-xs text-blue-600 mb-4 font-bold uppercase tracking-wider">📦 Drag & Drop으로 출력 순서를 조정하세요</p>
+                                <p class="text-xs text-blue-600 mb-4 font-bold uppercase tracking-wider">📦 마우스로 드래그하여 출력 순서를 조정하세요 (등록된 이미지)</p>
                                 <div id="image-sort-list" class="flex flex-wrap gap-4">
                                     <?php 
                                     $imgs = json_decode($post['image_files'], true);
@@ -164,16 +164,24 @@ if ($id) {
                                     ?>
                                 </div>
                             </div>
+                            
                             <script>
                                 (function() {
-                                    const sortContainer = document.getElementById('image-sort-list');
-                                    if (sortContainer && typeof Sortable !== 'undefined') {
-                                        new Sortable(sortContainer, {
-                                            animation: 150,
-                                            ghostClass: 'opacity-40',
-                                            dragClass: 'rotate-1'
-                                        });
+                                    function initSortable() {
+                                        const sortContainer = document.getElementById('image-sort-list');
+                                        if (sortContainer && typeof Sortable !== 'undefined') {
+                                            new Sortable(sortContainer, {
+                                                animation: 150,
+                                                ghostClass: 'opacity-40',
+                                                dragClass: 'rotate-1'
+                                            });
+                                            console.log("SortableJS 초기화 성공");
+                                        } else {
+                                            console.error("SortableJS 로드 대기 중...");
+                                            setTimeout(initSortable, 500); // 라이브러리 로드 지연 시 재시도
+                                        }
                                     }
+                                    window.onload = initSortable;
                                 })();
                             </script>
                         <?php endif; ?>

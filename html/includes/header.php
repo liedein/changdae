@@ -96,7 +96,7 @@ $menuItems = [
     <!-- Mobile Menu (Hidden by default) -->
     <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-deepblue dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800">환영합니다</a>
+            <a href="?page=intro" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-deepblue dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800">환영합니다</a>
             <?php foreach ($menuItems as $key => $menu): ?>
                 <div class="space-y-1">
                     <div class="px-3 py-2 text-base font-bold text-gray-900 dark:text-white">
