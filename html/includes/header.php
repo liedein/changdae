@@ -4,8 +4,8 @@ $menuItems = [
     'intro' => [
         'title' => '소개합니다',
         'sub' => [
-            'vision' => ['title' => '비전과 철학', 'url' => '?page=intro&sub=vision'],
-            'mission' => ['title' => '사명', 'url' => '?page=intro&sub=mission'],
+            'vision' => ['title' => '비전과 철학', 'url' => '?page=vision'],
+            'mission' => ['title' => '사명', 'url' => '?page=mission'],
             'staff' => ['title' => '섬기는 사람들', 'url' => '?page=staff'],
             'cell' => ['title' => '목장', 'url' => '?page=cell'],
             'study' => ['title' => '삶공부', 'url' => '?page=study'],
@@ -17,15 +17,15 @@ $menuItems = [
         'title' => '예배합니다',
         'sub' => [
             'worship' => ['title' => '주일예배', 'url' => '?page=worship'],
-            'prayer' => ['title' => '목장연합기도회', 'url' => '?page=worship&sub=prayer'],
+            'prayer' => ['title' => '목장연합기도회', 'url' => '?page=prayer'],
             'bulletin' => ['title' => '주보', 'url' => '?page=bulletin'],
         ]
     ],
     'together' => [
         'title' => '함께합니다',
         'sub' => [
-            'missionary' => ['title' => '파송 및 후원선교사', 'url' => '?page=together&sub=missionary'],
-            'neighbor' => ['title' => '이웃섬김', 'url' => '?page=together&sub=neighbor'],
+            'missionary' => ['title' => '파송 및 후원선교사', 'url' => '?page=missionary'],
+            'neighbor' => ['title' => '이웃섬김', 'url' => '?page=neighbor'],
             'column' => ['title' => '목회칼럼', 'url' => '?page=column'],
         ]
     ]

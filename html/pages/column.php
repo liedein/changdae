@@ -50,10 +50,6 @@ if (!$data || !$data['current']) {
                         prose-p:mb-6 text-base md:text-lg font-serif">
                 <?= $post['content'] ?>
             </div>
-            
-            <div class="mt-12 pt-8 border-t border-slate-50 dark:border-slate-700 text-right">
-                <p class="text-slate-500 dark:text-slate-400 italic">창대교회 목양실에서</p>
-            </div>
         </div>
     </article>
 

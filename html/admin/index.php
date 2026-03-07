@@ -18,12 +18,12 @@ if (!array_key_exists($category, $category_map)) {
 
 $table = $category;
 
-// 1. 목록 조회 (우측 사이드바용) - 테이블명에 백틱(`)을 추가하여 예약어 에러 방지
+// 1. 목록 조회 (우측 사이드바용)
 $stmt = $pdo->prepare("SELECT * FROM `{$table}` ORDER BY published_at DESC");
 $stmt->execute();
 $posts = $stmt->fetchAll();
 
-// 2. 수정할 게시물 조회 (좌측 에디터용) - 여기도 동일하게 백틱 추가
+// 2. 수정할 게시물 조회 (좌측 에디터용)
 $post = null;
 $mode = 'write'; 
 if ($id) {
@@ -36,7 +36,8 @@ if ($id) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="ko"> <head>
+<html lang="ko">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 대시보드 - 창대교회</title>
@@ -45,7 +46,6 @@ if ($id) {
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <style>
-        /* 눈이 편한 라이트 모드 에디터 스타일 */
         .ql-editor { min-height: 400px; font-size: 16px; background-color: #ffffff; color: #334155; }
         .ql-toolbar.ql-snow { background: #f8fafc; border-color: #e2e8f0; border-top-left-radius: 8px; border-top-right-radius: 8px; }
         .ql-container.ql-snow { border-color: #e2e8f0; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
@@ -91,15 +91,12 @@ if ($id) {
                     <?php endif; ?>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- 게시일자 -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">게시일자</label>
                             <input type="date" name="publish_date" required 
                                 value="<?= date('Y-m-d', strtotime($post['published_at'] ?? date('Y-m-d'))) ?>"
-                                min="<?= date('Y-m-d') ?>"
                                 class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-                        <!-- 제목 -->
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">제목</label>
                             <input type="text" name="title" required value="<?= htmlspecialchars($post['title'] ?? '') ?>"
@@ -108,7 +105,6 @@ if ($id) {
                         </div>
                     </div>
 
-                    <!-- 설교 전용 필드 -->
                     <?php if ($category === 'sermon'): ?>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -121,30 +117,34 @@ if ($id) {
                             <input type="text" name="preacher" value="<?= htmlspecialchars($post['preacher'] ?? '김은택 담임목사') ?>"
                                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크 (선택)</label>
+                            <input type="url" name="youtube_url" value="<?= htmlspecialchars($post['youtube_url'] ?? '') ?>"
+                                   class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   placeholder="https://youtu.be/...">
+                        </div>
                     </div>
                     <?php endif; ?>
 
-                    <!-- 유튜브 URL (설교, 소식) -->
-                    <?php if ($category === 'sermon'): ?>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크 (선택)</label>
-                        <input type="url" name="youtube_url" value="<?= htmlspecialchars($post['youtube_url'] ?? '') ?>"
-                               class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               placeholder="https://youtu.be/...">
-                    </div>
-                    <?php endif; ?>
-
-                    <!-- 주보 이미지 -->
                     <?php if ($category === 'bulletin'): ?>
                     <div class="space-y-4">
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded-r-lg">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <p class="text-sm text-blue-800 font-medium">
+                                    ※ 주보 등록 후 오른쪽 목록에서 등록된 게시물을 선택 후 이미지 순서를 변경하세요.
+                                </p>
+                            </div>
+                        </div>
+
                         <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 (드래그로 순서 조정)</label>
-                        
                         <input type="file" id="bulletin-upload" name="images[]" multiple accept="image/*"
                             class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors mb-4">
                         
                         <div id="image-sort-list" class="flex flex-wrap gap-4 p-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200 min-h-[100px]">
                             <?php 
-                            // 수정 모드일 때 기존 이미지 먼저 표시
                             if ($mode === 'update' && !empty($post['image_files'])):
                                 $imgs = json_decode($post['image_files'], true);
                                 foreach ($imgs as $img): 
@@ -159,24 +159,18 @@ if ($id) {
                         </div>
                     </div>
 
-                    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
                     <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const uploadInput = document.getElementById('bulletin-upload');
                         const sortContainer = document.getElementById('image-sort-list');
 
-                        // 1. 드래그 앤 드롭 활성화
                         if (sortContainer) {
-                            new Sortable(sortContainer, {
-                                animation: 150,
-                                ghostClass: 'bg-blue-100'
-                            });
+                            new Sortable(sortContainer, { animation: 150, ghostClass: 'bg-blue-100' });
                         }
 
-                        // 2. 신규 파일 선택 시 미리보기 생성
                         uploadInput.addEventListener('change', function(e) {
                             const files = Array.from(e.target.files);
-                            files.forEach((file, index) => {
+                            files.forEach((file) => {
                                 const reader = new FileReader();
                                 reader.onload = function(event) {
                                     const div = document.createElement('div');
@@ -190,15 +184,12 @@ if ($id) {
                                 };
                                 reader.readAsDataURL(file);
                             });
-                            // 주의: 브라우저 보안상 input[type=file]의 순서를 JS로 직접 바꿀 순 없습니다.
-                            // 따라서 실제 운영 시에는 신규 이미지도 서버 전송 후 다시 정렬하거나, 
-                            // Base64로 전송하는 방식이 필요하나, 현재 구조에서는 등록 후 수정화면에서 최종 정렬을 권장합니다.
                         });
                     });
                     </script>
                     <?php endif; ?>
 
-                    <!-- 내용 -->
+                    <?php if ($category !== 'bulletin'): ?>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">내용</label>
                         <div class="bg-white">
@@ -208,7 +199,6 @@ if ($id) {
                     </div>
 
                     <script>
-                        // 에디터 초기화
                         var quill = new Quill('#editor-container', {
                             modules: {
                                 toolbar: [
@@ -222,24 +212,23 @@ if ($id) {
                             theme: 'snow'
                         });
 
-                        // 폼 전송 시 에디터 내용을 hidden input에 담아주는 로직
                         const form = document.querySelector('form');
                         form.onsubmit = function() {
                             const contentInput = document.getElementById('content-input');
-                            contentInput.value = quill.root.innerHTML;
+                            if (contentInput) contentInput.value = quill.root.innerHTML;
                         };
                     </script>
+                    <?php endif; ?>
 
-                    <div class="flex justify-end">
-                        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium">
-                            <?= $mode === 'update' ? '수정하기' : '등록하기' ?>
+                    <div class="flex justify-end pt-4">
+                        <button type="submit" class="px-8 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-bold shadow-lg transition-all">
+                            <?= $mode === 'update' ? '수정 완료' : '등록 완료' ?>
                         </button>
                     </div>
                 </form>
             </div>
         </main>
 
-        <!-- 우측: 목록 (Sidebar) -->
         <aside class="w-80 bg-white border-l border-slate-200 flex-shrink-0 flex flex-col shadow-inner">
             <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                 <h3 class="font-bold text-slate-500 uppercase tracking-wider text-xs">목록 (<?= count($posts) ?>)</h3>
@@ -253,8 +242,6 @@ if ($id) {
                             <div class="text-xs text-gray-500 mb-0.5"><?= date('Y-m-d', strtotime($item['published_at'])) ?></div>
                             <div class="text-sm font-medium text-gray-900 truncate"><?= htmlspecialchars($item['title']) ?></div>
                         </a>
-                        
-                        <!-- 휴지통 아이콘 (삭제) -->
                         <form action="process.php" method="POST" onsubmit="return confirm('정말 삭제하시겠습니까?');" class="ml-2">
                             <input type="hidden" name="mode" value="delete">
                             <input type="hidden" name="id" value="<?= $item['id'] ?>">
@@ -268,9 +255,7 @@ if ($id) {
                     </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <div class="text-center py-10 text-sm text-gray-500">
-                        등록된 게시물이 없습니다.
-                    </div>
+                    <div class="text-center py-10 text-sm text-gray-500">등록된 게시물이 없습니다.</div>
                 <?php endif; ?>
             </div>
         </aside>

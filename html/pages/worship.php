@@ -50,7 +50,7 @@ if (!$data || !$data['current']) {
             <div class="hidden md:block w-px h-4 bg-slate-200 dark:bg-slate-600"></div>
             <div class="flex items-center gap-2">
                 <span class="text-slate-400 dark:text-slate-500 font-medium text-sm">설교</span>
-                <span class="text-slate-800 dark:text-white font-bold text-base md:text-lg"><?= htmlspecialchars($post['preacher']) ?> 목사</span>
+                <span class="text-slate-800 dark:text-white font-bold text-base md:text-lg"><?= htmlspecialchars($post['preacher']) ?></span>
             </div>
             <div class="hidden md:block w-px h-4 bg-slate-200 dark:bg-slate-600"></div>
             <div class="flex items-center gap-2">
@@ -74,29 +74,38 @@ if (!$data || !$data['current']) {
         </div>
     </div>
 
-    <nav class="flex flex-col sm:flex-row gap-4 justify-between items-stretch border-t border-slate-100 dark:border-slate-800 pt-12">
-        <div class="flex-1">
+    <nav class="flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12">
+        
+        <div class="w-full sm:w-auto flex justify-start">
             <?php if ($prevPost): ?>
-                <a href="?page=worship&id=<?= $prevPost['id'] ?>" class="group h-full flex items-center p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm">
-                    <svg class="w-6 h-6 mr-4 text-slate-300 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="?page=worship&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm max-w-xs md:max-w-md">
+                    <svg class="w-6 h-6 mr-4 text-slate-300 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
-                    <div class="flex flex-col">
-                        <span class="text-[10px] text-red-500 font-bold uppercase mb-1">이전 예배</span>
-                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span>
+                    <div class="flex flex-col overflow-hidden">
+                        <span class="text-xs text-red-500 font-bold uppercase mb-1">
+                            <?= date('Y. m. d', strtotime($prevPost['published_at'])) ?>
+                        </span>
+                        <span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate">
+                            <?= htmlspecialchars($prevPost['title']) ?>
+                        </span>
                     </div>
                 </a>
             <?php endif; ?>
         </div>
 
-        <div class="flex-1">
+        <div class="w-full sm:w-auto flex justify-end text-right">
             <?php if ($nextPost): ?>
-                <a href="?page=worship&id=<?= $nextPost['id'] ?>" class="group h-full flex items-center justify-between p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm text-right">
-                    <div class="flex flex-col items-end">
-                        <span class="text-[10px] text-red-500 font-bold uppercase mb-1">다음 예배</span>
-                        <span class="text-sm font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span>
+                <a href="?page=worship&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm max-w-xs md:max-w-md">
+                    <div class="flex flex-col items-end overflow-hidden">
+                        <span class="text-xs text-red-500 font-bold uppercase mb-1">
+                            <?= date('Y. m. d', strtotime($nextPost['published_at'])) ?>
+                        </span>
+                        <span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate">
+                            <?= htmlspecialchars($nextPost['title']) ?>
+                        </span>
                     </div>
-                    <svg class="w-6 h-6 ml-4 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 ml-4 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </a>
