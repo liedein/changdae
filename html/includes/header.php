@@ -115,64 +115,47 @@ $menuItems = [
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const header = document.getElementById('main-header');
-    const headerContainer = document.getElementById('header-container');
+    console.log("Header Script Loaded!"); // 스크립트 실행 확인
+
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    // 1. 테마 초기 설정 및 아이콘 동기화
+    // 1. 테마 적용 상태 확인
+    console.log("Theme Button:", themeToggleBtn);
+    console.log("Mobile Button:", mobileMenuBtn);
+
     function applyTheme() {
-        const isDark = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        const isDark = localStorage.getItem('theme') === 'dark';
+        console.log("Current Theme is Dark?", isDark);
         if (isDark) {
             document.documentElement.classList.add('dark');
-            themeToggleLightIcon.classList.remove('hidden');
-            themeToggleDarkIcon.classList.add('hidden');
         } else {
             document.documentElement.classList.remove('dark');
-            themeToggleDarkIcon.classList.remove('hidden');
-            themeToggleLightIcon.classList.add('hidden');
         }
     }
     applyTheme();
 
-    // 2. 테마 토글 버튼 클릭 이벤트
+    // 2. 클릭 이벤트 강제 연결 및 로그 출력
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', function() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
+            console.log("Theme Toggle Clicked!");
+            const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
             applyTheme();
         });
     }
 
-    // 3. 햄버거 버튼 (모바일 메뉴) 토글
-    if (mobileMenuBtn && mobileMenu) {
+    if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            if (!mobileMenu.classList.contains('hidden') && window.scrollY <= 10) {
-                header.classList.add('bg-white', 'dark:bg-gray-900');
+            console.log("Mobile Menu Clicked!");
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('hidden');
+                console.log("Menu Hidden Status:", mobileMenu.classList.contains('hidden'));
+            } else {
+                console.error("Mobile Menu Element Not Found!");
             }
         });
     }
-
-    // 4. 스크롤 효과
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-            header.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm', 'border-gray-200', 'dark:border-gray-800');
-            header.classList.remove('border-transparent');
-            headerContainer.classList.replace('h-20', 'h-16');
-        } else {
-            header.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-sm', 'border-gray-200', 'dark:border-gray-800');
-            header.classList.add('border-transparent');
-            headerContainer.classList.replace('h-16', 'h-20');
-        }
-    });
 });
 </script>

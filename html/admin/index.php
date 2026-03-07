@@ -18,16 +18,16 @@ if (!array_key_exists($category, $category_map)) {
 
 $table = $category;
 
-// 1. 목록 조회 (우측 사이드바용)
-$stmt = $pdo->prepare("SELECT * FROM {$table} ORDER BY published_at DESC");
+// 1. 목록 조회 (우측 사이드바용) - 테이블명에 백틱(`)을 추가하여 예약어 에러 방지
+$stmt = $pdo->prepare("SELECT * FROM `{$table}` ORDER BY published_at DESC");
 $stmt->execute();
 $posts = $stmt->fetchAll();
 
-// 2. 수정할 게시물 조회 (좌측 에디터용)
+// 2. 수정할 게시물 조회 (좌측 에디터용) - 여기도 동일하게 백틱 추가
 $post = null;
-$mode = 'write'; // 기본은 등록 모드
+$mode = 'write'; 
 if ($id) {
-    $stmt = $pdo->prepare("SELECT * FROM {$table} WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM `{$table}` WHERE id = ?");
     $stmt->execute([$id]);
     $post = $stmt->fetch();
     if ($post) {
