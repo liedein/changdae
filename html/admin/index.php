@@ -45,6 +45,7 @@ if ($id) {
     <!-- TinyMCE -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <style>
         .ql-editor { min-height: 400px; font-size: 16px; }
         .bg-white .ql-toolbar { background: #f8f9fa; border-top-left-radius: 8px; border-top-right-radius: 8px; }
@@ -125,7 +126,7 @@ if ($id) {
                     <?php endif; ?>
 
                     <!-- 유튜브 URL (설교, 소식) -->
-                    <?php if ($category === 'sermon' || $category === 'news'): ?>
+                    <?php if ($category === 'sermon'): ?>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크 (선택)</label>
                         <input type="url" name="youtube_url" value="<?= htmlspecialchars($post['youtube_url'] ?? '') ?>"
@@ -141,11 +142,21 @@ if ($id) {
                         <input type="file" name="images[]" multiple accept="image/*"
                                class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                         <?php if ($mode === 'update' && !empty($post['image_files'])): ?>
-                            <div class="mt-2 flex flex-wrap gap-2">
+                            <p class="text-xs text-gray-500 mt-2 mb-1">이미지를 드래그하여 순서를 변경할 수 있습니다.</p>
+                            <div id="image-sort-list" class="mt-2 flex flex-wrap gap-2">
                                 <?php foreach (json_decode($post['image_files']) as $img): ?>
-                                    <img src="/uploads/<?= $img ?>" class="h-16 w-auto rounded border">
+                                    <div class="relative group cursor-move">
+                                        <img src="/uploads/<?= $img ?>" class="h-24 w-auto rounded border shadow-sm">
+                                        <input type="hidden" name="existing_images[]" value="<?= $img ?>">
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
+                            <script>
+                                new Sortable(document.getElementById('image-sort-list'), {
+                                    animation: 150,
+                                    ghostClass: 'opacity-50'
+                                });
+                            </script>
                         <?php endif; ?>
                     </div>
                     <?php endif; ?>
