@@ -44,7 +44,7 @@ $menuItems = [
 
             <!-- Desktop Menu -->
             <nav class="hidden md:flex space-x-8">
-                <a href="/" class="text-charcoal dark:text-gray-200 hover:text-deepblue dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <a href="?page=intro" class="text-charcoal dark:text-gray-200 hover:text-deepblue dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                     환영합니다
                 </a>
                 <?php foreach ($menuItems as $key => $menu): ?>
@@ -114,57 +114,65 @@ $menuItems = [
 </header>
 
 <script>
-// 테마 적용 및 아이콘 상태 동기화 함수
-function updateThemeUI() {
+/**
+ * 테마 상태를 화면에 즉시 반영하는 함수
+ */
+function refreshTheme() {
     const htmlEl = document.documentElement;
-    const isDark = localStorage.getItem('theme') === 'dark' || 
-                  (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    
-    // 1. HTML 클래스 강제 적용
-    if (isDark) {
-        htmlEl.classList.add('dark');
-    } else {
-        htmlEl.classList.remove('dark');
-    }
-
-    // 2. 아이콘 스타일 강제 적용 (display 속성 직접 제어)
     const sunIcon = document.getElementById('theme-toggle-light-icon');
     const moonIcon = document.getElementById('theme-toggle-dark-icon');
     
-    if (sunIcon && moonIcon) {
-        sunIcon.style.display = isDark ? 'block' : 'none';
-        moonIcon.style.display = isDark ? 'none' : 'block';
+    // 1. 저장된 테마 확인 (없으면 시스템 설정 따름)
+    const isDark = localStorage.theme === 'dark' || 
+                  (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    // 2. 클래스 적용 및 아이콘 표시 강제 제어
+    if (isDark) {
+        htmlEl.classList.add('dark');
+        if (sunIcon) sunIcon.style.display = 'block';   // 해 아이콘 보임
+        if (moonIcon) moonIcon.style.display = 'none';   // 달 아이콘 숨김
+    } else {
+        htmlEl.classList.remove('dark');
+        if (sunIcon) sunIcon.style.display = 'none';    // 해 아이콘 숨김
+        if (moonIcon) moonIcon.style.display = 'block';  // 달 아이콘 보임
     }
     
-    console.log("Theme Synced. Dark Mode:", isDark, "HTML Class:", htmlEl.className);
+    console.log("테마 동기화 완료: ", isDark ? "다크 모드" : "라이트 모드");
 }
 
-// 페이지 로드 즉시 테마 적용
-updateThemeUI();
+// DOM이 로드되기 전에도 실행하여 깜빡임 방지
+refreshTheme();
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Header Script Initialized.");
+    console.log("헤더 스크립트 로드됨");
+    
+    // 페이지 로드 후 아이콘 상태 다시 확인
+    refreshTheme();
 
     const themeBtn = document.getElementById('theme-toggle');
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    // 테마 토글 버튼 클릭 이벤트
+    // [테마 전환 버튼]
     if (themeBtn) {
         themeBtn.onclick = function() {
-            console.log("Theme Toggle Button Clicked");
-            const isCurrentlyDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isCurrentlyDark ? 'light' : 'dark');
-            updateThemeUI();
+            // 현재 상태 반전시켜 저장
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.theme = 'light';
+            } else {
+                localStorage.theme = 'dark';
+            }
+            // 화면 갱신
+            refreshTheme();
         };
     }
 
-    // 모바일 메뉴 버튼 클릭 이벤트 (display 속성 직접 제어)
+    // [모바일 메뉴 버튼]
     if (mobileBtn && mobileMenu) {
         mobileBtn.onclick = function() {
-            console.log("Mobile Menu Button Clicked");
             const isHidden = mobileMenu.style.display === 'none' || mobileMenu.style.display === '';
             mobileMenu.style.display = isHidden ? 'block' : 'none';
+            console.log("모바일 메뉴: ", isHidden ? "열림" : "닫힘");
         };
     }
 });

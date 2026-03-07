@@ -67,6 +67,5 @@ if (!in_array($page, $allowed_pages)) {
 
     <?php include 'includes/footer.php'; ?>
 
-    <script src="/assets/js/main.js"></script>
-</body>
+    </body>
 </html>
