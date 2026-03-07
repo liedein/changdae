@@ -42,14 +42,22 @@ if ($id) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 대시보드 - 창대교회</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- TinyMCE -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // 클래스 방식 유지
+        }
+    </script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <style>
-        .ql-editor { min-height: 400px; font-size: 16px; }
-        .bg-white .ql-toolbar { background: #f8f9fa; border-top-left-radius: 8px; border-top-right-radius: 8px; }
-        .bg-white .ql-container { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+        /* 에디터 내부도 어두운 테마에 어울리게 조정 */
+        .ql-editor { min-height: 400px; font-size: 16px; background-color: #1f2937; color: #f3f4f6; }
+        .ql-toolbar.ql-snow { background: #374151; border-color: #4b5563; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .ql-container.ql-snow { border-color: #4b5563; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+        .ql-snow .ql-stroke { stroke: #f3f4f6 !important; }
+        .ql-snow .ql-fill { fill: #f3f4f6 !important; }
+        .ql-snow .ql-picker { color: #f3f4f6 !important; }
     </style>
 </head>
 <body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
@@ -137,25 +145,39 @@ if ($id) {
 
                     <!-- 주보 이미지 -->
                     <?php if ($category === 'bulletin'): ?>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">주보 이미지 (다중 선택)</label>
+                    <div class="space-y-4">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">주보 이미지 (다중 선택)</label>
                         <input type="file" name="images[]" multiple accept="image/*"
-                               class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                               class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-gray-200 hover:file:bg-gray-600">
+                        
                         <?php if ($mode === 'update' && !empty($post['image_files'])): ?>
-                            <p class="text-xs text-gray-500 mt-2 mb-1">이미지를 드래그하여 순서를 변경할 수 있습니다.</p>
-                            <div id="image-sort-list" class="mt-2 flex flex-wrap gap-2">
-                                <?php foreach (json_decode($post['image_files']) as $img): ?>
-                                    <div class="relative group cursor-move">
-                                        <img src="/uploads/<?= $img ?>" class="h-24 w-auto rounded border shadow-sm">
-                                        <input type="hidden" name="existing_images[]" value="<?= $img ?>">
-                                    </div>
-                                <?php endforeach; ?>
+                            <div class="bg-gray-700/50 p-4 rounded-lg border border-gray-600">
+                                <p class="text-xs text-blue-400 mb-3 font-medium">✨ 마우스로 드래그하여 주보 이미지의 순서를 바꿀 수 있습니다.</p>
+                                <div id="image-sort-list" class="flex flex-wrap gap-3">
+                                    <?php 
+                                    $imgs = json_decode($post['image_files'], true);
+                                    if ($imgs): 
+                                        foreach ($imgs as $img): 
+                                    ?>
+                                        <div class="relative cursor-move bg-gray-800 p-1 rounded border border-gray-600 group">
+                                            <img src="/uploads/<?= (strpos($img, 'bulletins/') === false ? 'bulletins/'.$img : $img) ?>" class="h-32 w-auto rounded">
+                                            <input type="hidden" name="existing_images[]" value="<?= htmlspecialchars($img) ?>">
+                                            <div class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity rounded"></div>
+                                        </div>
+                                    <?php 
+                                        endforeach; 
+                                    endif; 
+                                    ?>
+                                </div>
                             </div>
                             <script>
-                                new Sortable(document.getElementById('image-sort-list'), {
-                                    animation: 150,
-                                    ghostClass: 'opacity-50'
-                                });
+                                // SortableJS 실행 (리스트가 있을 때만)
+                                if (document.getElementById('image-sort-list')) {
+                                    new Sortable(document.getElementById('image-sort-list'), {
+                                        animation: 150,
+                                        ghostClass: 'opacity-50'
+                                    });
+                                }
                             </script>
                         <?php endif; ?>
                     </div>

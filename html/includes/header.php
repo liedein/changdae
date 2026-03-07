@@ -114,37 +114,43 @@ $menuItems = [
 </header>
 
 <script>
-(function() {
-    // 1. 초기 테마 즉시 적용 (깜빡임 방지)
-    const applyTheme = () => {
-        const isDark = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        document.documentElement.classList.toggle('dark', isDark);
-    };
-    applyTheme();
+// 1. 초기 테마 설정 (페이지 로드 즉시 실행)
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+} else {
+    document.documentElement.classList.remove('dark');
+}
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+// 2. 모든 버튼 기능 연결
+document.addEventListener('DOMContentLoaded', function() {
+    const themeBtn = document.getElementById('theme-toggle');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-        // 2. 테마 토글 (Tailwind CDN 강제 동기화 포함)
-        if (themeToggleBtn) {
-            themeToggleBtn.onclick = function() {
-                const willBeDark = !document.documentElement.classList.contains('dark');
-                localStorage.setItem('theme', willBeDark ? 'dark' : 'light');
-                document.documentElement.classList.toggle('dark', willBeDark);
-                // 아이콘 가시성 수동 제어
-                document.getElementById('theme-toggle-light-icon')?.classList.toggle('hidden', !willBeDark);
-                document.getElementById('theme-toggle-dark-icon')?.classList.toggle('hidden', willBeDark);
-            };
-        }
+    // 테마 버튼 클릭 시
+    if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            // 아이콘 수동 전환 (Tailwind 클래스가 안 먹을 때를 대비)
+            const sun = document.getElementById('theme-toggle-light-icon');
+            const moon = document.getElementById('theme-toggle-dark-icon');
+            if (isDark) {
+                sun.classList.remove('hidden');
+                moon.classList.add('hidden');
+            } else {
+                sun.classList.add('hidden');
+                moon.classList.remove('hidden');
+            }
+        });
+    }
 
-        // 3. 모바일 메뉴
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.onclick = function() {
-                mobileMenu.classList.toggle('hidden');
-            };
-        }
-    });
-})();
+    // 모바일 메뉴 버튼 클릭 시
+    if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+});
 </script>
