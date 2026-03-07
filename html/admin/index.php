@@ -59,45 +59,29 @@ if ($id) {
         .ql-snow .ql-picker { color: #e5e7eb !important; }
     </style>
 </head>
-<body class="bg-gray-900 h-screen flex flex-col overflow-hidden text-gray-100"> ```
-
----
-
-### 2. 관리자 페이지 레이아웃 색상 수정 (`html/admin/index.php`)
-
-입력기 외의 헤더와 카드 배경을 모두 다크모드로 통일합니다.
-
-**기존 코드 블록 (Header ~ Main 시작 부분)**
-```html
-    <header class="bg-white shadow z-10 flex-shrink-0">
-        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
-...
-        <main class="flex-1 overflow-y-auto p-6 bg-gray-50">
-            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
-    <!-- 상단 헤더 -->
-    <header class="bg-white shadow z-10 flex-shrink-0">
+<body class="bg-gray-950 h-screen flex flex-col overflow-hidden text-gray-100">
+    <header class="bg-gray-900 border-b border-gray-800 shadow-md z-10 flex-shrink-0">
         <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
             <div class="flex items-center gap-8">
-                <h1 class="text-xl font-bold text-gray-800">창대교회 관리자</h1>
+                <h1 class="text-xl font-bold text-white">창대교회 관리자</h1>
                 <nav class="hidden md:flex space-x-4">
                     <?php foreach ($category_map as $key => $name): ?>
-                    <a href="?cat=<?= $key ?>" class="px-3 py-2 rounded-md text-sm font-medium transition-colors <?= $category === $key ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50' ?>">
+                    <a href="?cat=<?= $key ?>" class="px-3 py-2 rounded-md text-sm font-medium transition-colors <?= $category === $key ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800' ?>">
                         <?= $name ?>
                     </a>
                     <?php endforeach; ?>
                 </nav>
             </div>
             <div class="flex items-center gap-4">
-                <span class="text-sm text-gray-600">관리자님</span>
-                <a href="process.php?mode=logout" class="text-sm text-red-600 hover:text-red-800 font-medium">로그아웃</a>
+                <span class="text-sm text-gray-400 font-medium">관리자님</span>
+                <a href="process.php?mode=logout" class="text-sm text-red-400 hover:text-red-300 font-medium">로그아웃</a>
             </div>
         </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-        <!-- 좌측: 에디터 (Main Content) -->
-        <main class="flex-1 overflow-y-auto p-6 bg-gray-50">
-            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
+        <main class="flex-1 overflow-y-auto p-6 bg-gray-950">
+            <div class="max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-xl shadow-2xl p-8">
                 <div class="flex justify-between items-center mb-6 border-b pb-4">
                     <h2 class="text-xl font-bold text-gray-800">
                         <?= $category_map[$category] ?> <?= $mode === 'update' ? '수정' : '등록' ?>
@@ -238,10 +222,10 @@ if ($id) {
         </main>
 
         <!-- 우측: 목록 (Sidebar) -->
-        <aside class="w-80 bg-white border-l flex-shrink-0 flex flex-col">
-            <div class="p-4 border-b bg-gray-50 flex justify-between items-center">
-                <h3 class="font-bold text-gray-700">목록 (<?= count($posts) ?>)</h3>
-                <a href="?cat=<?= $category ?>" class="text-xs text-blue-600 hover:underline">새로고침</a>
+        <aside class="w-80 bg-gray-900 border-l border-gray-800 flex-shrink-0 flex flex-col">
+            <div class="p-4 border-b border-gray-800 bg-gray-950 flex justify-between items-center">
+                <h3 class="font-bold text-gray-200 uppercase tracking-wider text-xs">목록 (<?= count($posts) ?>)</h3>
+                <a href="?cat=<?= $category ?>" class="text-xs text-blue-400 hover:text-blue-300 transition-colors">새로고침</a>
             </div>
             <div class="flex-1 overflow-y-auto p-2 space-y-2">
                 <?php if (count($posts) > 0): ?>

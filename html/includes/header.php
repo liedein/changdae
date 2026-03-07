@@ -115,44 +115,37 @@ $menuItems = [
 
 <script>
 (function() {
-    // [1] 페이지 로드 직후 실행: 테마 상태 복구
+    // 1. 초기 테마 설정
+    const applyTheme = (isDark) => {
+        document.documentElement.classList.toggle('dark', isDark);
+        const sun = document.getElementById('theme-toggle-light-icon');
+        const moon = document.getElementById('theme-toggle-dark-icon');
+        if (sun && moon) {
+            sun.classList.toggle('hidden', !isDark);
+            moon.classList.toggle('hidden', isDark);
+        }
+    };
+
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-    
-    document.documentElement.classList.toggle('dark', isDark);
+    applyTheme(savedTheme === 'dark' || (!savedTheme && prefersDark));
 
-    // [2] DOM이 로드된 후 버튼들 연결
     document.addEventListener('DOMContentLoaded', function() {
-        console.log("Header Script Loaded. Current Theme Dark:", isDark);
+        console.log("Header Script Loaded.");
 
         const themeBtn = document.getElementById('theme-toggle');
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const sunIcon = document.getElementById('theme-toggle-light-icon');
-        const moonIcon = document.getElementById('theme-toggle-dark-icon');
 
-        // 초기 아이콘 표시 설정
-        if (sunIcon && moonIcon) {
-            sunIcon.classList.toggle('hidden', !document.documentElement.classList.contains('dark'));
-            moonIcon.classList.toggle('hidden', document.documentElement.classList.contains('dark'));
-        }
-
-        // 테마 토글 버튼 클릭
         if (themeBtn) {
             themeBtn.onclick = function() {
                 console.log("Theme Toggle Clicked");
-                const newDarkStatus = document.documentElement.classList.toggle('dark');
-                localStorage.setItem('theme', newDarkStatus ? 'dark' : 'light');
-                
-                if (sunIcon && moonIcon) {
-                    sunIcon.classList.toggle('hidden', !newDarkStatus);
-                    moonIcon.classList.toggle('hidden', newDarkStatus);
-                }
+                const isNowDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+                applyTheme(isNowDark); // 아이콘까지 즉시 동기화
             };
         }
 
-        // 모바일 메뉴 버튼 클릭
         if (mobileBtn && mobileMenu) {
             mobileBtn.onclick = function() {
                 console.log("Mobile Menu Clicked");
