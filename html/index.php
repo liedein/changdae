@@ -49,11 +49,11 @@ if (!in_array($page, $allowed_pages)) {
         }
     </script>
 </head>
-<body class="bg-white dark:bg-gray-900 text-charcoal dark:text-gray-100 transition-colors duration-300">
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-500">
 
     <?php include 'includes/header.php'; ?>
 
-    <main class="min-h-screen pt-20">
+    <main class="min-h-screen pt-20 bg-inherit text-inherit">
         <?php 
             // 페이지 동적 로드
             $page_path = __DIR__ . "/pages/{$page}.php";

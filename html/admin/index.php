@@ -135,23 +135,26 @@ if ($id) {
                     <!-- 주보 이미지 -->
                     <?php if ($category === 'bulletin'): ?>
                     <div class="space-y-4">
-                        <label class="block text-sm font-medium text-gray-300 mb-1">주보 이미지 (다중 선택)</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 업로드 및 순서 변경</label>
                         <input type="file" name="images[]" multiple accept="image/*"
-                               class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-gray-200 hover:file:bg-gray-600">
+                               class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors">
                         
                         <?php if ($mode === 'update' && !empty($post['image_files'])): ?>
-                            <div class="bg-gray-700/50 p-4 rounded-lg border border-gray-600">
-                                <p class="text-xs text-blue-400 mb-3 font-medium">✨ 마우스로 드래그하여 주보 이미지의 순서를 바꿀 수 있습니다.</p>
-                                <div id="image-sort-list" class="flex flex-wrap gap-3">
+                            <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner">
+                                <p class="text-xs text-blue-600 mb-4 font-bold uppercase tracking-wider">📦 Drag & Drop으로 출력 순서를 조정하세요</p>
+                                <div id="image-sort-list" class="flex flex-wrap gap-4">
                                     <?php 
                                     $imgs = json_decode($post['image_files'], true);
-                                    if ($imgs): 
+                                    if (is_array($imgs)): 
                                         foreach ($imgs as $img): 
+                                            $displayPath = (strpos($img, 'bulletins/') === false ? 'bulletins/'.$img : $img);
                                     ?>
-                                        <div class="relative cursor-move bg-gray-800 p-1 rounded border border-gray-600 group">
-                                            <img src="/uploads/<?= (strpos($img, 'bulletins/') === false ? 'bulletins/'.$img : $img) ?>" class="h-32 w-auto rounded">
+                                        <div class="relative cursor-move bg-white p-2 rounded-lg border border-slate-200 shadow-sm hover:shadow-md transition-all group">
+                                            <img src="/uploads/<?= htmlspecialchars($displayPath) ?>" class="h-40 w-auto rounded object-cover">
                                             <input type="hidden" name="existing_images[]" value="<?= htmlspecialchars($img) ?>">
-                                            <div class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity rounded"></div>
+                                            <div class="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                                                <span class="bg-white/90 text-blue-600 px-2 py-1 rounded text-[10px] font-bold shadow-sm">MOVE</span>
+                                            </div>
                                         </div>
                                     <?php 
                                         endforeach; 
@@ -160,13 +163,16 @@ if ($id) {
                                 </div>
                             </div>
                             <script>
-                                // SortableJS 실행 (리스트가 있을 때만)
-                                if (document.getElementById('image-sort-list')) {
-                                    new Sortable(document.getElementById('image-sort-list'), {
-                                        animation: 150,
-                                        ghostClass: 'opacity-50'
-                                    });
-                                }
+                                (function() {
+                                    const sortContainer = document.getElementById('image-sort-list');
+                                    if (sortContainer && typeof Sortable !== 'undefined') {
+                                        new Sortable(sortContainer, {
+                                            animation: 150,
+                                            ghostClass: 'opacity-40',
+                                            dragClass: 'rotate-1'
+                                        });
+                                    }
+                                })();
                             </script>
                         <?php endif; ?>
                     </div>

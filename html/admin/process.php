@@ -120,44 +120,38 @@ switch ($mode) {
         $published_at = $publish_date . ' 00:00:00';
 
         if ($category === 'bulletin') {
-            // --- 주보 수정 ---
+            // --- 주보 수정 (순서 보존 및 부분 업데이트 로직) ---
             $sql = "UPDATE bulletin SET title=?, content=?, published_at=?";
             $params = [$title, $content, $published_at];
-            
-            // 이미지 처리
+
+            // 1. 화면에서 드래그로 넘어온 기존 이미지 순서 배열 받기
+            $final_images = $_POST['existing_images'] ?? []; 
+
+            // 2. 새 파일 업로드 처리
             if (!empty($_FILES['images']['name'][0])) {
-            // 1. 기존 파일 정보 가져오기 및 삭제
-                $stmt_select = $pdo->prepare("SELECT image_files FROM bulletin WHERE id = ?");
-            $stmt_select->execute([$id]);
-            if ($old_post = $stmt_select->fetch()) {
-                if (!empty($old_post['image_files'])) {
-                    $old_images = json_decode($old_post['image_files']);
-                    foreach ($old_images as $img_path) {
-                        if (file_exists('../uploads/' . $img_path)) {
-                            unlink('../uploads/' . $img_path);
+                $new_files = [];
+                $safe_title = preg_replace('/[^a-zA-Z0-9가-힣\s]/u', '', $title);
+                $safe_title = trim(str_replace(' ', '_', $safe_title));
+                $upload_dir = '../uploads/bulletins/' . $safe_title . '/';
+                
+                if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
+
+                foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
+                    if ($_FILES['images']['error'][$key] === UPLOAD_ERR_OK) {
+                        $filename = time() . '_' . basename($_FILES['images']['name'][$key]);
+                        if (move_uploaded_file($tmp_name, $upload_dir . $filename)) {
+                            // 새 파일은 기존 이미지 리스트 뒤에 추가됨
+                            $new_files[] = 'bulletins/' . $safe_title . '/' . $filename;
                         }
                     }
                 }
+                // 기존 순서 배열 뒤에 새 파일을 합침
+                $final_images = array_merge($final_images, $new_files);
             }
 
-            // 2. 새 파일 업로드
-            $uploaded_files = [];
-            $safe_title = preg_replace('/[^a-zA-Z0-9가-힣\s]/u', '', $title);
-            $safe_title = trim(str_replace(' ', '_', $safe_title));
-            $upload_dir = '../uploads/bulletins/' . $safe_title . '/';
-            if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
-
-            foreach ($_FILES['images']['tmp_name'] as $key => $tmp_name) {
-                if ($_FILES['images']['error'][$key] === UPLOAD_ERR_OK) {
-                    $filename = time() . '_' . basename($_FILES['images']['name'][$key]);
-                    if (move_uploaded_file($tmp_name, $upload_dir . $filename)) {
-                        $uploaded_files[] = 'bulletins/' . $safe_title . '/' . $filename;
-                    }
-                }
-            }
+            // 3. 최종 이미지 리스트를 JSON으로 변환하여 DB 반영
             $sql .= ", image_files=?";
-            $params[] = json_encode($uploaded_files);
-        }
+            $params[] = json_encode(array_values($final_images), JSON_UNESCAPED_UNICODE);
         } elseif ($category === 'sermon') {
             // --- 설교 수정 ---
             $passage = $_POST['passage'] ?? '';

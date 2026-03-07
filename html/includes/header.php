@@ -114,56 +114,57 @@ $menuItems = [
 </header>
 
 <script>
-// 테마 적용 함수: 클래스뿐만 아니라 아이콘의 display 속성을 직접 제어합니다.
-function syncTheme() {
-    const isDark = document.documentElement.classList.contains('dark');
+// 테마 적용 및 아이콘 상태 동기화 함수
+function updateThemeUI() {
+    const htmlEl = document.documentElement;
+    const isDark = localStorage.getItem('theme') === 'dark' || 
+                  (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    
+    // 1. HTML 클래스 강제 적용
+    if (isDark) {
+        htmlEl.classList.add('dark');
+    } else {
+        htmlEl.classList.remove('dark');
+    }
+
+    // 2. 아이콘 스타일 강제 적용 (display 속성 직접 제어)
     const sunIcon = document.getElementById('theme-toggle-light-icon');
     const moonIcon = document.getElementById('theme-toggle-dark-icon');
-
+    
     if (sunIcon && moonIcon) {
-        if (isDark) {
-            sunIcon.style.display = 'block';   // 해 아이콘 보임
-            moonIcon.style.display = 'none';    // 달 아이콘 숨김
-        } else {
-            sunIcon.style.display = 'none';    // 해 아이콘 숨김
-            moonIcon.style.display = 'block';   // 달 아이콘 보임
-        }
+        sunIcon.style.display = isDark ? 'block' : 'none';
+        moonIcon.style.display = isDark ? 'none' : 'block';
     }
+    
+    console.log("Theme Synced. Dark Mode:", isDark, "HTML Class:", htmlEl.className);
 }
 
-// 초기 로드 시 테마 복구
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark');
-}
+// 페이지 로드 즉시 테마 적용
+updateThemeUI();
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Header Script Loaded.");
-    syncTheme(); // 초기 아이콘 상태 맞춤
+    console.log("Header Script Initialized.");
 
     const themeBtn = document.getElementById('theme-toggle');
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
+    // 테마 토글 버튼 클릭 이벤트
     if (themeBtn) {
         themeBtn.onclick = function() {
-            console.log("Theme Toggle Clicked");
-            document.documentElement.classList.toggle('dark');
-            const isDarkNow = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
-            syncTheme(); // 아이콘 상태 즉시 업데이트
+            console.log("Theme Toggle Button Clicked");
+            const isCurrentlyDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isCurrentlyDark ? 'light' : 'dark');
+            updateThemeUI();
         };
     }
 
+    // 모바일 메뉴 버튼 클릭 이벤트 (display 속성 직접 제어)
     if (mobileBtn && mobileMenu) {
         mobileBtn.onclick = function() {
-            console.log("Mobile Menu Clicked");
-            // Tailwind hidden 클래스 대신 직접 style로 제어하여 확실하게 보임/숨김 처리
-            if (mobileMenu.style.display === 'block') {
-                mobileMenu.style.display = 'none';
-            } else {
-                mobileMenu.style.display = 'block';
-            }
+            console.log("Mobile Menu Button Clicked");
+            const isHidden = mobileMenu.style.display === 'none' || mobileMenu.style.display === '';
+            mobileMenu.style.display = isHidden ? 'block' : 'none';
         };
     }
 });
