@@ -36,31 +36,44 @@ if ($id) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="ko">
-<head>
+<html lang="ko" class="dark"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 대시보드 - 창대교회</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class', // 클래스 방식 유지
+            darkMode: 'class', 
         }
     </script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <style>
-        /* 에디터 내부도 어두운 테마에 어울리게 조정 */
-        .ql-editor { min-height: 400px; font-size: 16px; background-color: #1f2937; color: #f3f4f6; }
-        .ql-toolbar.ql-snow { background: #374151; border-color: #4b5563; border-top-left-radius: 8px; border-top-right-radius: 8px; }
-        .ql-container.ql-snow { border-color: #4b5563; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
-        .ql-snow .ql-stroke { stroke: #f3f4f6 !important; }
-        .ql-snow .ql-fill { fill: #f3f4f6 !important; }
-        .ql-snow .ql-picker { color: #f3f4f6 !important; }
+        /* 에디터 내부 및 툴바 다크 테마 커스텀 스타일 */
+        .ql-editor { min-height: 400px; font-size: 16px; background-color: #111827; color: #f3f4f6; }
+        .ql-toolbar.ql-snow { background: #1f2937; border-color: #374151; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .ql-container.ql-snow { border-color: #374151; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+        .ql-snow .ql-stroke { stroke: #e5e7eb !important; }
+        .ql-snow .ql-fill { fill: #e5e7eb !important; }
+        .ql-snow .ql-picker { color: #e5e7eb !important; }
     </style>
 </head>
-<body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
+<body class="bg-gray-900 h-screen flex flex-col overflow-hidden text-gray-100"> ```
+
+---
+
+### 2. 관리자 페이지 레이아웃 색상 수정 (`html/admin/index.php`)
+
+입력기 외의 헤더와 카드 배경을 모두 다크모드로 통일합니다.
+
+**기존 코드 블록 (Header ~ Main 시작 부분)**
+```html
+    <header class="bg-white shadow z-10 flex-shrink-0">
+        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+...
+        <main class="flex-1 overflow-y-auto p-6 bg-gray-50">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
     <!-- 상단 헤더 -->
     <header class="bg-white shadow z-10 flex-shrink-0">
         <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
