@@ -44,12 +44,12 @@ $menuItems = [
 
             <!-- Desktop Menu -->
             <nav class="hidden md:flex space-x-8">
-                <a href="?page=intro" class="text-charcoal dark:text-gray-200 hover:text-deepblue dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <a href="?page=intro" class="text-charcoal dark:text-gray-200 hover:text-deepblue dark:hover:text-blue-400 px-3 py-2 rounded-md text- font-medium transition-colors">
                     환영합니다
                 </a>
                 <?php foreach ($menuItems as $key => $menu): ?>
                     <div class="relative group">
-                        <button class="text-charcoal dark:text-gray-200 group-hover:text-deepblue dark:group-hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center transition-colors">
+                        <button class="text-charcoal dark:text-gray-200 group-hover:text-deepblue dark:group-hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium inline-flex items-center transition-colors">
                             <?= $menu['title'] ?>
                             <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -59,7 +59,7 @@ $menuItems = [
                         <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out">
                             <div class="py-1" role="menu" aria-orientation="vertical">
                                 <?php foreach ($menu['sub'] as $subKey => $subItem): ?>
-                                    <a href="<?= $subItem['url'] ?>" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-deepblue dark:hover:text-blue-400" role="menuitem">
+                                    <a href="<?= $subItem['url'] ?>" class="block px-4 py-2 text-base text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-deepblue dark:hover:text-blue-400" role="menuitem">
                                         <?= $subItem['title'] ?>
                                     </a>
                                 <?php endforeach; ?>
@@ -94,7 +94,7 @@ $menuItems = [
     </div>
 
     <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-[#332627] border-t border-gray-200 dark:border-gray-700">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="?page=intro" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-deepblue dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800">환영합니다</a>
             <?php foreach ($menuItems as $key => $menu): ?>
@@ -103,7 +103,7 @@ $menuItems = [
                         <?= $menu['title'] ?>
                     </div>
                     <?php foreach ($menu['sub'] as $subKey => $subItem): ?>
-                        <a href="<?= $subItem['url'] ?>" class="block pl-6 pr-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-deepblue dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800">
+                        <a href="<?= $subItem['url'] ?>" class="block pl-6 pr-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-400 hover:text-deepblue dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800">
                             - <?= $subItem['title'] ?>
                         </a>
                     <?php endforeach; ?>

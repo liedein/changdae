@@ -23,7 +23,7 @@ if (!$data || !$data['current']) {
             </p>
         </div>
 
-        <div class="p-0 bg-slate-100 dark:bg-gray-900 flex flex-col">
+        <div class="p-0 bg-slate-100 dark:bg-[#332627] flex flex-col">
             <?php 
             if (!empty($post['image_files'])):
                 $images = json_decode($post['image_files'], true);

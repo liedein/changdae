@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.scrollY > 10) {
       header.classList.add(
         "bg-white/90",
-        "dark:bg-gray-900/90",
+        "dark:bg-[#332627]/90",
         "backdrop-blur-md",
         "shadow-sm",
       );
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       header.classList.remove(
         "bg-white/90",
-        "dark:bg-gray-900/90",
+        "dark:bg-[#332627]/90",
         "backdrop-blur-md",
         "shadow-sm",
       );
@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 모바일 메뉴 열릴 때 헤더 배경색 강제 적용
       if (!mobileMenu.classList.contains("hidden") && window.scrollY <= 10) {
-        header.classList.add("bg-white", "dark:bg-gray-900");
+        header.classList.add("bg-white", "dark:bg-[#332627]");
       } else if (window.scrollY <= 10) {
-        header.classList.remove("bg-white", "dark:bg-gray-900");
+        header.classList.remove("bg-white", "dark:bg-[#332627]");
       }
     });
   }
