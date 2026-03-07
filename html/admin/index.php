@@ -36,52 +36,44 @@ if ($id) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="ko" class="dark"> <head>
+<html lang="ko"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 대시보드 - 창대교회</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class', 
-        }
-    </script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <style>
-        /* 에디터 내부 및 툴바 다크 테마 커스텀 스타일 */
-        .ql-editor { min-height: 400px; font-size: 16px; background-color: #111827; color: #f3f4f6; }
-        .ql-toolbar.ql-snow { background: #1f2937; border-color: #374151; border-top-left-radius: 8px; border-top-right-radius: 8px; }
-        .ql-container.ql-snow { border-color: #374151; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
-        .ql-snow .ql-stroke { stroke: #e5e7eb !important; }
-        .ql-snow .ql-fill { fill: #e5e7eb !important; }
-        .ql-snow .ql-picker { color: #e5e7eb !important; }
+        /* 눈이 편한 라이트 모드 에디터 스타일 */
+        .ql-editor { min-height: 400px; font-size: 16px; background-color: #ffffff; color: #334155; }
+        .ql-toolbar.ql-snow { background: #f8fafc; border-color: #e2e8f0; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .ql-container.ql-snow { border-color: #e2e8f0; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
     </style>
 </head>
-<body class="bg-gray-950 h-screen flex flex-col overflow-hidden text-gray-100">
-    <header class="bg-gray-900 border-b border-gray-800 shadow-md z-10 flex-shrink-0">
+<body class="bg-slate-50 h-screen flex flex-col overflow-hidden text-slate-900">
+    <header class="bg-slate-800 shadow-lg z-10 flex-shrink-0">
         <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
             <div class="flex items-center gap-8">
-                <h1 class="text-xl font-bold text-white">창대교회 관리자</h1>
-                <nav class="hidden md:flex space-x-4">
+                <h1 class="text-xl font-bold text-white tracking-tight">창대교회 관리자</h1>
+                <nav class="hidden md:flex space-x-1">
                     <?php foreach ($category_map as $key => $name): ?>
-                    <a href="?cat=<?= $key ?>" class="px-3 py-2 rounded-md text-sm font-medium transition-colors <?= $category === $key ? 'bg-blue-600 text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800' ?>">
+                    <a href="?cat=<?= $key ?>" class="px-4 py-2 rounded-md text-sm font-semibold transition-all <?= $category === $key ? 'bg-blue-500 text-white shadow-md' : 'text-slate-300 hover:text-white hover:bg-slate-700' ?>">
                         <?= $name ?>
                     </a>
                     <?php endforeach; ?>
                 </nav>
             </div>
             <div class="flex items-center gap-4">
-                <span class="text-sm text-gray-400 font-medium">관리자님</span>
-                <a href="process.php?mode=logout" class="text-sm text-red-400 hover:text-red-300 font-medium">로그아웃</a>
+                <span class="text-sm text-slate-300 font-medium">관리자님</span>
+                <a href="process.php?mode=logout" class="text-sm text-rose-300 hover:text-rose-100 font-bold">로그아웃</a>
             </div>
         </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-        <main class="flex-1 overflow-y-auto p-6 bg-gray-950">
-            <div class="max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-xl shadow-2xl p-8">
+        <main class="flex-1 overflow-y-auto p-6 bg-slate-50">
+            <div class="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl shadow-sm p-8">
                 <div class="flex justify-between items-center mb-6 border-b pb-4">
                     <h2 class="text-xl font-bold text-gray-800">
                         <?= $category_map[$category] ?> <?= $mode === 'update' ? '수정' : '등록' ?>
@@ -222,10 +214,10 @@ if ($id) {
         </main>
 
         <!-- 우측: 목록 (Sidebar) -->
-        <aside class="w-80 bg-gray-900 border-l border-gray-800 flex-shrink-0 flex flex-col">
-            <div class="p-4 border-b border-gray-800 bg-gray-950 flex justify-between items-center">
-                <h3 class="font-bold text-gray-200 uppercase tracking-wider text-xs">목록 (<?= count($posts) ?>)</h3>
-                <a href="?cat=<?= $category ?>" class="text-xs text-blue-400 hover:text-blue-300 transition-colors">새로고침</a>
+        <aside class="w-80 bg-white border-l border-slate-200 flex-shrink-0 flex flex-col shadow-inner">
+            <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                <h3 class="font-bold text-slate-500 uppercase tracking-wider text-xs">목록 (<?= count($posts) ?>)</h3>
+                <a href="?cat=<?= $category ?>" class="text-xs text-blue-500 hover:text-blue-700 font-bold transition-colors">새로고침</a>
             </div>
             <div class="flex-1 overflow-y-auto p-2 space-y-2">
                 <?php if (count($posts) > 0): ?>
