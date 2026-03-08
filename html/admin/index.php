@@ -83,9 +83,11 @@ if ($id) {
                     <?php endif; ?>
                 </div>
 
-                <form action="process.php" method="POST" enctype="multipart/form-data" class="space-y-6">
+                <form action="process.php" method="POST" enctype="multipart/form-data" class="space-y-6" id="post-form">
                     <input type="hidden" name="mode" value="<?= $mode ?>">
                     <input type="hidden" name="category" value="<?= $category ?>">
+                    <input type="hidden" name="published_at" id="final-published-at">
+                    
                     <?php if ($mode === 'update'): ?>
                         <input type="hidden" name="id" value="<?= $post['id'] ?>">
                     <?php endif; ?>
@@ -93,7 +95,7 @@ if ($id) {
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">게시일자</label>
-                            <input type="date" name="publish_date" required 
+                            <input type="date" id="date-input" required 
                                 value="<?= date('Y-m-d', strtotime($post['published_at'] ?? date('Y-m-d'))) ?>"
                                 class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
@@ -128,17 +130,6 @@ if ($id) {
 
                     <?php if ($category === 'bulletin'): ?>
                     <div class="space-y-4">
-                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded-r-lg">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <p class="text-sm text-blue-800 font-medium">
-                                    ※ 주보 등록 후 오른쪽 목록에서 등록된 게시물을 선택 후 이미지 순서를 변경하세요.
-                                </p>
-                            </div>
-                        </div>
-
                         <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 (드래그로 순서 조정)</label>
                         <input type="file" id="bulletin-upload" name="images[]" multiple accept="image/*"
                             class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors mb-4">
@@ -158,35 +149,6 @@ if ($id) {
                             <?php endforeach; endif; ?>
                         </div>
                     </div>
-
-                    <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const uploadInput = document.getElementById('bulletin-upload');
-                        const sortContainer = document.getElementById('image-sort-list');
-
-                        if (sortContainer) {
-                            new Sortable(sortContainer, { animation: 150, ghostClass: 'bg-blue-100' });
-                        }
-
-                        uploadInput.addEventListener('change', function(e) {
-                            const files = Array.from(e.target.files);
-                            files.forEach((file) => {
-                                const reader = new FileReader();
-                                reader.onload = function(event) {
-                                    const div = document.createElement('div');
-                                    div.className = "relative cursor-move bg-white p-2 rounded-lg border-2 border-blue-200 shadow-sm item-new";
-                                    div.innerHTML = `
-                                        <img src="${event.target.result}" class="h-32 w-auto rounded object-cover">
-                                        <span class="absolute top-1 left-1 bg-blue-600 text-white text-[10px] px-1 rounded font-bold">NEW</span>
-                                        <button type="button" onclick="this.parentElement.remove()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">×</button>
-                                    `;
-                                    sortContainer.appendChild(div);
-                                };
-                                reader.readAsDataURL(file);
-                            });
-                        });
-                    });
-                    </script>
                     <?php endif; ?>
 
                     <?php if ($category !== 'bulletin'): ?>
@@ -197,27 +159,6 @@ if ($id) {
                             <input type="hidden" name="content" id="content-input">
                         </div>
                     </div>
-
-                    <script>
-                        var quill = new Quill('#editor-container', {
-                            modules: {
-                                toolbar: [
-                                    [{ 'header': [1, 2, 3, false] }],
-                                    ['bold', 'italic', 'underline', 'strike'],
-                                    ['link', 'image', 'video'],
-                                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                                    ['clean']
-                                ]
-                            },
-                            theme: 'snow'
-                        });
-
-                        const form = document.querySelector('form');
-                        form.onsubmit = function() {
-                            const contentInput = document.getElementById('content-input');
-                            if (contentInput) contentInput.value = quill.root.innerHTML;
-                        };
-                    </script>
                     <?php endif; ?>
 
                     <div class="flex justify-end pt-4">
@@ -260,5 +201,73 @@ if ($id) {
             </div>
         </aside>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Quill 에디터 설정 (카테고리가 주보가 아닐 때만)
+            <?php if ($category !== 'bulletin'): ?>
+            var quill = new Quill('#editor-container', {
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['link', 'image', 'video'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['clean']
+                    ]
+                },
+                theme: 'snow'
+            });
+            <?php endif; ?>
+
+            // 2. 주보 이미지 정렬 설정
+            <?php if ($category === 'bulletin'): ?>
+            const sortContainer = document.getElementById('image-sort-list');
+            if (sortContainer) {
+                new Sortable(sortContainer, { animation: 150, ghostClass: 'bg-blue-100' });
+            }
+            const uploadInput = document.getElementById('bulletin-upload');
+            if (uploadInput) {
+                uploadInput.addEventListener('change', function(e) {
+                    const files = Array.from(e.target.files);
+                    files.forEach((file) => {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            const div = document.createElement('div');
+                            div.className = "relative cursor-move bg-white p-2 rounded-lg border-2 border-blue-200 shadow-sm item-new";
+                            div.innerHTML = `
+                                <img src="${event.target.result}" class="h-32 w-auto rounded object-cover">
+                                <span class="absolute top-1 left-1 bg-blue-600 text-white text-[10px] px-1 rounded font-bold">NEW</span>
+                                <button type="button" onclick="this.parentElement.remove()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">×</button>
+                            `;
+                            sortContainer.appendChild(div);
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                });
+            }
+            <?php endif; ?>
+
+            // 3. 폼 제출 통합 처리 (시간 고정 및 에디터 내용 결합)
+            const form = document.getElementById('post-form');
+            form.onsubmit = function() {
+                // 날짜 추출 및 시간 결합 (00:05:00 고정)
+                const dateVal = document.getElementById('date-input').value;
+                if (!dateVal) {
+                    alert('게시일자를 선택해주세요.');
+                    return false;
+                }
+                document.getElementById('final-published-at').value = dateVal + " 00:05:00";
+
+                // 에디터 내용 결합
+                <?php if ($category !== 'bulletin'): ?>
+                const contentInput = document.getElementById('content-input');
+                if (contentInput) contentInput.value = quill.root.innerHTML;
+                <?php endif; ?>
+
+                return true;
+            };
+        });
+    </script>
 </body>
 </html>

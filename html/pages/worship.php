@@ -75,7 +75,7 @@ if (!$data || !$data['current']) {
     </div>
 
     <nav class="flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12">
-        
+    
         <div class="w-full sm:w-auto flex justify-start">
             <?php if ($prevPost): ?>
                 <a href="?page=worship&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm max-w-xs md:max-w-md">
@@ -84,7 +84,7 @@ if (!$data || !$data['current']) {
                     </svg>
                     <div class="flex flex-col overflow-hidden">
                         <span class="text-xs text-red-500 font-bold uppercase mb-1">
-                            <?= isset($prevPost['published_at']) ? date('Y. m. d', strtotime($prevPost['published_at'])) : '' ?>
+                            <?= isset($prevPost['published_at']) ? date('Y. m. d', strtotime($prevPost['published_at'])) : '이전 날짜' ?>
                         </span>
                         <span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate">
                             <?= htmlspecialchars($prevPost['title']) ?>
@@ -99,7 +99,7 @@ if (!$data || !$data['current']) {
                 <a href="?page=worship&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm max-w-xs md:max-w-md">
                     <div class="flex flex-col items-end overflow-hidden">
                         <span class="text-xs text-red-500 font-bold uppercase mb-1">
-                            <?= isset($nextPost['published_at']) ? date('Y. m. d', strtotime($nextPost['published_at'])) : '' ?>
+                            <?= isset($nextPost['published_at']) ? date('Y. m. d', strtotime($nextPost['published_at'])) : '다음 날짜' ?>
                         </span>
                         <span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate">
                             <?= htmlspecialchars($nextPost['title']) ?>
