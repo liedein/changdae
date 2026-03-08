@@ -12,47 +12,61 @@
     </div>
 </section>
 
-<section class="py-24 bg-white">
+<section class="py-24 bg-white dark:bg-[#1a1a1a] border-t-4 border-black dark:border-[#FFD400] transition-colors duration-300">
     <div class="max-w-[1800px] mx-auto px-6">
         
-        <div class="flex justify-between items-end mb-16 border-b-4 border-black pb-6">
-            <h2 class="text-5xl md:text-7xl font-black text-black italic uppercase tracking-tighter">Latest Worship</h2>
-            <p class="text-sm font-black text-black uppercase tracking-[0.3em]">주일예배</p>
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 border-b-4 border-black dark:border-[#FFD400] pb-6">
+            <h2 class="text-6xl md:text-8xl font-black text-black dark:text-[#FFD400] tracking-tighter italic uppercase">Sunday</h2>
+            <p class="text-xl font-bold text-black dark:text-white mt-4 md:mt-0 uppercase tracking-widest">Worship Service</p>
         </div>
 
-        <?php if ($post): ?>
-            <div class="relative w-full bg-black border-[3px] border-black overflow-hidden aspect-video">
+        <div class="mb-20">
+            <div class="relative aspect-video w-full bg-black border-[3px] border-black dark:border-[#FFD400] shadow-[20px_20px_0px_0px_#FFD400] overflow-hidden">
                 <?php if ($youtube_id): ?>
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/<?= $youtube_id ?>" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/<?= $youtube_id ?>?rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
                 <?php else: ?>
-                    <div class="w-full h-full flex items-center justify-center text-white font-black italic">VIDEO PREPARING...</div>
+                    <div class="w-full h-full flex items-center justify-center text-white font-black uppercase tracking-tighter text-2xl">No Video Available</div>
                 <?php endif; ?>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 border-l border-black mt-0">
-                <div class="md:col-span-2 p-8 border-r border-b border-black">
-                    <span class="block text-[10px] font-black uppercase text-gray-400 mb-2">Subject</span>
-                    <h3 class="text-3xl font-black text-black leading-tight">"<?= htmlspecialchars($post['title']) ?>"</h3>
+            
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-3 border-t-2 border-l-2 border-black dark:border-[#FFD400]">
+                <div class="p-8 border-r-2 border-b-2 border-black dark:border-[#FFD400] bg-white dark:bg-[#262626]">
+                    <span class="block text-xs font-black uppercase mb-2 text-gray-400 dark:text-gray-500">Subject</span>
+                    <h3 class="text-3xl font-black text-black dark:text-white leading-none"><?= htmlspecialchars($post['title']) ?></h3>
                 </div>
-                <div class="p-8 border-r border-b border-black">
-                    <span class="block text-[10px] font-black uppercase text-gray-400 mb-2">Passage</span>
-                    <p class="text-xl font-black text-black italic"><?= htmlspecialchars($post['passage']) ?></p>
+                <div class="p-8 border-r-2 border-b-2 border-black dark:border-[#FFD400] bg-white dark:bg-[#262626]">
+                    <span class="block text-xs font-black uppercase mb-2 text-gray-400 dark:text-gray-500">Passage</span>
+                    <p class="text-2xl font-bold text-black dark:text-white italic leading-none"><?= htmlspecialchars($post['passage']) ?></p>
                 </div>
-                <div class="p-8 border-r border-b border-black">
-                    <span class="block text-[10px] font-black uppercase text-gray-400 mb-2">Preacher</span>
-                    <p class="text-xl font-black text-black italic"><?= htmlspecialchars($post['preacher']) ?></p>
+                <div class="p-8 border-r-2 border-b-2 border-black dark:border-[#FFD400] bg-white dark:bg-[#262626]">
+                    <span class="block text-xs font-black uppercase mb-2 text-gray-400 dark:text-gray-500">Preacher</span>
+                    <p class="text-2xl font-bold text-black dark:text-white italic leading-none"><?= htmlspecialchars($post['preacher']) ?></p>
                 </div>
             </div>
+        </div>
 
-            <div class="flex justify-between items-center mt-8 px-2">
-                <span class="text-2xl font-black text-black italic">
-                    <?= date('Y / m / d', strtotime($post['published_at'])) ?>
-                </span>
-                <a href="?page=worship" class="group flex items-center gap-3 font-black text-sm uppercase tracking-widest">
-                    View Archive 
-                    <span class="w-10 h-10 rounded-full border-2 border-black flex items-center justify-center group-hover:bg-[#FFD400] transition-colors">→</span>
+        <div class="mt-20">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-3 h-3 bg-[#FFD400] border-2 border-black dark:border-[#FFD400] rounded-full"></div>
+                <h4 class="text-sm font-black uppercase tracking-[0.3em] text-black dark:text-white">Recent Sermons</h4>
+            </div>
+            
+            <div class="flex overflow-x-auto pb-8 gap-0 border-t-2 border-l-2 border-black dark:border-[#FFD400]">
+                <?php
+                $stmt = $pdo->query("SELECT * FROM sermon ORDER BY published_at DESC LIMIT 6");
+                $recentSermons = $stmt->fetchAll();
+                foreach ($recentSermons as $sermon):
+                ?>
+                <a href="?page=worship&id=<?= $sermon['id'] ?>" class="flex-none w-[300px] p-10 border-r-2 border-b-2 border-black dark:border-[#FFD400] hover:bg-[#FFD400] dark:hover:bg-[#FFD400] hover:text-black group transition-all duration-300 bg-white dark:bg-[#262626]">
+                    <span class="block text-sm font-black text-black dark:text-gray-400 group-hover:text-black mb-4 uppercase italic">
+                        <?= date('Y. m. d', strtotime($sermon['published_at'])) ?>
+                    </span>
+                    <h5 class="text-xl font-black text-black dark:text-white group-hover:text-black leading-tight break-keep group-hover:underline">
+                        <?= htmlspecialchars($sermon['title']) ?>
+                    </h5>
                 </a>
+                <?php endforeach; ?>
             </div>
-        <?php endif; ?>
+        </div>
     </div>
 </section>
