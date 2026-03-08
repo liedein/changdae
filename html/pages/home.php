@@ -24,6 +24,7 @@ if ($post && !empty($post['youtube_url'])) {
 }
 ?>
 
+// 히어로 섹션
 <section class="relative min-h-[85vh] bg-[#FFD400] flex flex-col justify-center px-6 md:px-20 overflow-hidden">
     <div class="relative z-10">
         <h1 class="text-5xl md:text-[8vw] font-black leading-[0.9] text-black uppercase tracking-tighter mb-8 break-keep">
@@ -38,22 +39,9 @@ if ($post && !empty($post['youtube_url'])) {
     </div>
 </section>
 
-<section class="relative min-h-[85vh] bg-[#FFD400] flex flex-col justify-center px-6 md:px-20 overflow-hidden">
-    <div class="relative z-10">
-        <h1 class="text-5xl md:text-[8vw] font-black leading-[0.9] text-black uppercase tracking-tighter mb-8 break-keep">
-            영혼 구원하여<br>제자 삼는 교회
-        </h1>
-        <p class="text-xl md:text-2xl font-bold text-black mb-12 max-w-2xl">
-            하나님의 사랑이 머무는 곳, 창대교회에 오신 여러분을 환영합니다.
-        </p>
-        <a href="?page=location" class="inline-block bg-black text-white px-10 py-5 rounded-full font-black text-sm uppercase tracking-widest hover:scale-105 transition-all border-2 border-black">
-            오시는 길 →
-        </a>
-    </div>
-</section>
-
+// 예배 영상 섹션
 <section class="py-24 bg-white dark:bg-[#1a1a1a] border-t-4 border-black dark:border-[#FFD400] transition-colors duration-300">
-    <div class="max-w-[1800px] mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-6">
         
         <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 border-b-4 border-black dark:border-[#FFD400] pb-6">
             <h2 class="text-6xl md:text-8xl font-black text-black dark:text-[#FFD400] tracking-tighter italic uppercase">Sunday</h2>

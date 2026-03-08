@@ -82,9 +82,15 @@ $menuItems = [
         </nav>
 
         <div class="flex md:hidden items-center space-x-3">
-            <button id="theme-toggle-mobile" class="p-2 border-2 border-black rounded-full">
-                <span class="text-[10px] font-black italic">MODE</span>
+            <button id="theme-toggle-mobile" class="p-2 border-2 border-black rounded-full transition-colors active:bg-black active:text-[#FFD400]">
+                <svg id="theme-toggle-light-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                </svg>
+                <svg id="theme-toggle-dark-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
             </button>
+            
             <button id="mobile-menu-btn" class="border-2 border-black px-4 py-1 font-black text-sm uppercase tracking-tighter bg-black text-white">
                 Menu
             </button>
@@ -113,13 +119,17 @@ $menuItems = [
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const htmlEl = document.documentElement;
+    // 버튼들 정의
     const themeBtn = document.getElementById('theme-toggle');
     const themeBtnMobile = document.getElementById('theme-toggle-mobile');
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileClose = document.getElementById('mobile-menu-close');
 
-    // 1. 테마 상태 반영 및 아이콘 전환 함수
+    /**
+     * 테마 상태를 새로고침하는 함수
+     * PC와 모바일의 해/달 아이콘을 각각 찾아 상태에 맞춰 숨기거나 보여줍니다.
+     */
     function refreshTheme() {
         const isDark = htmlEl.classList.contains('dark') || 
                       (localStorage.theme === 'dark') || 
@@ -127,15 +137,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (isDark) {
             htmlEl.classList.add('dark');
+            // PC 아이콘 제어
             document.getElementById('theme-toggle-light-icon')?.classList.remove('hidden');
             document.getElementById('theme-toggle-dark-icon')?.classList.add('hidden');
+            // 모바일 아이콘 제어 (새로 추가된 부분)
+            document.getElementById('theme-toggle-light-icon-mobile')?.classList.remove('hidden');
+            document.getElementById('theme-toggle-dark-icon-mobile')?.classList.add('hidden');
         } else {
             htmlEl.classList.remove('dark');
+            // PC 아이콘 제어
             document.getElementById('theme-toggle-light-icon')?.classList.add('hidden');
             document.getElementById('theme-toggle-dark-icon')?.classList.remove('hidden');
+            // 모바일 아이콘 제어 (새로 추가된 부분)
+            document.getElementById('theme-toggle-light-icon-mobile')?.classList.add('hidden');
+            document.getElementById('theme-toggle-dark-icon-mobile')?.classList.remove('hidden');
         }
     }
 
+    // 테마 전환 실행 함수
     const toggleTheme = () => {
         if (htmlEl.classList.contains('dark')) {
             htmlEl.classList.remove('dark');
@@ -147,15 +166,16 @@ document.addEventListener('DOMContentLoaded', function() {
         refreshTheme();
     };
 
+    // 각 버튼에 클릭 이벤트 연결
     if (themeBtn) themeBtn.onclick = toggleTheme;
     if (themeBtnMobile) themeBtnMobile.onclick = toggleTheme;
 
-    // 2. 모바일 메뉴 제어
+    // 모바일 메뉴 모달 제어
     if (mobileBtn && mobileMenu) {
         mobileBtn.onclick = () => {
             mobileMenu.classList.remove('hidden');
             mobileMenu.classList.add('flex');
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; // 뒷배경 스크롤 방지
         };
     }
 
@@ -163,11 +183,11 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileClose.onclick = () => {
             mobileMenu.classList.add('hidden');
             mobileMenu.classList.remove('flex');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'auto'; // 스크롤 재개
         };
     }
 
-    // 초기 테마 로드
+    // 페이지 로드 시 초기 테마 상태 적용
     refreshTheme();
 });
 </script>
