@@ -24,35 +24,42 @@ if ($post && !empty($post['youtube_url'])) {
 }
 ?>
 
-<?php // --- 히어로 섹션 --- ?>
-<section class="relative min-h-[90vh] bg-[#FFD400] flex flex-col justify-center px-6 md:px-20 overflow-hidden">
+<?php // --- 히어로 섹션 (최종 강화 버전) --- ?>
+<section class="relative min-h-[90vh] bg-[#FFD400] flex flex-col justify-center px-4 md:px-20 overflow-hidden">
     <div class="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden opacity-5 pointer-events-none select-none">
         <h1 class="text-[35vw] font-black text-black whitespace-nowrap tracking-tighter uppercase">CHANGDAE</h1>
     </div>
 
     <div class="relative z-10 w-full max-w-[1400px] mx-auto">
-        <div class="flex flex-col w-full">
-            <h1 class="text-7xl md:text-[12vw] font-black leading-[0.85] text-black uppercase tracking-tighter mb-2 break-keep">
+        <div class="flex flex-col w-full space-y-0">
+            <h1 class="text-[12vw] md:text-[10vw] font-black leading-none text-black uppercase tracking-tighter whitespace-nowrap overflow-visible">
                 영혼 구원하여
             </h1>
             
-            <h1 class="text-7xl md:text-[12vw] font-black leading-[0.85] text-transparent uppercase tracking-tighter self-end text-right break-keep" 
-                style="-webkit-text-stroke: 3px black;">
+            <h1 class="text-[12vw] md:text-[10vw] font-black leading-none text-[#FFD400] uppercase tracking-tighter self-end text-right whitespace-nowrap overflow-visible" 
+                style="text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000;">
                 제자 삼는 교회
             </h1>
         </div>
 
-        <div class="mt-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <p class="text-xl md:text-3xl font-bold text-black max-w-2xl leading-tight">
+        <div class="mt-16 flex flex-col md:flex-row md:items-end justify-between gap-10">
+            <p class="text-2xl md:text-4xl font-bold text-black max-w-3xl leading-tight tracking-tight">
                 하나님의 사랑이 머무는 곳,<br>
                 창대교회에 오신 여러분을 환영합니다.
             </p>
-            <a href="?page=location" class="inline-block bg-black text-white px-12 py-6 rounded-full font-black text-sm uppercase tracking-widest hover:scale-105 hover:bg-white hover:text-black transition-all border-4 border-black shrink-0">
+            <a href="?page=location" class="inline-block bg-black text-white px-12 py-6 rounded-full font-black text-sm uppercase tracking-widest hover:scale-105 hover:bg-white hover:text-black transition-all border-4 border-black shrink-0 shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)]">
                 오시는 길 →
             </a>
         </div>
     </div>
 </section>
+
+<style>
+    /* 모바일에서 글자가 겹치지 않게 미세조정 */
+    @media (max-width: 768px) {
+        h1 { letter-spacing: -0.05em; }
+    }
+</style>
 
 <?php // --- 최신 설교 영상 섹션 --- ?>
 <section class="py-24 bg-white dark:bg-[#1a1a1a] border-t-4 border-black dark:border-[#FFD400] transition-colors duration-300">
