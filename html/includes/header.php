@@ -94,23 +94,32 @@ $menuItems = [
     </div>
 
     <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-[#332627] border-t border-gray-200 dark:border-gray-700">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="?page=intro" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-deepblue dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800">환영합니다</a>
-            <?php foreach ($menuItems as $key => $menu): ?>
-                <div class="space-y-1">
-                    <div class="px-3 py-2 text-base font-bold text-gray-900 dark:text-white">
-                        <?= $menu['title'] ?>
-                    </div>
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] hidden flex-col justify-center px-8 transition-all duration-300">
+    <button id="mobile-menu-close" class="absolute top-6 right-6 p-2 text-black">
+        <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+
+    <div class="space-y-6 overflow-y-auto max-h-[80vh]">
+        <a href="?page=intro" class="block text-4xl font-black text-black hover:italic transition-all">WELCOME</a>
+        
+        <?php foreach ($menuItems as $key => $menu): ?>
+            <div class="space-y-2 pt-4">
+                <div class="text-xs font-black uppercase tracking-[0.3em] text-black/40">
+                    <?= $menu['title'] ?>
+                </div>
+                <div class="grid grid-cols-1 gap-2">
                     <?php foreach ($menu['sub'] as $subKey => $subItem): ?>
-                        <a href="<?= $subItem['url'] ?>" class="block pl-6 pr-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-400 hover:text-deepblue dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800">
-                            - <?= $subItem['title'] ?>
+                        <a href="<?= $subItem['url'] ?>" class="block text-2xl font-black text-black hover:translate-x-2 transition-transform">
+                            <?= $subItem['title'] ?>
                         </a>
                     <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>
-        </div>
+            </div>
+        <?php endforeach; ?>
     </div>
+</div>
 </header>
 
 <script>
@@ -167,13 +176,28 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // [모바일 메뉴 버튼]
-    if (mobileBtn && mobileMenu) {
-        mobileBtn.onclick = function() {
-            const isHidden = mobileMenu.style.display === 'none' || mobileMenu.style.display === '';
-            mobileMenu.style.display = isHidden ? 'block' : 'none';
-            console.log("모바일 메뉴: ", isHidden ? "열림" : "닫힘");
+    // [모바일 메뉴 제어]
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileCloseBtn = document.getElementById('theme-toggle-light-icon'); // 기존 테마 버튼 활용 혹은 새로 추가
+
+if (mobileBtn && mobileMenu) {
+    // 열기
+    mobileBtn.onclick = function() {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        document.body.style.overflow = 'hidden'; // 스크롤 방지
+    };
+
+    // 닫기 (새로 추가한 닫기 버튼)
+    const closeBtn = document.getElementById('mobile-menu-close');
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            document.body.style.overflow = 'auto'; // 스크롤 재개
         };
     }
+}
 });
 </script>
