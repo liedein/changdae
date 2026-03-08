@@ -37,12 +37,12 @@ function getBoardPost($pdo, $category, $id = null) {
     $current_published_at = $currentPost['published_at'];
 
     // 2. 이전 글 (현재 글보다 게시일자가 빠른 글 중 가장 최신)
-    $prevStmt = $pdo->prepare("SELECT id, title FROM {$table} WHERE published_at < ? AND published_at <= NOW() ORDER BY published_at DESC LIMIT 1");
+    $prevStmt = $pdo->prepare("SELECT id, title, published_at FROM {$table} WHERE published_at < ? AND published_at <= NOW() ORDER BY published_at DESC LIMIT 1");
     $prevStmt->execute([$current_published_at]);
     $prevPost = $prevStmt->fetch();
 
     // 3. 다음 글 (현재 글보다 게시일자가 늦은 글 중 가장 빠른 것)
-    $nextStmt = $pdo->prepare("SELECT id, title FROM {$table} WHERE published_at > ? AND published_at <= NOW() ORDER BY published_at ASC LIMIT 1");
+    $nextStmt = $pdo->prepare("SELECT id, title, published_at FROM {$table} WHERE published_at > ? AND published_at <= NOW() ORDER BY published_at ASC LIMIT 1");
     $nextStmt->execute([$current_published_at]);
     $nextPost = $nextStmt->fetch();
 

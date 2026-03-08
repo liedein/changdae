@@ -25,17 +25,32 @@ if ($post && !empty($post['youtube_url'])) {
 ?>
 
 <?php // --- 히어로 섹션 --- ?>
-<section class="relative min-h-[85vh] bg-[#FFD400] flex flex-col justify-center px-6 md:px-20 overflow-hidden">
-    <div class="relative z-10">
-        <h1 class="text-5xl md:text-[8vw] font-black leading-[0.9] text-black uppercase tracking-tighter mb-8 break-keep">
-            영혼 구원하여<br>제자 삼는 교회
-        </h1>
-        <p class="text-xl md:text-2xl font-bold text-black mb-12 max-w-2xl">
-            하나님의 사랑이 머무는 곳, 창대교회에 오신 여러분을 환영합니다.
-        </p>
-        <a href="?page=location" class="inline-block bg-black text-white px-10 py-5 rounded-full font-black text-sm uppercase tracking-widest hover:scale-105 transition-all border-2 border-black">
-            오시는 길 →
-        </a>
+<section class="relative min-h-[90vh] bg-[#FFD400] flex flex-col justify-center px-6 md:px-20 overflow-hidden">
+    <div class="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden opacity-5 pointer-events-none select-none">
+        <h1 class="text-[35vw] font-black text-black whitespace-nowrap tracking-tighter uppercase">CHANGDAE</h1>
+    </div>
+
+    <div class="relative z-10 w-full max-w-[1400px] mx-auto">
+        <div class="flex flex-col w-full">
+            <h1 class="text-7xl md:text-[12vw] font-black leading-[0.85] text-black uppercase tracking-tighter mb-2 break-keep">
+                영혼 구원하여
+            </h1>
+            
+            <h1 class="text-7xl md:text-[12vw] font-black leading-[0.85] text-transparent uppercase tracking-tighter self-end text-right break-keep" 
+                style="-webkit-text-stroke: 3px black;">
+                제자 삼는 교회
+            </h1>
+        </div>
+
+        <div class="mt-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <p class="text-xl md:text-3xl font-bold text-black max-w-2xl leading-tight">
+                하나님의 사랑이 머무는 곳,<br>
+                창대교회에 오신 여러분을 환영합니다.
+            </p>
+            <a href="?page=location" class="inline-block bg-black text-white px-12 py-6 rounded-full font-black text-sm uppercase tracking-widest hover:scale-105 hover:bg-white hover:text-black transition-all border-4 border-black shrink-0">
+                오시는 길 →
+            </a>
+        </div>
     </div>
 </section>
 
