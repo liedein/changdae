@@ -1,5 +1,8 @@
 <?php
-// 메뉴 구조 정의
+/**
+ * Merrypage Concept Full Header
+ */
+// 메뉴 구조 정의 (이미 제공해주신 배열 활용)
 $menuItems = [
     'intro' => [
         'title' => '소개합니다',
@@ -32,87 +35,73 @@ $menuItems = [
 ];
 ?>
 
-<header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20 transition-all duration-300" id="header-container">
-            <!-- Logo -->
-            <div class="flex-shrink-0 flex items-center">
-                <a href="/" class="text-2xl font-serif font-bold text-charcoal dark:text-white tracking-tighter hover:opacity-80 transition-opacity">
-                    창대교회
-                </a>
-            </div>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+    .font-black { font-family: 'Inter', sans-serif; font-weight: 900; }
+    
+    /* 다크모드 시 헤더 색상 반전 (선택사항) */
+    .dark #main-header { background-color: #1a1a1a; border-bottom-color: #FFD400; }
+    .dark #main-header a, .dark #main-header button { color: #FFD400; }
+    .dark #main-header .logo-dot { color: #fff; }
+</style>
 
-            <!-- Desktop Menu -->
-            <nav class="hidden md:flex space-x-8">
-                <a href="?page=intro" class="text-charcoal dark:text-gray-200 hover:text-deepblue dark:hover:text-blue-400 px-3 py-2 rounded-md text- font-medium transition-colors">
-                    환영합니다
-                </a>
-                <?php foreach ($menuItems as $key => $menu): ?>
-                    <div class="relative group">
-                        <button class="text-charcoal dark:text-gray-200 group-hover:text-deepblue dark:group-hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium inline-flex items-center transition-colors">
-                            <?= $menu['title'] ?>
-                            <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <!-- Dropdown -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out">
-                            <div class="py-1" role="menu" aria-orientation="vertical">
-                                <?php foreach ($menu['sub'] as $subKey => $subItem): ?>
-                                    <a href="<?= $subItem['url'] ?>" class="block px-4 py-2 text-base text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-deepblue dark:hover:text-blue-400" role="menuitem">
-                                        <?= $subItem['title'] ?>
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
+<header id="main-header" class="fixed w-full top-0 z-[60] bg-[#FFD400] border-b-2 border-black transition-colors duration-300">
+    <div class="max-w-[1800px] mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
+        
+        <div class="flex-shrink-0">
+            <a href="/" class="text-3xl md:text-4xl font-black tracking-tighter text-black uppercase">
+                CHANGDAE<span class="logo-dot text-white">.</span>
+            </a>
+        </div>
+
+        <nav class="hidden md:flex items-center space-x-10">
+            <?php foreach ($menuItems as $key => $menu): ?>
+                <div class="relative group">
+                    <button class="text-sm font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
+                        <?= $menu['title'] ?>
+                        <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-48 bg-white border-2 border-black opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <div class="py-2">
+                            <?php foreach ($menu['sub'] as $sub): ?>
+                                <a href="<?= $sub['url'] ?>" class="block px-4 py-2 text-xs font-black text-black hover:bg-[#FFD400] transition-colors uppercase">
+                                    <?= $sub['title'] ?>
+                                </a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </nav>
+                </div>
+            <?php endforeach; ?>
 
-            <!-- Right Icons (Theme Toggle & Mobile Menu) -->
-            <div class="flex items-center space-x-4">
-                <!-- Dark Mode Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors">
-                    <!-- Sun Icon -->
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-                    </svg>
-                    <!-- Moon Icon -->
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                </button>
+            <button id="theme-toggle" class="p-2 border-2 border-black rounded-full hover:bg-black hover:text-[#FFD400] transition-all">
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
+            </button>
+        </nav>
 
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-gray-600 dark:text-gray-200 hover:text-deepblue dark:hover:text-white focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
+        <div class="flex md:hidden items-center space-x-3">
+            <button id="theme-toggle-mobile" class="p-2 border-2 border-black rounded-full">
+                <span class="text-[10px] font-black italic">MODE</span>
+            </button>
+            <button id="mobile-menu-btn" class="border-2 border-black px-4 py-1 font-black text-sm uppercase tracking-tighter bg-black text-white">
+                Menu
+            </button>
         </div>
     </div>
+</header>
 
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] hidden flex-col justify-center px-8 transition-all duration-300">
-    <button id="mobile-menu-close" class="absolute top-6 right-6 p-2 text-black">
-        <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-    </button>
-
-    <div class="space-y-6 overflow-y-auto max-h-[80vh]">
-        <a href="?page=intro" class="block text-4xl font-black text-black hover:italic transition-all">WELCOME</a>
-        
+<div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] hidden flex-col justify-center px-10 transition-all">
+    <button id="mobile-menu-close" class="absolute top-8 right-8 font-black text-xl text-black border-2 border-black px-4 py-1">CLOSE [X]</button>
+    <div class="space-y-8 overflow-y-auto max-h-[80vh]">
         <?php foreach ($menuItems as $key => $menu): ?>
-            <div class="space-y-2 pt-4">
-                <div class="text-xs font-black uppercase tracking-[0.3em] text-black/40">
-                    <?= $menu['title'] ?>
-                </div>
-                <div class="grid grid-cols-1 gap-2">
-                    <?php foreach ($menu['sub'] as $subKey => $subItem): ?>
-                        <a href="<?= $subItem['url'] ?>" class="block text-2xl font-black text-black hover:translate-x-2 transition-transform">
-                            <?= $subItem['title'] ?>
+            <div>
+                <span class="text-[10px] font-black text-black/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
+                <div class="flex flex-col mt-2 space-y-2">
+                    <?php foreach ($menu['sub'] as $sub): ?>
+                        <a href="<?= $sub['url'] ?>" class="text-4xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
+                            <?= $sub['title'] ?>
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -120,84 +109,65 @@ $menuItems = [
         <?php endforeach; ?>
     </div>
 </div>
-</header>
 
 <script>
-/**
- * 테마 상태를 화면에 즉시 반영하는 함수
- */
-function refreshTheme() {
-    const htmlEl = document.documentElement;
-    const sunIcon = document.getElementById('theme-toggle-light-icon');
-    const moonIcon = document.getElementById('theme-toggle-dark-icon');
-    
-    // 1. 저장된 테마 확인 (없으면 시스템 설정 따름)
-    const isDark = localStorage.theme === 'dark' || 
-                  (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-    // 2. 클래스 적용 및 아이콘 표시 강제 제어
-    if (isDark) {
-        htmlEl.classList.add('dark');
-        if (sunIcon) sunIcon.style.display = 'block';   // 해 아이콘 보임
-        if (moonIcon) moonIcon.style.display = 'none';   // 달 아이콘 숨김
-    } else {
-        htmlEl.classList.remove('dark');
-        if (sunIcon) sunIcon.style.display = 'none';    // 해 아이콘 숨김
-        if (moonIcon) moonIcon.style.display = 'block';  // 달 아이콘 보임
-    }
-    
-    console.log("테마 동기화 완료: ", isDark ? "다크 모드" : "라이트 모드");
-}
-
-// DOM이 로드되기 전에도 실행하여 깜빡임 방지
-refreshTheme();
-
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("헤더 스크립트 로드됨");
-    
-    // 페이지 로드 후 아이콘 상태 다시 확인
-    refreshTheme();
-
+    const htmlEl = document.documentElement;
     const themeBtn = document.getElementById('theme-toggle');
+    const themeBtnMobile = document.getElementById('theme-toggle-mobile');
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-menu-close');
 
-    // [테마 전환 버튼]
-    if (themeBtn) {
-        themeBtn.onclick = function() {
-            // 현재 상태 반전시켜 저장
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.theme = 'light';
-            } else {
-                localStorage.theme = 'dark';
-            }
-            // 화면 갱신
-            refreshTheme();
-        };
+    // 1. 테마 상태 반영 및 아이콘 전환 함수
+    function refreshTheme() {
+        const isDark = htmlEl.classList.contains('dark') || 
+                      (localStorage.theme === 'dark') || 
+                      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        
+        if (isDark) {
+            htmlEl.classList.add('dark');
+            document.getElementById('theme-toggle-light-icon')?.classList.remove('hidden');
+            document.getElementById('theme-toggle-dark-icon')?.classList.add('hidden');
+        } else {
+            htmlEl.classList.remove('dark');
+            document.getElementById('theme-toggle-light-icon')?.classList.add('hidden');
+            document.getElementById('theme-toggle-dark-icon')?.classList.remove('hidden');
+        }
     }
 
-    // [모바일 메뉴 제어]
-const mobileBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileCloseBtn = document.getElementById('theme-toggle-light-icon'); // 기존 테마 버튼 활용 혹은 새로 추가
-
-if (mobileBtn && mobileMenu) {
-    // 열기
-    mobileBtn.onclick = function() {
-        mobileMenu.classList.remove('hidden');
-        mobileMenu.classList.add('flex');
-        document.body.style.overflow = 'hidden'; // 스크롤 방지
+    const toggleTheme = () => {
+        if (htmlEl.classList.contains('dark')) {
+            htmlEl.classList.remove('dark');
+            localStorage.theme = 'light';
+        } else {
+            htmlEl.classList.add('dark');
+            localStorage.theme = 'dark';
+        }
+        refreshTheme();
     };
 
-    // 닫기 (새로 추가한 닫기 버튼)
-    const closeBtn = document.getElementById('mobile-menu-close');
-    if (closeBtn) {
-        closeBtn.onclick = function() {
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('flex');
-            document.body.style.overflow = 'auto'; // 스크롤 재개
+    if (themeBtn) themeBtn.onclick = toggleTheme;
+    if (themeBtnMobile) themeBtnMobile.onclick = toggleTheme;
+
+    // 2. 모바일 메뉴 제어
+    if (mobileBtn && mobileMenu) {
+        mobileBtn.onclick = () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         };
     }
-}
+
+    if (mobileClose && mobileMenu) {
+        mobileClose.onclick = () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        };
+    }
+
+    // 초기 테마 로드
+    refreshTheme();
 });
 </script>
