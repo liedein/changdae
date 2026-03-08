@@ -24,7 +24,7 @@ if ($post && !empty($post['youtube_url'])) {
 }
 ?>
 
-// 히어로 섹션
+<?php // --- 히어로 섹션 --- ?>
 <section class="relative min-h-[85vh] bg-[#FFD400] flex flex-col justify-center px-6 md:px-20 overflow-hidden">
     <div class="relative z-10">
         <h1 class="text-5xl md:text-[8vw] font-black leading-[0.9] text-black uppercase tracking-tighter mb-8 break-keep">
@@ -39,7 +39,7 @@ if ($post && !empty($post['youtube_url'])) {
     </div>
 </section>
 
-// 예배 영상 섹션
+<?php // --- 최신 설교 영상 섹션 --- ?>
 <section class="py-24 bg-white dark:bg-[#1a1a1a] border-t-4 border-black dark:border-[#FFD400] transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-6">
         
