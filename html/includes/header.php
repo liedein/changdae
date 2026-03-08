@@ -50,14 +50,14 @@ $menuItems = [
         
         <div class="flex-shrink-0">
             <a href="/" class="text-3xl md:text-4xl font-black tracking-tighter text-black uppercase">
-                CHANGDAE<span class="logo-dot text-white">.</span>
+                창대교회<span class="logo-dot text-white">.</span>
             </a>
         </div>
 
         <nav class="hidden md:flex items-center space-x-10">
             <?php foreach ($menuItems as $key => $menu): ?>
                 <div class="relative group">
-                    <button class="text-sm font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
+                    <button class="text-base font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
                         <?= $menu['title'] ?>
                         <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
@@ -91,7 +91,7 @@ $menuItems = [
                 </svg>
             </button>
             
-            <button id="mobile-menu-btn" class="border-2 border-black px-4 py-1 font-black text-sm uppercase tracking-tighter bg-black text-white">
+            <button id="mobile-menu-btn" class="border-2 border-black px-4 py-1 font-black text-base uppercase tracking-tighter bg-black text-white">
                 Menu
             </button>
         </div>
@@ -103,10 +103,10 @@ $menuItems = [
     <div class="space-y-8 overflow-y-auto max-h-[80vh]">
         <?php foreach ($menuItems as $key => $menu): ?>
             <div>
-                <span class="text-[10px] font-black text-black/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
+                <span class="text-[12px] font-black text-black/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
                 <div class="flex flex-col mt-2 space-y-2">
                     <?php foreach ($menu['sub'] as $sub): ?>
-                        <a href="<?= $sub['url'] ?>" class="text-4xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
+                        <a href="<?= $sub['url'] ?>" class="text-3xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
                             <?= $sub['title'] ?>
                         </a>
                     <?php endforeach; ?>
