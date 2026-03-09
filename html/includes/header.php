@@ -1,9 +1,14 @@
 <?php
 /**
- * Merrypage Concept Full Header
+ * Merrypage Concept Full Header - Welcome Menu Fixed
  */
-// 메뉴 구조 정의 (이미 제공해주신 배열 활용)
 $menuItems = [
+    // 1. 환영합니다 (PC: 단일메뉴 / 모바일: 메인메뉴 스타일)
+    'welcome' => [
+        'title' => '환영합니다',
+        'url' => '?page=intro', // 클릭 시 바로 이동
+        'sub' => [] // 서브메뉴 없음
+    ],
     'intro' => [
         'title' => '소개합니다',
         'sub' => [
@@ -38,8 +43,6 @@ $menuItems = [
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
     .font-black { font-family: 'Inter', sans-serif; font-weight: 900; }
-    
-    /* 다크모드 시 헤더 색상 반전 (선택사항) */
     .dark #main-header { background-color: #1a1a1a; border-bottom-color: #FFD400; }
     .dark #main-header a, .dark #main-header button { color: #FFD400; }
     .dark #main-header .logo-dot { color: #fff; }
@@ -57,25 +60,31 @@ $menuItems = [
         <nav class="hidden md:flex items-center space-x-10">
             <?php foreach ($menuItems as $key => $menu): ?>
                 <div class="relative group">
-                    <button class="text-base font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
-                        <?= $menu['title'] ?>
-                        <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="absolute left-0 mt-2 w-48 bg-white border-2 border-black opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                        <div class="py-2">
-                            <?php foreach ($menu['sub'] as $sub): ?>
-                                <a href="<?= $sub['url'] ?>" class="block px-4 py-2 text-xs font-black text-black hover:bg-[#FFD400] transition-colors uppercase">
-                                    <?= $sub['title'] ?>
-                                </a>
-                            <?php endforeach; ?>
+                    <?php if (!empty($menu['sub'])): ?>
+                        <button class="text-base font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
+                            <?= $menu['title'] ?>
+                            <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white border-2 border-black opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                            <div class="py-2">
+                                <?php foreach ($menu['sub'] as $sub): ?>
+                                    <a href="<?= $sub['url'] ?>" class="block px-4 py-2 text-xs font-black text-black hover:bg-[#FFD400] transition-colors uppercase">
+                                        <?= $sub['title'] ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
+                    <?php else: ?>
+                        <a href="<?= $menu['url'] ?>" class="text-base font-black tracking-widest text-black uppercase hover:text-white transition-colors">
+                            <?= $menu['title'] ?>
+                        </a>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
 
-            <button id="theme-toggle" class="p-2 border-2 border-black rounded-full hover:bg-black hover:text-[#FFD400] transition-all">
+            <button id="theme-toggle" class="ml-4 p-2 border-2 border-black rounded-full hover:bg-black hover:text-[#FFD400] transition-all">
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
             </button>
@@ -83,34 +92,35 @@ $menuItems = [
 
         <div class="flex md:hidden items-center space-x-3">
             <button id="theme-toggle-mobile" class="p-2 border-2 border-black rounded-full transition-colors active:bg-black active:text-[#FFD400]">
-                <svg id="theme-toggle-light-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-                </svg>
-                <svg id="theme-toggle-dark-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                </svg>
+                <svg id="theme-toggle-light-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
+                <svg id="theme-toggle-dark-icon-mobile" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             </button>
-            
-            <button id="mobile-menu-btn" class="border-2 border-black px-4 py-1 font-black text-base uppercase tracking-tighter bg-black text-white">
-                Menu
-            </button>
+            <button id="mobile-menu-btn" class="border-2 border-black px-4 py-1 font-black text-base uppercase tracking-tighter bg-black text-white">Menu</button>
         </div>
     </div>
 </header>
 
-<div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] hidden flex-col justify-center px-10 transition-all">
+<div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] hidden flex-col justify-center px-10">
     <button id="mobile-menu-close" class="absolute top-8 right-8 font-black text-xl text-black border-2 border-black px-4 py-1">CLOSE [X]</button>
     <div class="space-y-8 overflow-y-auto max-h-[80vh]">
         <?php foreach ($menuItems as $key => $menu): ?>
             <div>
-                <span class="text-[12px] font-black text-black/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
-                <div class="flex flex-col mt-2 space-y-2">
-                    <?php foreach ($menu['sub'] as $sub): ?>
-                        <a href="<?= $sub['url'] ?>" class="text-3xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
-                            <?= $sub['title'] ?>
+                <?php if (!empty($menu['sub'])): ?>
+                    <span class="text-[12px] font-black text-black/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
+                    <div class="flex flex-col mt-2 space-y-2">
+                        <?php foreach ($menu['sub'] as $sub): ?>
+                            <a href="<?= $sub['url'] ?>" class="text-3xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
+                                <?= $sub['title'] ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    <div class="flex flex-col space-y-2">
+                        <a href="<?= $menu['url'] ?>" class="text-3xl font-black text-black hover:italic transition-all">
+                            <?= $menu['title'] ?>
                         </a>
-                    <?php endforeach; ?>
-                </div>
+                        <div class="h-1 w-12 bg-black"></div> </div>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>
