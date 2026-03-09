@@ -23,19 +23,19 @@ if ($post && !empty($post['youtube_url'])) {
 }
 ?>
 
-<?php // --- 히어로 섹션 (가로 전체 너비 + 모바일 텍스트 극대화) --- ?>
+<?php // --- 히어로 섹션 (간격 조정 버전) --- ?>
 <section class="relative min-h-[90vh] bg-[#FFD400] flex flex-col justify-center px-4 md:px-10 overflow-hidden">
     <div class="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden opacity-5 pointer-events-none select-none">
         <h1 class="text-[40vw] font-black text-black whitespace-nowrap tracking-tighter uppercase">CHANGDAE</h1>
     </div>
 
-    <div class="relative z-10 w-full mx-auto"> <div class="flex flex-col w-full space-y-0">
-            <h1 class="text-[22vw] md:text-[10vw] font-black leading-[0.85] text-black uppercase tracking-tighter whitespace-nowrap">
+    <div class="relative z-10 w-full mx-auto">
+        <div class="flex flex-col w-full space-y-4 md:space-y-0"> <h1 class="text-[20vw] md:text-[10vw] font-black leading-[1.1] md:leading-none text-black uppercase tracking-tighter whitespace-nowrap">
                 영혼 구원하여
             </h1>
             
-            <h1 class="text-[22vw] md:text-[10vw] font-black leading-[0.85] text-[#FFD400] uppercase tracking-tighter self-end text-right whitespace-nowrap" 
-                style="text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000;">
+            <h1 class="text-[20vw] md:text-[10vw] font-black leading-[1.1] md:leading-none text-[#FFD400] uppercase tracking-tighter self-end text-right whitespace-nowrap mt-4 md:mt-0" 
+                style="text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000; padding-bottom: 2vw;">
                 제자 삼는 교회
             </h1>
         </div>
@@ -53,9 +53,13 @@ if ($post && !empty($post['youtube_url'])) {
 </section>
 
 <style>
-    /* 텍스트가 화면 밖으로 나가는 것을 허용하면서 겹침 방지 */
+    /* 모바일에서 글자 크기와 자간 최적화 */
     @media (max-width: 768px) {
-        h1 { letter-spacing: -0.07em; }
+        h1 { 
+            letter-spacing: -0.05em; 
+            /* 텍스트가 너무 크면 살짝 줄이되 2배 기조 유지 */
+            font-size: 16vw; 
+        }
     }
 </style>
 

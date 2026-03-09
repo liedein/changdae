@@ -4,11 +4,7 @@
  */
 $menuItems = [
     // 1. 환영합니다 (PC: 단일메뉴 / 모바일: 메인메뉴 스타일)
-    'welcome' => [
-        'title' => '환영합니다',
-        'url' => '?page=intro', // 클릭 시 바로 이동
-        'sub' => [] // 서브메뉴 없음
-    ],
+    'welcome' => ['title' => '환영합니다', 'url' => '?page=intro', 'sub' => []],
     'intro' => [
         'title' => '소개합니다',
         'sub' => [
