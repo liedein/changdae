@@ -2,8 +2,10 @@
 /**
  * Merrypage Concept Full Header - Welcome Menu Fixed
  */
+// 현재 페이지 파라미터 가져오기 (Active 상태 표시용)
+$currentPage = isset($_GET['page']) ? $_GET['page'] : 'home';
+
 $menuItems = [
-    // 1. 환영합니다 (PC: 단일메뉴 / 모바일: 메인메뉴 스타일)
     'welcome' => ['title' => '환영합니다', 'url' => '?page=intro', 'sub' => []],
     'intro' => [
         'title' => '소개합니다',
@@ -57,7 +59,7 @@ $menuItems = [
             <?php foreach ($menuItems as $key => $menu): ?>
                 <div class="relative group">
                     <?php if (!empty($menu['sub'])): ?>
-                        <button class="text-base font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
+                        <button class="text-xl font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
                             <?= $menu['title'] ?>
                             <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
@@ -65,15 +67,18 @@ $menuItems = [
                         </button>
                         <div class="absolute left-0 mt-2 w-48 bg-white border-2 border-black opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                             <div class="py-2">
-                                <?php foreach ($menu['sub'] as $sub): ?>
-                                    <a href="<?= $sub['url'] ?>" class="block px-4 py-2 text-xs font-black text-black hover:bg-[#FFD400] transition-colors uppercase">
+                                <?php foreach ($menu['sub'] as $subKey => $sub): ?>
+                                    <a href="<?= $sub['url'] ?>" class="flex items-center px-4 py-2 text-xl font-black text-black hover:bg-[#FFD400] transition-colors uppercase">
+                                        <?php if($currentPage == $subKey): ?>
+                                            <span class="w-1.5 h-6 bg-black mr-2"></span>
+                                        <?php endif; ?>
                                         <?= $sub['title'] ?>
                                     </a>
                                 <?php endforeach; ?>
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="<?= $menu['url'] ?>" class="text-base font-black tracking-widest text-black uppercase hover:text-white transition-colors">
+                        <a href="<?= $menu['url'] ?>" class="text-xl font-black tracking-widest text-black uppercase hover:text-white transition-colors">
                             <?= $menu['title'] ?>
                         </a>
                     <?php endif; ?>
@@ -96,26 +101,31 @@ $menuItems = [
     </div>
 </header>
 
-<div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] hidden flex-col justify-center px-10">
-    <button id="mobile-menu-close" class="absolute top-8 right-8 font-black text-xl text-black border-2 border-black px-4 py-1">CLOSE [X]</button>
-    <div class="space-y-8 overflow-y-auto max-h-[80vh]">
+<div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] hidden flex-col justify-start px-10 pt-[10vw]"> <button id="mobile-menu-close" class="absolute top-8 right-8 font-black text-xl text-black border-2 border-black px-4 py-1">X</button>
+    <div class="space-y-8 overflow-y-auto max-h-[85vh] mt-16">
         <?php foreach ($menuItems as $key => $menu): ?>
             <div>
                 <?php if (!empty($menu['sub'])): ?>
-                    <span class="text-[12px] font-black text-black/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
+                    <span class="text-sm font-black text-black/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
                     <div class="flex flex-col mt-2 space-y-2">
-                        <?php foreach ($menu['sub'] as $sub): ?>
-                            <a href="<?= $sub['url'] ?>" class="text-3xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
+                        <?php foreach ($menu['sub'] as $subKey => $sub): ?>
+                            <a href="<?= $sub['url'] ?>" class="flex items-center text-3xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
+                                <?php if($currentPage == $subKey): ?>
+                                    <span class="w-2 h-8 bg-black mr-3"></span>
+                                <?php endif; ?>
                                 <?= $sub['title'] ?>
                             </a>
                         <?php endforeach; ?>
                     </div>
                 <?php else: ?>
                     <div class="flex flex-col space-y-2">
-                        <a href="<?= $menu['url'] ?>" class="text-3xl font-black text-black hover:italic transition-all">
+                        <a href="<?= $menu['url'] ?>" class="flex items-center text-3xl font-black text-black hover:italic transition-all">
+                            <?php if($currentPage == 'intro' && $key == 'welcome'): ?>
+                                <span class="w-2 h-8 bg-black mr-3"></span>
+                            <?php endif; ?>
                             <?= $menu['title'] ?>
                         </a>
-                        <div class="h-1 w-12 bg-black"></div> </div>
+                        </div>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
@@ -123,19 +133,15 @@ $menuItems = [
 </div>
 
 <script>
+// ... (기존 스크립트 내용과 동일하여 생략) ...
 document.addEventListener('DOMContentLoaded', function() {
     const htmlEl = document.documentElement;
-    // 버튼들 정의
     const themeBtn = document.getElementById('theme-toggle');
     const themeBtnMobile = document.getElementById('theme-toggle-mobile');
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileClose = document.getElementById('mobile-menu-close');
 
-    /**
-     * 테마 상태를 새로고침하는 함수
-     * PC와 모바일의 해/달 아이콘을 각각 찾아 상태에 맞춰 숨기거나 보여줍니다.
-     */
     function refreshTheme() {
         const isDark = htmlEl.classList.contains('dark') || 
                       (localStorage.theme === 'dark') || 
@@ -143,24 +149,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (isDark) {
             htmlEl.classList.add('dark');
-            // PC 아이콘 제어
             document.getElementById('theme-toggle-light-icon')?.classList.remove('hidden');
             document.getElementById('theme-toggle-dark-icon')?.classList.add('hidden');
-            // 모바일 아이콘 제어 (새로 추가된 부분)
             document.getElementById('theme-toggle-light-icon-mobile')?.classList.remove('hidden');
             document.getElementById('theme-toggle-dark-icon-mobile')?.classList.add('hidden');
         } else {
             htmlEl.classList.remove('dark');
-            // PC 아이콘 제어
             document.getElementById('theme-toggle-light-icon')?.classList.add('hidden');
             document.getElementById('theme-toggle-dark-icon')?.classList.remove('hidden');
-            // 모바일 아이콘 제어 (새로 추가된 부분)
             document.getElementById('theme-toggle-light-icon-mobile')?.classList.add('hidden');
             document.getElementById('theme-toggle-dark-icon-mobile')?.classList.remove('hidden');
         }
     }
 
-    // 테마 전환 실행 함수
     const toggleTheme = () => {
         if (htmlEl.classList.contains('dark')) {
             htmlEl.classList.remove('dark');
@@ -172,16 +173,14 @@ document.addEventListener('DOMContentLoaded', function() {
         refreshTheme();
     };
 
-    // 각 버튼에 클릭 이벤트 연결
     if (themeBtn) themeBtn.onclick = toggleTheme;
     if (themeBtnMobile) themeBtnMobile.onclick = toggleTheme;
 
-    // 모바일 메뉴 모달 제어
     if (mobileBtn && mobileMenu) {
         mobileBtn.onclick = () => {
             mobileMenu.classList.remove('hidden');
             mobileMenu.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // 뒷배경 스크롤 방지
+            document.body.style.overflow = 'hidden';
         };
     }
 
@@ -189,11 +188,10 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileClose.onclick = () => {
             mobileMenu.classList.add('hidden');
             mobileMenu.classList.remove('flex');
-            document.body.style.overflow = 'auto'; // 스크롤 재개
+            document.body.style.overflow = 'auto';
         };
     }
 
-    // 페이지 로드 시 초기 테마 상태 적용
     refreshTheme();
 });
 </script>

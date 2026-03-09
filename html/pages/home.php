@@ -56,9 +56,9 @@ if ($post && !empty($post['youtube_url'])) {
     /* 모바일에서 글자 크기와 자간 최적화 */
     @media (max-width: 768px) {
         h1 { 
-            letter-spacing: -0.05em; 
+            letter-spacing: -0.07em; 
             /* 텍스트가 너무 크면 살짝 줄이되 2배 기조 유지 */
-            font-size: 16vw; 
+            font-size: 14vw; 
         }
     }
 </style>
