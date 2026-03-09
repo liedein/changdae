@@ -35,7 +35,7 @@ if ($post && !empty($post['youtube_url'])) {
                 영혼 구원하여
             </h1>
             
-            <h1 class="text-[18vw] md:text-[10vw] font-black leading-[1.1] md:leading-none text-white uppercase tracking-tighter self-end text-right whitespace-nowrap mt-4 md:mt-0" 
+            <h1 class="text-[18vw] md:text-[10vw] font-black leading-[1.1] md:leading-none text-[#FFD400] uppercase tracking-tighter self-end text-right whitespace-nowrap mt-4 md:mt-0" 
                 style="text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000; padding-bottom: 2vw;">
                 제자 삼는 교회
             </h1>

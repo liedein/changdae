@@ -6,10 +6,10 @@ $category = $_GET['cat'] ?? 'news';
 $id = $_GET['id'] ?? null;
 
 $category_map = [
-    'news' => '창대소식',
-    'sermon' => '주일예배',
-    'bulletin' => '주보',
-    'column' => '목회칼럼'
+    'news' => '소식관리',
+    'sermon' => '예배관리',
+    'bulletin' => '주보관리',
+    'column' => '칼럼관리'
 ];
 
 if (!array_key_exists($category, $category_map)) {

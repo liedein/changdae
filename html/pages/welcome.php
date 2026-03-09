@@ -1,13 +1,13 @@
 <!-- 환영합니다 -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
     <div class="flex flex-col lg:flex-row gap-12">
         <!-- Left Content Section (3/4 width) -->
-        <div class="lg:w-3/4 order-2 lg:order-1">
-            <h1 class="text-3xl md:text-4xl font-bold text-deepblue dark:text-blue-400 mb-8 leading-tight">
+        <div class="lg:w-5/7 order-2 lg:order-1">
+            <h1 class="text-4xl md:text-5xl font-bold text-deepblue dark:text-blue-400 mb-8 leading-tight">
                 창대교회에 오신 여러분을 환영합니다.
             </h1>
             
-            <div class="space-y-6 text-lg text-charcoal dark:text-gray-300 leading-relaxed">
+            <div class="space-y-6 text-xl text-charcoal dark:text-gray-300 leading-relaxed font-serif">
                 <p>
                     창대교회는 장로교 고신총회에 소속된 교회입니다.
                 </p>
@@ -31,7 +31,7 @@
                 </p>
                 
                 <div class="pt-8">
-                    <p class="text-xl">
+                    <p class="text-2xl">
                         <span class="font-bold">담임목사 김은택</span>
                     </p>
                 </div>
@@ -39,16 +39,16 @@
         </div>
 
         <!-- Right Image Section (1/4 width) -->
-        <div class="lg:w-1/4 order-1 lg:order-2">
+        <div class="lg:w-2/7 order-1 lg:order-2">
             <div class="sticky top-24">
-                <div class="aspect-[3/4] w-full rounded-lg overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700 mb-6">
-                    <!-- 샘플 이미지 (추후 실제 목사님 사진으로 교체 권장) -->
-                    <img src="https://placehold.co/400x600/1a365d/ffffff?text=Welcome" 
+                <div class="aspect-[1/3] w-full rounded-lg overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700 mb-6">
+                    
+                    <img src="/assets/img/welcome_ket.jpg" 
                          alt="김은택 담임목사" 
                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                 </div>
                 
-                <div class="text-sm text-gray-600 dark:text-gray-400 space-y-1 leading-relaxed">
+                <div class="text-base text-gray-600 dark:text-gray-400 space-y-1 leading-relaxed">
                     <p>고려신학교 목회학 석사(M.Div)</p>
                     <p>미국 비블리컬신학교 (Biblical Seminary, PA) 석사(MA)</p>
                     <p>미국 비블리컬신학교 (Biblical Seminary, PA) 목회학박사(D.Min) 과정</p>

@@ -5,7 +5,6 @@ $menuItems = [
         'title' => '소개합니다',
         'sub' => [
             'vision' => ['title' => '비전과 철학', 'url' => '?page=intro&sub=vision'],
-            'mission' => ['title' => '사명', 'url' => '?page=intro&sub=mission'],
             'staff' => ['title' => '섬기는 사람들', 'url' => '?page=intro&sub=staff'],
             'cell' => ['title' => '목장', 'url' => '?page=intro&sub=cell'],
             'study' => ['title' => '삶공부', 'url' => '?page=intro&sub=study'],
