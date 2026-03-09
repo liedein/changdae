@@ -73,41 +73,57 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'study'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-4xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16">
-                <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Christian Living Study</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">삶공부 여정</h2>
-                <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
-                    지식 위주의 공부에서 벗어나 삶의 변화를 목표로 합니다.<br class="hidden md:block">
-                    하나님을 경험하고 성경적인 가치관을 세우는 축복의 통로입니다.
-                </p>
-            </div>
-
-            <div class="space-y-6">
-                <?php
-                $courses = [
-                    ['title' => '예수영접모임', 'desc' => '예수님이 누구신지 듣고 그분을 마음에 모십니다.'],
-                    ['title' => '행복한 삶', 'desc' => '내가 누구인지, 삶의 진정한 행복은 어디에 있는지 생각해 봅니다.'],
-                    ['title' => '회복의 삶', 'desc' => '예수 그리스도 안에서의 회복을 통해 더욱 복음의 삶으로 나아갑니다.'],
-                    ['title' => '예비부부의 삶', 'desc' => '나와 상대방을 바로 알고 결혼에 대한 바른 기대와 계획을 갖게 합니다.'],
-                    ['title' => '생명의 삶', 'desc' => '복음의 핵심을 공부하며 신앙의 기초를 다집니다.'],
-                    ['title' => '경건의 삶', 'desc' => '말씀과 기도가 중심이 되는 경건 생활을 배우고 훈련합니다.'],
-                    ['title' => '생명언어의 삶', 'desc' => '언어생활의 변화를 통해 예수님의 인격을 닮아갑니다.'],
-                    ['title' => '말씀중보기도의 삶', 'desc' => '하나님의 임재 속에서 기도하는 법을 배웁니다.']
-                ];
-
-                foreach ($courses as $course):
-                ?>
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-lg transition-shadow flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white md:w-1/4 flex-shrink-0">
-                        <?= $course['title'] ?>
-                    </h3>
-                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-sm md:w-3/4">
-                        <?= $course['desc'] ?>
-                    </p>
+        <section class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Left Image Section -->
+                <div class="lg:w-1/3 order-1">
+                    <div class="sticky top-24">
+                        <div class="aspect-[1/3] w-full rounded-2xl overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700">
+                            <img src="/assets/img/intro_study.jpg" 
+                                 alt="삶공부" 
+                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        </div>
+                    </div>
                 </div>
-                <?php endforeach; ?>
+
+                <!-- Right Content Section -->
+                <div class="lg:w-2/3 order-2">
+                    <div class="text-center mb-16">
+                        <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Christian Living Study</span>
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">삶공부 여정</h2>
+                        <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
+                        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
+                            지식 위주의 공부에서 벗어나 삶의 변화를 목표로 합니다.<br class="hidden md:block">
+                            하나님을 경험하고 성경적인 가치관을 세우는 축복의 통로입니다.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <?php
+                        $courses = [
+                            ['title' => '예수영접모임', 'desc' => '예수님이 누구신지 듣고 그분을 마음에 모십니다.'],
+                            ['title' => '행복한 삶', 'desc' => '내가 누구인지, 삶의 진정한 행복은 어디에 있는지 생각해 봅니다.'],
+                            ['title' => '회복의 삶', 'desc' => '예수 그리스도 안에서의 회복을 통해 더욱 복음의 삶으로 나아갑니다.'],
+                            ['title' => '예비부부의 삶', 'desc' => '나와 상대방을 바로 알고 결혼에 대한 바른 기대와 계획을 갖게 합니다.'],
+                            ['title' => '생명의 삶', 'desc' => '복음의 핵심을 공부하며 신앙의 기초를 다집니다.'],
+                            ['title' => '경건의 삶', 'desc' => '말씀과 기도가 중심이 되는 경건 생활을 배우고 훈련합니다.'],
+                            ['title' => '생명언어의 삶', 'desc' => '언어생활의 변화를 통해 예수님의 인격을 닮아갑니다.'],
+                            ['title' => '말씀중보기도의 삶', 'desc' => '하나님의 임재 속에서 기도하는 법을 배웁니다.']
+                        ];
+
+                        foreach ($courses as $course):
+                        ?>
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-lg transition-shadow flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white md:w-1/4 flex-shrink-0">
+                                <?= $course['title'] ?>
+                            </h3>
+                            <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-sm md:w-3/4">
+                                <?= $course['desc'] ?>
+                            </p>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
