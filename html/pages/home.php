@@ -23,18 +23,19 @@ if ($post && !empty($post['youtube_url'])) {
 }
 ?>
 
-<?php // --- 히어로 섹션 (간격 조정 버전) --- ?>
+<?php // --- 히어로 섹션 (간격 및 색상 조정 버전) --- ?>
 <section class="relative min-h-[90vh] bg-[#FFD400] flex flex-col justify-center px-4 md:px-10 overflow-hidden">
     <div class="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden opacity-5 pointer-events-none select-none">
         <h1 class="text-[40vw] font-black text-black whitespace-nowrap tracking-tighter uppercase">CHANGDAE</h1>
     </div>
 
     <div class="relative z-10 w-full mx-auto">
-        <div class="flex flex-col w-full space-y-4 md:space-y-0"> <h1 class="text-[20vw] md:text-[10vw] font-black leading-[1.1] md:leading-none text-black uppercase tracking-tighter whitespace-nowrap">
+        <div class="flex flex-col w-full space-y-4 md:space-y-0"> 
+            <h1 class="text-[18vw] md:text-[10vw] font-black leading-[1.1] md:leading-none text-black uppercase tracking-tighter whitespace-nowrap">
                 영혼 구원하여
             </h1>
             
-            <h1 class="text-[20vw] md:text-[10vw] font-black leading-[1.1] md:leading-none text-[#FFD400] uppercase tracking-tighter self-end text-right whitespace-nowrap mt-4 md:mt-0" 
+            <h1 class="text-[18vw] md:text-[10vw] font-black leading-[1.1] md:leading-none text-white uppercase tracking-tighter self-end text-right whitespace-nowrap mt-4 md:mt-0" 
                 style="text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000; padding-bottom: 2vw;">
                 제자 삼는 교회
             </h1>
@@ -45,7 +46,7 @@ if ($post && !empty($post['youtube_url'])) {
                 하나님의 사랑이 머무는 곳,<br>
                 창대교회에 오신 여러분을 환영합니다.
             </p>
-            <a href="?page=location" class="inline-block bg-black text-white px-12 py-6 rounded-full font-black text-base uppercase tracking-widest hover:scale-105 hover:bg-white hover:text-black transition-all border-4 border-black shrink-0 shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] text-center">
+            <a href="?page=intro&sub=location" class="inline-block bg-black text-white px-12 py-6 rounded-full font-black text-xl uppercase tracking-widest hover:scale-105 hover:bg-white hover:text-black transition-all border-4 border-black shrink-0 shadow-[8px_8px_0px_0px_rgba(255,255,255,0.3)] text-center">
                 오시는 길 →
             </a>
         </div>
@@ -99,7 +100,7 @@ if ($post && !empty($post['youtube_url'])) {
                     <span class="text-2xl font-black text-black dark:text-[#FFD400] italic">
                         <?= date('Y / m / d', strtotime($post['published_at'])) ?>
                     </span>
-                    <a href="?page=worship" class="text-sm font-black uppercase border-b-4 border-[#FFD400] dark:text-white hover:bg-[#FFD400] hover:text-black transition-colors">
+                    <a href="?page=worship&sub=sermon" class="text-sm font-black uppercase border-b-4 border-[#FFD400] dark:text-white hover:bg-[#FFD400] hover:text-black transition-colors">
                         Archive →
                     </a>
                 </div>

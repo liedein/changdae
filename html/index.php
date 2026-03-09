@@ -4,7 +4,7 @@ require_once 'includes/functions.php';
 
 // 간단한 라우팅 로직
 $page = $_GET['page'] ?? 'home';
-$allowed_pages = ['home', 'intro', 'worship', 'board_view', 'together', 'staff', 'cell', 'bulletin', 'study', 'news', 'column', 'location'];
+$allowed_pages = ['home', 'welcome', 'intro', 'worship', 'together'];
 
 if (!in_array($page, $allowed_pages)) {
     $page = 'home';

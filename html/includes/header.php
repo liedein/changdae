@@ -4,35 +4,36 @@
  */
 // 현재 페이지 파라미터 가져오기 (Active 상태 표시용)
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 'home';
+$currentSub = isset($_GET['sub']) ? $_GET['sub'] : '';
 
 $menuItems = [
-    'welcome' => ['title' => '환영합니다', 'url' => '?page=intro', 'sub' => []],
+    'welcome' => ['title' => '환영합니다', 'url' => '?page=welcome', 'sub' => []],
     'intro' => [
         'title' => '소개합니다',
         'sub' => [
-            'vision' => ['title' => '비전과 철학', 'url' => '?page=vision'],
-            'mission' => ['title' => '사명', 'url' => '?page=mission'],
-            'staff' => ['title' => '섬기는 사람들', 'url' => '?page=staff'],
-            'cell' => ['title' => '목장', 'url' => '?page=cell'],
-            'study' => ['title' => '삶공부', 'url' => '?page=study'],
-            'news' => ['title' => '창대소식', 'url' => '?page=news'],
-            'location' => ['title' => '오시는 길', 'url' => '?page=location'],
+            'vision' => ['title' => '비전과 철학', 'url' => '?page=intro&sub=vision'],
+            'mission' => ['title' => '사명', 'url' => '?page=intro&sub=mission'],
+            'staff' => ['title' => '섬기는 사람들', 'url' => '?page=intro&sub=staff'],
+            'cell' => ['title' => '목장', 'url' => '?page=intro&sub=cell'],
+            'study' => ['title' => '삶공부', 'url' => '?page=intro&sub=study'],
+            'news' => ['title' => '창대소식', 'url' => '?page=intro&sub=news'],
+            'location' => ['title' => '오시는 길', 'url' => '?page=intro&sub=location'],
         ]
     ],
     'worship' => [
         'title' => '예배합니다',
         'sub' => [
-            'worship' => ['title' => '주일예배', 'url' => '?page=worship'],
-            'prayer' => ['title' => '목장연합기도회', 'url' => '?page=prayer'],
-            'bulletin' => ['title' => '주보', 'url' => '?page=bulletin'],
+            'sermon' => ['title' => '주일예배', 'url' => '?page=worship&sub=sermon'],
+            'prayer' => ['title' => '목장연합기도회', 'url' => '?page=worship&sub=prayer'],
+            'bulletin' => ['title' => '주보', 'url' => '?page=worship&sub=bulletin'],
         ]
     ],
     'together' => [
         'title' => '함께합니다',
         'sub' => [
-            'missionary' => ['title' => '파송 및 후원선교사', 'url' => '?page=missionary'],
-            'neighbor' => ['title' => '이웃섬김', 'url' => '?page=neighbor'],
-            'column' => ['title' => '목회칼럼', 'url' => '?page=column'],
+            'missionary' => ['title' => '파송 및 후원선교사', 'url' => '?page=together&sub=missionary'],
+            'neighbor' => ['title' => '이웃섬김', 'url' => '?page=together&sub=neighbor'],
+            'column' => ['title' => '목회칼럼', 'url' => '?page=together&sub=column'],
         ]
     ]
 ];
@@ -69,7 +70,7 @@ $menuItems = [
                             <div class="py-2">
                                 <?php foreach ($menu['sub'] as $subKey => $sub): ?>
                                     <a href="<?= $sub['url'] ?>" class="flex items-center px-4 py-2 text-xl font-black text-black hover:bg-[#FFD400] transition-colors uppercase">
-                                        <?php if($currentPage == $subKey): ?>
+                                        <?php if($currentPage == $key && $currentSub == $subKey): ?>
                                             <span class="w-1.5 h-6 bg-black mr-2"></span>
                                         <?php endif; ?>
                                         <?= $sub['title'] ?>
@@ -110,7 +111,7 @@ $menuItems = [
                     <div class="flex flex-col mt-2 space-y-2">
                         <?php foreach ($menu['sub'] as $subKey => $sub): ?>
                             <a href="<?= $sub['url'] ?>" class="flex items-center text-3xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
-                                <?php if($currentPage == $subKey): ?>
+                                <?php if($currentPage == $key && $currentSub == $subKey): ?>
                                     <span class="w-2 h-8 bg-black mr-3"></span>
                                 <?php endif; ?>
                                 <?= $sub['title'] ?>
@@ -120,7 +121,7 @@ $menuItems = [
                 <?php else: ?>
                     <div class="flex flex-col space-y-2">
                         <a href="<?= $menu['url'] ?>" class="flex items-center text-3xl font-black text-black hover:italic transition-all">
-                            <?php if($currentPage == 'intro' && $key == 'welcome'): ?>
+                            <?php if($currentPage == 'welcome'): ?>
                                 <span class="w-2 h-8 bg-black mr-3"></span>
                             <?php endif; ?>
                             <?= $menu['title'] ?>
