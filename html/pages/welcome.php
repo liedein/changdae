@@ -7,7 +7,7 @@
                 창대교회에 오신 여러분을 환영합니다.
             </h1>
             
-            <div class="space-y-6 text-2xl text-charcoal dark:text-gray-300 leading-relaxed font-serif">
+            <div class="space-y-6 text-xl text-charcoal dark:text-gray-300 leading-relaxed font-serif">
                 <p>
                     창대교회는 장로교 고신총회에 소속된 교회입니다.
                 </p>
@@ -31,7 +31,7 @@
                 </p>
                 
                 <div class="pt-8">
-                    <p class="text-3xl">
+                    <p class="text-2xl">
                         <span class="font-bold">담임목사 김은택</span>
                     </p>
                 </div>
