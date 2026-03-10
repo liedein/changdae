@@ -5,7 +5,7 @@ $id = $_GET['id'] ?? null;
 
 <?php if ($sub === 'missionary'): ?>
 <!-- 파송 및 후원선교사 -->
-<div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="text-center mb-16">
         <h2 class="text-3xl font-bold text-charcoal dark:text-white mb-4">파송 및 후원선교사</h2>
         <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -44,7 +44,7 @@ $id = $_GET['id'] ?? null;
 
 <?php elseif ($sub === 'neighbor'): ?>
 <!-- 이웃섬김 -->
-<div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="text-center mb-16">
         <h2 class="text-3xl font-bold text-charcoal dark:text-white mb-4">이웃섬김</h2>
         <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -147,7 +147,7 @@ $id = $_GET['id'] ?? null;
 
 <?php else: ?>
 <!-- 기본 페이지 -->
-<div class="max-w-[1800px] mx-auto px-4 py-20 text-center">
+<div class="max-w-7xl mx-auto px-4 py-20 text-center">
     <h2 class="text-2xl font-bold mb-4">준비 중입니다</h2>
     <p class="text-gray-600">해당 페이지를 준비하고 있습니다.</p>
 </div>

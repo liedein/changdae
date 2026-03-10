@@ -78,7 +78,7 @@ $menuItems = [
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="<?= $menu['url'] ?>" class="text-xl font-black tracking-widest text-black uppercase hover:text-white transition-colors">
+                        <a href="<?= $menu['url'] ?>" class="text-2xl font-black tracking-widest text-black uppercase hover:text-white transition-colors">
                             <?= $menu['title'] ?>
                         </a>
                     <?php endif; ?>

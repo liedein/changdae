@@ -4,7 +4,7 @@ $sub = $_GET['sub'] ?? 'vision';
 
 <?php if ($sub === 'vision'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Vision & Philosophy</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">비전과 철학</h2>
@@ -20,7 +20,7 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'staff'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving People</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">섬기는 사람들</h2>
@@ -56,7 +56,7 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'cell'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Cell Groups</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목장</h2>
@@ -163,7 +163,7 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'news'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Church News</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">교회소식</h2>
@@ -276,7 +276,7 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'location'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Location</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">오시는 길</h2>
@@ -286,7 +286,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 </p>
             </div>
 
-            <div class="mb-10 shadow-lg rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white">
+            <div class="mb-10 shadow-lg rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white aspect-square md:aspect-auto md:h-[450px]">
                 <div id="daumRoughmapContainer1772859002282" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100% !important;"></div>
             </div>
 
@@ -340,17 +340,18 @@ $sub = $_GET['sub'] ?? 'vision';
     </script>
 
     <style>
-        /* 1. 카카오맵 기본 하단 정보 영역(주소, 전화번호 등) 강제 제거 */
+        /* 1. 카카오맵 기본 하단 정보 영역 및 마커 라벨 강제 제거 */
         .root_daum_roughmap .wrap_controllers,
+        .root_daum_roughmap .roughmap_maker_label,
         .root_daum_roughmap .hide,
         .root_daum_roughmap .foot_type1 { display: none !important; }
         
-        /* 2. 지도 테두리 및 그림자 보정 */
-        .root_daum_roughmap { width: 100% !important; border: none !important; padding: 0 !important; }
-        .root_daum_roughmap .wrap_map { height: 450px !important; border: none !important; }
+        /* 2. 지도 크기 반응형 처리 (부모 컨테이너 비율을 따르도록 100% 설정) */
+        .root_daum_roughmap { width: 100% !important; height: 100% !important; border: none !important; padding: 0 !important; }
+        .root_daum_roughmap .wrap_map { height: 100% !important; border: none !important; }
     </style>
 <?php else: ?>
-    <div class="max-w-[1800px] mx-auto px-4 py-20 text-center">
+    <div class="max-w-7xl mx-auto px-4 py-20 text-center">
         <p class="text-gray-600">페이지를 찾을 수 없습니다.</p>
     </div>
 <?php endif; ?>

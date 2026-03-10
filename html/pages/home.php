@@ -66,7 +66,7 @@ if ($post && !empty($post['youtube_url'])) {
 
 <?php // --- 최신 설교 영상 섹션 (상단 선 제거 및 기존 너비 유지) --- ?>
 <section class="py-24 bg-white dark:bg-[#1a1a1a] transition-colors duration-300">
-    <div class="max-w-[1800px] mx-auto px-6"> <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 border-b-4 border-black dark:border-[#FFD400] pb-6">
+    <div class="max-w-7xl mx-auto px-6"> <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 border-b-4 border-black dark:border-[#FFD400] pb-6">
             <h2 class="text-6xl md:text-8xl font-black text-black dark:text-[#FFD400] tracking-tighter italic uppercase">Sunday</h2>
             <p class="text-xl font-bold text-black dark:text-white mt-4 md:mt-0 uppercase tracking-widest">Worship Service</p>
         </div>
