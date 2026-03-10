@@ -105,14 +105,14 @@ $menuItems = [
     <button id="mobile-menu-close" class="absolute top-8 right-8 p-2 border-2 border-black dark:border-[#FFD400] rounded-full text-black dark:text-[#FFD400] hover:bg-black hover:text-[#FFD400] dark:hover:bg-[#FFD400] dark:hover:text-black transition-colors">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
     </button>
-    <div class="w-full h-full overflow-y-auto space-y-8 pt-20 pb-10">
+    <div class="w-full h-full overflow-y-auto space-y-8 pt-4 pb-10">
         <?php foreach ($menuItems as $key => $menu): ?>
             <div>
                 <?php if (!empty($menu['sub'])): ?>
                     <span class="text-sm font-black text-black/40 dark:text-[#FFD400]/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
                     <div class="flex flex-col mt-2 space-y-2">
                         <?php foreach ($menu['sub'] as $subKey => $sub): ?>
-                            <a href="<?= $sub['url'] ?>" class="flex items-center text-3xl font-black text-black dark:text-[#FFD400] hover:italic transition-all opacity-90 hover:opacity-100">
+                            <a href="<?= $sub['url'] ?>" class="flex items-center text-3xl font-black text-black dark:text-[#FFD400] transition-all opacity-90 hover:opacity-100">
                                 <?php if($currentPage == $key && $currentSub == $subKey): ?>
                                     <span class="w-2 h-8 bg-black dark:bg-[#FFD400] mr-3"></span>
                                 <?php endif; ?>
@@ -122,7 +122,7 @@ $menuItems = [
                     </div>
                 <?php else: ?>
                     <div class="flex flex-col space-y-2">
-                        <a href="<?= $menu['url'] ?>" class="flex items-center text-3xl font-black text-black dark:text-[#FFD400] hover:italic transition-all">
+                        <a href="<?= $menu['url'] ?>" class="flex items-center text-3xl font-black text-black dark:text-[#FFD400] transition-all">
                             <?php if($currentPage == 'welcome'): ?>
                                 <span class="w-2 h-8 bg-black dark:bg-[#FFD400] mr-3"></span>
                             <?php endif; ?>

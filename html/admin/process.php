@@ -42,15 +42,7 @@ switch ($mode) {
         $category = $_POST['category'] ?? 'news';
         $title = $_POST['title'] ?? '';
         $content = $_POST['content'] ?? '';
-        $publish_date = $_POST['publish_date'] ?? date('Y-m-d');
-        $today = date('Y-m-d');
-
-        // [교정] 오늘 포함 이전 날짜는 현재 시간으로 즉시 등록, 미래는 00시 등록
-        if ($publish_date <= $today) {
-            $published_at = date('Y-m-d H:i:s');
-        } else {
-            $published_at = $publish_date . ' 00:00:00';
-        }
+        $published_at = $_POST['published_at'] ?? date('Y-m-d H:i:s');
         
         if ($category === 'bulletin') {
             $image_files_json = null;
@@ -110,15 +102,8 @@ switch ($mode) {
         $category = $_POST['category'] ?? 'news';
         $title = $_POST['title'] ?? '';
         $content = $_POST['content'] ?? '';
-        $publish_date = $_POST['publish_date'] ?? date('Y-m-d');
-        $today = date('Y-m-d');
+        $published_at = $_POST['published_at'] ?? date('Y-m-d H:i:s');
         
-        if ($publish_date <= $today) {
-            $published_at = date('Y-m-d H:i:s');
-        } else {
-            $published_at = $publish_date . ' 00:00:00';
-        }
-
         if ($category === 'bulletin') {
             $sql = "UPDATE bulletin SET title=?, content=?, published_at=?";
             $params = [$title, $content, $published_at];

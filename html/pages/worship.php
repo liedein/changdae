@@ -44,7 +44,7 @@ if (!$data || !$data['current']) {
         <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">
             <?= htmlspecialchars($post['title']) ?>
         </h1>
-        
+        <div class="w-12 h-1 bg-red-500 mx-auto mb-8 rounded-full"></div>
         <div class="inline-flex flex-wrap justify-center items-center gap-4 md:gap-8 bg-slate-50 dark:bg-slate-800/50 p-4 md:p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
             <div class="flex items-center gap-2">
                 <span class="text-slate-400 dark:text-slate-500 font-medium text-sm">본문</span>
@@ -138,11 +138,11 @@ elseif ($sub === 'videos'):
 ?>
     <div class="max-w-5xl mx-auto px-4 py-12 md:py-20">
         <div class="text-center mb-10">
-            <span class="inline-block px-4 py-1.5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-indigo-100 dark:border-indigo-800">Special Videos</span>
+            <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Special Videos</span>
             <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">
                 <?= htmlspecialchars($post['title']) ?>
             </h1>
-            
+            <div class="w-12 h-1 bg-red-500 mx-auto mb-8 rounded-full"></div>
             <div class="inline-flex items-center gap-3 text-sm font-medium text-slate-500 dark:text-slate-400">
                 <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-700 dark:text-slate-300 font-bold">
                     <?= htmlspecialchars($post['category'] ?? '영상') ?>
@@ -222,11 +222,9 @@ elseif ($sub === 'bulletin'):
     <div class="max-w-4xl mx-auto py-0 sm:py-12">
         <div class="bg-white dark:bg-gray-800 shadow-none sm:shadow-lg sm:rounded-lg overflow-hidden border-b sm:border border-gray-200 dark:border-gray-700">
             <div class="p-6 md:p-8 text-center bg-white dark:bg-gray-800">
-                <p class="text-xs text-blue-600 dark:text-blue-400 mb-2 font-bold uppercase tracking-widest">Weekly Bulletin</p>
+                <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Weekly Bulletin</p>
                 <h1 class="text-xl md:text-3xl font-bold text-slate-800 dark:text-white mb-2"><?= htmlspecialchars($post['title']) ?></h1>
-                <p class="text-xs text-slate-500 dark:text-slate-400">
-                    발행일: <?= date('Y년 m월 d일', strtotime($post['published_at'])) ?>
-                </p>
+                <div class="w-12 h-1 bg-red-500 mx-auto mb-8 rounded-full"></div>
             </div>
 
             <div class="p-0 bg-slate-100 dark:bg-[#332627] flex flex-col">

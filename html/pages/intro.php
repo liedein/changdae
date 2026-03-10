@@ -10,12 +10,10 @@ $sub = $_GET['sub'] ?? 'vision';
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">비전과 철학</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
                 <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
-                    창대교회의 비전과 목회 철학을 소개합니다.
+                    창대교회의 비전과 목회 철학입니다.
                 </p>
             </div>
-            <div class="text-center py-20">
-                <p class="text-gray-600 dark:text-gray-400">준비 중인 페이지입니다.</p>
-            </div>
+            <img src="/assets/img/vision.jpg" alt="창대교회 비전과 철학" class="w-full max-w-5xl mx-auto rounded-lg shadow-lg dark:shadow-black/20">
         </section>
     </div>
 <?php elseif ($sub === 'staff'): ?>
@@ -26,7 +24,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">섬기는 사람들</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
                 <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
-                    창대교회를 섬기는 교역자들을 소개합니다.
+                    창대교회를 섬기는 분들을 소개합니다.
                 </p>
             </div>
 
@@ -36,6 +34,10 @@ $sub = $_GET['sub'] ?? 'vision';
                     ['name' => '김은택', 'role' => '담임목사', 'img' => 'https://placehold.co/400x500/1a365d/ffffff?text=Pastor'],
                     ['name' => '김성진', 'role' => '원로목사', 'img' => 'https://placehold.co/400x500/e2e8f0/64748b?text=Staff'],
                     ['name' => '손재용', 'role' => '장로', 'img' => 'https://placehold.co/400x500/e2e8f0/64748b?text=Staff'],
+                    ['name' => '김옥진', 'role' => '은퇴장로', 'img' => 'https://placehold.co/400x500/e2e8f0/64748b?text=Staff'],
+                    ['name' => '진숙영', 'role' => '중고등부 디렉터', 'img' => 'https://placehold.co/400x500/e2e8f0/64748b?text=Staff'],
+                    ['name' => '유경아', 'role' => 'GST주일학교 디렉터', 'img' => 'https://placehold.co/400x500/e2e8f0/64748b?text=Staff'],
+                    ['name' => '이명희', 'role' => 'GST유년부 디렉터', 'img' => 'https://placehold.co/400x500/e2e8f0/64748b?text=Staff'],
                     // 필요 시 추가
                 ];
                 ?>
@@ -69,11 +71,14 @@ $sub = $_GET['sub'] ?? 'vision';
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
                 <?php
                 $cells = [
-                    ['name' => '온유목장', 'leader' => '김철수 목자', 'desc' => '매주 금요일 저녁 8시', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '화평목장', 'leader' => '이영희 목자', 'desc' => '매주 토요일 오후 5시', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '충성목장', 'leader' => '박민수 목자', 'desc' => '매주 주일 오후 2시', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '사랑목장', 'leader' => '최지혜 목자', 'desc' => '매주 목요일 오전 11시', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '기쁨목장', 'leader' => '정다윗 목자', 'desc' => '매주 금요일 저녁 9시', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '러시아목장', 'leader' => '김옥진 목자 | 신미옥 목우', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '멕시코목장', 'leader' => '손재용 목자 | 진숙영 목우', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '인도목장', 'leader' => '최홍범 목자 | 최정헌 목우', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '탄자니아목장', 'leader' => '한민성 목자 | 박혜리 목우', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '과달라하라목장', 'leader' => '김미희 목자', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '팡가웨목장', 'leader' => '진숙영 디렉터', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => 'GST주일학교', 'leader' => '유경아 디렉터', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => 'GST유년부', 'leader' => '이명희 디렉터', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
                 ];
                 ?>
                 <?php foreach ($cells as $cell): ?>
@@ -192,11 +197,6 @@ $sub = $_GET['sub'] ?? 'vision';
                 <article class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
                     
                     <header class="p-8 md:p-12 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-widest rounded-full">News Detail</span>
-                            <span class="text-slate-400 dark:text-slate-500 text-xs font-medium">|</span>
-                            <time class="text-slate-500 dark:text-slate-400 text-xs font-medium"><?= date('Y. m. d', strtotime($post['published_at'])) ?></time>
-                        </div>
                         <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white leading-tight mb-0">
                             <?= htmlspecialchars($post['title']) ?>
                         </h1>
@@ -234,13 +234,13 @@ $sub = $_GET['sub'] ?? 'vision';
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                 </svg>
                                 <div class="flex flex-col">
-                                    <span class="text-[10px] text-blue-500 font-bold uppercase mb-1">이전 소식</span>
-                                    <span class="text-sm font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span>
+                                    <span class="text-sm text-blue-500 font-bold uppercase mb-1">이전 소식</span>
+                                    <span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span>
                                 </div>
                             </a>
                         <?php else: ?>
                             <div class="h-full p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50">
-                                <span class="text-[10px] text-slate-400 font-bold uppercase">이전 소식이 없습니다</span>
+                                <span class="text-base text-slate-400 font-bold uppercase">이전 소식이 없습니다</span>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -249,8 +249,8 @@ $sub = $_GET['sub'] ?? 'vision';
                         <?php if ($nextPost): ?>
                             <a href="?page=intro&sub=news&id=<?= $nextPost['id'] ?>" class="group h-full flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right">
                                 <div class="flex flex-col items-end">
-                                    <span class="text-[10px] text-blue-500 font-bold uppercase mb-1">다음 소식</span>
-                                    <span class="text-sm font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span>
+                                    <span class="text-sm text-blue-500 font-bold uppercase mb-1">다음 소식</span>
+                                    <span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span>
                                 </div>
                                 <svg class="w-5 h-5 ml-4 text-slate-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -258,7 +258,7 @@ $sub = $_GET['sub'] ?? 'vision';
                             </a>
                         <?php else: ?>
                             <div class="h-full p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right">
-                                <span class="text-[10px] text-slate-400 font-bold uppercase">다음 소식이 없습니다</span>
+                                <span class="text-base text-slate-400 font-bold uppercase">다음 소식이 없습니다</span>
                             </div>
                         <?php endif; ?>
                     </div>
