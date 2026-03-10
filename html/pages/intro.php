@@ -4,7 +4,7 @@ $sub = $_GET['sub'] ?? 'vision';
 
 <?php if ($sub === 'vision'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Vision & Philosophy</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">비전과 철학</h2>
@@ -20,7 +20,7 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'staff'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving People</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">섬기는 사람들</h2>
@@ -56,7 +56,7 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'cell'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Cell Groups</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목장</h2>
@@ -117,10 +117,10 @@ $sub = $_GET['sub'] ?? 'vision';
                 <!-- Left Image Section -->
                 <div class="lg:w-1/3 order-1">
                     <div class="sticky top-24">
-                        <div class="aspect-[1/3] w-full rounded-2xl overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700">
+                        <div class="aspect-square lg:aspect-[1/3] w-full rounded-2xl overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700">
                             <img src="/assets/img/intro_study.jpg" 
-                                 alt="삶공부" 
-                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                                alt="삶공부" 
+                                class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700">
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'news'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Church News</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">교회소식</h2>
@@ -276,7 +276,7 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'location'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-[1800px] mx-auto px-4 py-16 md:py-24">
             <div class="text-center mb-16">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Location</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">오시는 길</h2>
@@ -350,7 +350,7 @@ $sub = $_GET['sub'] ?? 'vision';
         .root_daum_roughmap .wrap_map { height: 450px !important; border: none !important; }
     </style>
 <?php else: ?>
-    <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+    <div class="max-w-[1800px] mx-auto px-4 py-20 text-center">
         <p class="text-gray-600">페이지를 찾을 수 없습니다.</p>
     </div>
 <?php endif; ?>

@@ -1,5 +1,5 @@
 <footer class="bg-gray-100 dark:bg-[#332627] text-gray-600 dark:text-gray-400 py-10 mt-auto border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             <!-- 좌측: 교회 정보 (기존 내용 복구 필요 영역) -->
             <div>

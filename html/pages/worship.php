@@ -119,7 +119,7 @@ if (!$data || !$data['current']) {
 <?php } 
 elseif ($sub === 'prayer'):
 ?>
-    <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+    <div class="max-w-[1800px] mx-auto px-4 py-20 text-center">
         <h2 class="text-3xl font-bold mb-4">목장연합기도회</h2>
         <p class="text-gray-600">준비 중인 페이지입니다.</p>
     </div>
