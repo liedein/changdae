@@ -84,6 +84,12 @@ switch ($mode) {
             $stmt = $pdo->prepare("INSERT INTO sermon (title, passage, preacher, youtube_url, created_at, published_at) VALUES (?, ?, ?, ?, NOW(), ?)");
             $stmt->execute([$title, $passage, $preacher, $youtube_url, $published_at]);
 
+        } elseif ($category === 'videos') {
+            $video_category = $_POST['video_category'] ?? '간증';
+            $youtube_url = $_POST['youtube_url'] ?? '';
+            $stmt = $pdo->prepare("INSERT INTO videos (category, title, content, youtube_url, created_at, published_at) VALUES (?, ?, ?, ?, NOW(), ?)");
+            $stmt->execute([$video_category, $title, $content, $youtube_url, $published_at]);
+
         } else {
             $table = ($category === 'column') ? '`column`' : 'news';
             if ($category === 'news') {
@@ -148,6 +154,13 @@ switch ($mode) {
             $sql = "UPDATE sermon SET title=?, passage=?, preacher=?, youtube_url=?, published_at=? WHERE id=?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$title, $passage, $preacher, $youtube_url, $published_at, $id]);
+
+        } elseif ($category === 'videos') {
+            $video_category = $_POST['video_category'] ?? '간증';
+            $youtube_url = $_POST['youtube_url'] ?? '';
+            $sql = "UPDATE videos SET category=?, title=?, content=?, youtube_url=?, published_at=? WHERE id=?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$video_category, $title, $content, $youtube_url, $published_at, $id]);
 
         } else {
             $table = ($category === 'column') ? '`column`' : 'news';

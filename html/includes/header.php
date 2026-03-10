@@ -23,7 +23,7 @@ $menuItems = [
         'title' => '예배합니다',
         'sub' => [
             'sermon' => ['title' => '주일예배', 'url' => '?page=worship&sub=sermon'],
-            'prayer' => ['title' => '목장연합기도회', 'url' => '?page=worship&sub=prayer'],
+            'videos' => ['title' => '특별영상', 'url' => '?page=worship&sub=videos'],
             'bulletin' => ['title' => '주보', 'url' => '?page=worship&sub=bulletin'],
         ]
     ],
@@ -59,7 +59,7 @@ $menuItems = [
             <?php foreach ($menuItems as $key => $menu): ?>
                 <div class="relative group">
                     <?php if (!empty($menu['sub'])): ?>
-                        <button class="text-xl font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
+                        <button class="text-2xl font-black tracking-widest text-black uppercase hover:text-white transition-colors flex items-center">
                             <?= $menu['title'] ?>
                             <svg class="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
@@ -101,17 +101,20 @@ $menuItems = [
     </div>
 </header>
 
-<div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] hidden flex-col justify-start px-10 pt-[10vw]"> <button id="mobile-menu-close" class="absolute top-8 right-8 font-black text-xl text-black border-2 border-black px-4 py-1">X</button>
-    <div class="space-y-8 overflow-y-auto max-h-[85vh] mt-16">
+<div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#FFD400] dark:bg-[#1a1a1a] hidden flex-col p-8">
+    <button id="mobile-menu-close" class="absolute top-8 right-8 p-2 border-2 border-black dark:border-[#FFD400] rounded-full text-black dark:text-[#FFD400] hover:bg-black hover:text-[#FFD400] dark:hover:bg-[#FFD400] dark:hover:text-black transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <div class="w-full h-full overflow-y-auto space-y-8 pt-20 pb-10">
         <?php foreach ($menuItems as $key => $menu): ?>
             <div>
                 <?php if (!empty($menu['sub'])): ?>
-                    <span class="text-sm font-black text-black/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
+                    <span class="text-sm font-black text-black/40 dark:text-[#FFD400]/40 uppercase tracking-[0.3em]"><?= $menu['title'] ?></span>
                     <div class="flex flex-col mt-2 space-y-2">
                         <?php foreach ($menu['sub'] as $subKey => $sub): ?>
-                            <a href="<?= $sub['url'] ?>" class="flex items-center text-3xl font-black text-black hover:italic transition-all opacity-90 hover:opacity-100">
+                            <a href="<?= $sub['url'] ?>" class="flex items-center text-3xl font-black text-black dark:text-[#FFD400] hover:italic transition-all opacity-90 hover:opacity-100">
                                 <?php if($currentPage == $key && $currentSub == $subKey): ?>
-                                    <span class="w-2 h-8 bg-black mr-3"></span>
+                                    <span class="w-2 h-8 bg-black dark:bg-[#FFD400] mr-3"></span>
                                 <?php endif; ?>
                                 <?= $sub['title'] ?>
                             </a>
@@ -119,13 +122,13 @@ $menuItems = [
                     </div>
                 <?php else: ?>
                     <div class="flex flex-col space-y-2">
-                        <a href="<?= $menu['url'] ?>" class="flex items-center text-3xl font-black text-black hover:italic transition-all">
+                        <a href="<?= $menu['url'] ?>" class="flex items-center text-3xl font-black text-black dark:text-[#FFD400] hover:italic transition-all">
                             <?php if($currentPage == 'welcome'): ?>
-                                <span class="w-2 h-8 bg-black mr-3"></span>
+                                <span class="w-2 h-8 bg-black dark:bg-[#FFD400] mr-3"></span>
                             <?php endif; ?>
                             <?= $menu['title'] ?>
                         </a>
-                        </div>
+                    </div>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>

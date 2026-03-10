@@ -9,7 +9,8 @@ $category_map = [
     'news' => '소식관리',
     'sermon' => '예배관리',
     'bulletin' => '주보관리',
-    'column' => '칼럼관리'
+    'column' => '칼럼관리',
+    'videos' => '영상관리'
 ];
 
 if (!array_key_exists($category, $category_map)) {
@@ -121,6 +122,30 @@ if ($id) {
                         </div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크 (선택)</label>
+                            <input type="url" name="youtube_url" value="<?= htmlspecialchars($post['youtube_url'] ?? '') ?>"
+                                   class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   placeholder="https://youtu.be/...">
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if ($category === 'videos'): ?>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">영상 분류</label>
+                            <select name="video_category" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <?php 
+                                $v_cats = ['간증', '찬양', '행사', '기타'];
+                                $current_v_cat = $post['category'] ?? '간증';
+                                foreach ($v_cats as $vc) {
+                                    $selected = ($current_v_cat === $vc) ? 'selected' : '';
+                                    echo "<option value='{$vc}' {$selected}>{$vc}</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크</label>
                             <input type="url" name="youtube_url" value="<?= htmlspecialchars($post['youtube_url'] ?? '') ?>"
                                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                    placeholder="https://youtu.be/...">

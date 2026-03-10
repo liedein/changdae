@@ -117,12 +117,96 @@ if (!$data || !$data['current']) {
     </nav>
 </div>
 <?php } 
-elseif ($sub === 'prayer'):
+elseif ($sub === 'videos'):
+    $category = 'videos';
+    $data = getBoardPost($pdo, $category, $id);
+
+    if (!$data || !$data['current']) {
+        echo "<div class='text-center py-20 dark:text-gray-300 font-sans'>등록된 영상이 없습니다.</div>";
+    } else {
+        $post = $data['current'];
+        $prevPost = $data['prev'];
+        $nextPost = $data['next'];
+
+        // 유튜브 ID 추출
+        $youtube_id = '';
+        if (!empty($post['youtube_url'])) {
+            if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $post['youtube_url'], $match)) {
+                $youtube_id = $match[1];
+            }
+        }
 ?>
-    <div class="max-w-[1800px] mx-auto px-4 py-20 text-center">
-        <h2 class="text-3xl font-bold mb-4">목장연합기도회</h2>
-        <p class="text-gray-600">준비 중인 페이지입니다.</p>
+    <div class="max-w-5xl mx-auto px-4 py-12 md:py-20">
+        <div class="text-center mb-10">
+            <span class="inline-block px-4 py-1.5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-indigo-100 dark:border-indigo-800">Special Videos</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">
+                <?= htmlspecialchars($post['title']) ?>
+            </h1>
+            
+            <div class="inline-flex items-center gap-3 text-sm font-medium text-slate-500 dark:text-slate-400">
+                <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-700 dark:text-slate-300 font-bold">
+                    <?= htmlspecialchars($post['category'] ?? '영상') ?>
+                </span>
+                <span>|</span>
+                <span><?= date('Y. m. d', strtotime($post['published_at'])) ?></span>
+            </div>
+        </div>
+
+        <div class="mb-12 relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border border-slate-200 dark:border-slate-700">
+                <?php if ($youtube_id): ?>
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/<?= $youtube_id ?>?rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <?php else: ?>
+                    <div class="w-full h-full flex flex-col items-center justify-center text-slate-500">
+                        <svg class="w-16 h-16 mb-4 opacity-20" fill="currentColor" viewBox="0 0 20 20"><path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg>
+                        <span>등록된 영상 주소가 없습니다.</span>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <?php if (!empty($post['content'])): ?>
+        <div class="prose prose-slate dark:prose-invert max-w-none mb-16 text-center">
+            <?= $post['content'] ?>
+        </div>
+        <?php endif; ?>
+
+        <nav class="flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12">
+            <div class="w-full sm:w-auto flex justify-start">
+                <?php if ($prevPost): ?>
+                    <a href="?page=worship&sub=videos&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm max-w-xs md:max-w-md">
+                        <svg class="w-6 h-6 mr-4 text-slate-300 group-hover:text-indigo-500 transform group-hover:-translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        <div class="flex flex-col overflow-hidden">
+                            <span class="text-xs text-indigo-500 font-bold uppercase mb-1">이전 영상</span>
+                            <span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate">
+                                <?= htmlspecialchars($prevPost['title']) ?>
+                            </span>
+                        </div>
+                    </a>
+                <?php endif; ?>
+            </div>
+
+            <div class="w-full sm:w-auto flex justify-end text-right">
+                <?php if ($nextPost): ?>
+                    <a href="?page=worship&sub=videos&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm max-w-xs md:max-w-md">
+                        <div class="flex flex-col items-end overflow-hidden">
+                            <span class="text-xs text-indigo-500 font-bold uppercase mb-1">다음 영상</span>
+                            <span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate">
+                                <?= htmlspecialchars($nextPost['title']) ?>
+                            </span>
+                        </div>
+                        <svg class="w-6 h-6 ml-4 text-slate-300 group-hover:text-indigo-500 transform group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                <?php endif; ?>
+            </div>
+        </nav>
     </div>
+    <?php } ?>
 <?php 
 elseif ($sub === 'bulletin'):
     $category = 'bulletin'; 

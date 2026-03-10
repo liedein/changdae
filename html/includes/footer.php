@@ -26,10 +26,6 @@
                         <span>화-금 오전 5:30</span>
                     </div>
                     <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
-                        <span class="font-medium text-gray-800 dark:text-gray-300">목장연합기도회</span>
-                        <span>금(월 1회) 오후 9:00</span>
-                    </div>
-                    <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
                         <span class="font-medium text-gray-800 dark:text-gray-300">월삭기도회</span>
                         <span>매월 첫 번째 새벽 오전 5:30</span>
                     </div>

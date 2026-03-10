@@ -7,7 +7,7 @@
                 창대교회에 오신 여러분을 환영합니다.
             </h1>
             
-            <div class="space-y-6 text-xl text-charcoal dark:text-gray-300 leading-relaxed font-serif">
+            <div class="space-y-6 text-2xl text-charcoal dark:text-gray-300 leading-relaxed font-serif">
                 <p>
                     창대교회는 장로교 고신총회에 소속된 교회입니다.
                 </p>
@@ -31,7 +31,7 @@
                 </p>
                 
                 <div class="pt-8">
-                    <p class="text-2xl">
+                    <p class="text-3xl">
                         <span class="font-bold">담임목사 김은택</span>
                     </p>
                 </div>
@@ -41,11 +41,11 @@
         <!-- Right Image Section -->
         <div class="lg:w-1/3 order-1 lg:order-2">
             <div class="sticky top-24">
-                <div class="aspect-[1/3] w-full rounded-lg overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700 mb-6">
+                <div class="aspect-square lg:aspect-[1/3] w-full rounded-lg overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700 mb-6">
                     
                     <img src="/assets/img/welcome_ket.jpg" 
-                         alt="김은택 담임목사" 
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        alt="김은택 담임목사" 
+                        class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700">
                 </div>
                 
                 <div class="text-base text-gray-600 dark:text-gray-400 space-y-1 leading-relaxed">

@@ -87,7 +87,7 @@ $id = $_GET['id'] ?? null;
             <header class="p-8 md:p-12 border-b border-slate-100 dark:border-slate-700 text-center">
                 <div class="flex justify-center items-center gap-2 mb-6">
                     <span class="w-8 h-[1px] bg-slate-300"></span>
-                    <span class="text-blue-600 dark:text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">Pastor's Column</span>
+                    <span class="text-blue-600 dark:text-blue-400 text-xs font-bold tracking-[0.2em] uppercase">Pastoral Column</span>
                     <span class="w-8 h-[1px] bg-slate-300"></span>
                 </div>
                 <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white leading-snug mb-4">
