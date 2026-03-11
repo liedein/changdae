@@ -150,10 +150,10 @@ $sub = $_GET['sub'] ?? 'vision';
                         foreach ($courses as $course):
                         ?>
                         <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-lg transition-shadow flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-                            <h3 class="text-2xl font-bold text-slate-800 dark:text-white md:w-1/4 flex-shrink-0">
+                            <h3 class="text-2xl font-bold text-slate-800 dark:text-white md:w-[35%] flex-shrink-0">
                                 <?= $course['title'] ?>
                             </h3>
-                            <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-xl md:w-3/4">
+                            <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-xl md:w-[65%]">
                                 <?= $course['desc'] ?>
                             </p>
                         </div>
@@ -197,31 +197,16 @@ $sub = $_GET['sub'] ?? 'vision';
             <div class="max-w-3xl mx-auto">
                 <article class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
                     
-                    <header class="p-8 md:p-12 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
+                    <header class="py-4 px-8 md:py-6 md:px-12 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
                         <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white leading-tight mb-0">
                             <?= htmlspecialchars($post['title']) ?>
                         </h1>
                     </header>
 
                     <div class="p-8 md:p-12">
-                        <?php if (!empty($post['youtube_url'])): ?>
-                            <div class="mb-10 aspect-video rounded-xl overflow-hidden shadow-lg">
-                                <?php 
-                                    // 유튜브 URL에서 ID 추출 로직
-                                    $youtube_id = '';
-                                    if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $post['youtube_url'], $match)) {
-                                        $youtube_id = $match[1];
-                                    }
-                                ?>
-                                <?php if ($youtube_id): ?>
-                                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/<?= $youtube_id ?>" frameborder="0" allowfullscreen></iframe>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-
                         <div class="prose prose-slate dark:prose-invert max-w-none 
-                                    prose-headings:font-bold prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300 
-                                    text-lg prose-p:text-lg md:prose-p:text-xl">
+                                    prose-headings:font-bold prose-p:leading-[2.2] prose-p:mb-8 prose-p:text-slate-600 dark:prose-p:text-slate-300 
+                                    text-xl prose-p:text-xl md:prose-p:text-2xl">
                             <?= $post['content'] ?>
                         </div>
                     </div>

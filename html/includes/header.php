@@ -43,6 +43,28 @@ $menuColors = [
     'worship' => ['text' => 'text-red-500', 'bg' => 'bg-red-500'],
     'together' => ['text' => 'text-indigo-500', 'bg' => 'bg-indigo-500'],
 ];
+
+// PC 버전 서브메뉴 스타일 설정 (옵션 1: 배경 틴트, 다크모드 B안, 왼쪽 바 Hover 표시)
+$pcMenuStyles = [
+    'intro' => [
+        'bar' => 'bg-blue-500 dark:bg-blue-400',
+        'active_text' => 'text-blue-600 dark:text-blue-400',
+        'hover_text' => 'hover:text-blue-600 dark:hover:text-blue-400',
+        'hover_bg' => 'hover:bg-blue-50 dark:hover:bg-blue-900/30',
+    ],
+    'worship' => [
+        'bar' => 'bg-red-500 dark:bg-red-400',
+        'active_text' => 'text-red-600 dark:text-red-400',
+        'hover_text' => 'hover:text-red-600 dark:hover:text-red-400',
+        'hover_bg' => 'hover:bg-red-50 dark:hover:bg-red-900/30',
+    ],
+    'together' => [
+        'bar' => 'bg-indigo-500 dark:bg-indigo-400',
+        'active_text' => 'text-indigo-600 dark:text-indigo-400',
+        'hover_text' => 'hover:text-indigo-600 dark:hover:text-indigo-400',
+        'hover_bg' => 'hover:bg-indigo-50 dark:hover:bg-indigo-900/30',
+    ],
+];
 ?>
 
 <style>
@@ -75,11 +97,19 @@ $menuColors = [
                         </button>
                         <div class="absolute left-0 mt-2 <?= $key === 'together' ? 'w-56' : 'w-48' ?> bg-white dark:bg-[#1a1a1a] border-2 border-black dark:border-[#FFD400] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_#FFD400]">
                             <div class="py-2">
-                                <?php foreach ($menu['sub'] as $subKey => $sub): ?>
-                                    <a href="<?= $sub['url'] ?>" class="flex items-center px-4 py-2 text-xl font-black text-black hover:bg-[#FFD400] transition-colors uppercase">
-                                        <?php if($currentPage == $key && $currentSub == $subKey): ?>
-                                            <span class="w-1.5 h-6 bg-black mr-2"></span>
-                                        <?php endif; ?>
+                                <?php 
+                                foreach ($menu['sub'] as $subKey => $sub): 
+                                    $isActive = ($currentPage == $key && $currentSub == $subKey);
+                                    $styles = $pcMenuStyles[$key] ?? [
+                                        'bar' => 'bg-black dark:bg-[#FFD400]', 
+                                        'active_text' => 'text-black dark:text-[#FFD400]', 
+                                        'hover_text' => 'hover:text-black dark:hover:text-[#FFD400]', 
+                                        'hover_bg' => 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                                    ];
+                                ?>
+                                    <a href="<?= $sub['url'] ?>" class="group/item flex items-center px-4 py-2 text-xl font-black transition-colors uppercase <?= $isActive ? $styles['active_text'] : 'text-black dark:text-white ' . $styles['hover_text'] ?> <?= $styles['hover_bg'] ?>">
+                                        <!-- 왼쪽 바: Active 상태이거나 Hover 시 표시 -->
+                                        <span class="w-1.5 h-6 mr-2 transition-all duration-200 <?= $styles['bar'] ?> <?= $isActive ? 'block' : 'hidden group-hover/item:block' ?>"></span>
                                         <?= $sub['title'] ?>
                                     </a>
                                 <?php endforeach; ?>
