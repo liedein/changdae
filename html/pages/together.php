@@ -7,7 +7,7 @@ $id = $_GET['id'] ?? null;
 <!-- 파송 및 후원선교사 -->
 <div class="bg-slate-50 dark:bg-slate-900">
     <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Missionaries</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">파송 및 후원선교사</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -26,8 +26,8 @@ $id = $_GET['id'] ?? null;
                 ['name' => 'GST', 'country' => '탄자니아 팡가웨 은혜신학교', 'org' => '후원 기관 (로마니/에녹/록키/형남권/조세프/마틴/젝키)', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
             ];
             ?>
-            <?php foreach ($missionaries as $missionary): ?>
-            <div class="group">
+            <?php $delay = 0; foreach ($missionaries as $missionary): ?>
+            <div class="group" data-aos="fade-up" data-aos-delay="<?= $delay * 100 ?>">
                 <div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 mb-4 relative">
                     <img src="<?= $missionary['img'] ?>" alt="<?= $missionary['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     <!-- 국가/지역 뱃지 -->
@@ -41,7 +41,7 @@ $id = $_GET['id'] ?? null;
                     <button class="text-base text-deepindigo dark:text-indigo-400 font-medium hover:underline">기도편지 보기 &rarr;</button>
                 </div>
             </div>
-            <?php endforeach; ?>
+            <?php $delay++; endforeach; ?>
         </div>
     </section>
 </div>
@@ -50,7 +50,7 @@ $id = $_GET['id'] ?? null;
 <!-- 이웃섬김 -->
 <div class="bg-slate-50 dark:bg-slate-900">
     <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving Neighbors</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">이웃섬김</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -58,7 +58,7 @@ $id = $_GET['id'] ?? null;
                 지역 사회와 함께하는 창대교회의 나눔 사역입니다.
             </p>
         </div>
-        <div class="text-center py-20">
+        <div class="text-center py-20" data-aos="fade-up" data-aos-delay="100">
             <p class="text-gray-600 dark:text-gray-400">준비 중인 페이지입니다.</p>
         </div>
     </section>
@@ -67,7 +67,7 @@ $id = $_GET['id'] ?? null;
 <?php elseif ($sub === 'column'): ?>
 <div class="bg-slate-50 dark:bg-slate-900">
     <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Pastoral Column</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목회칼럼</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -89,7 +89,7 @@ $id = $_GET['id'] ?? null;
                 $nextPost = $data['next'];
         ?>
             <div class="max-w-3xl mx-auto">
-                <article class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                <article class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700" data-aos="fade-up" data-aos-delay="100">
                     <header class="p-8 md:p-12 border-b border-slate-100 dark:border-slate-700 text-center">
                         <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white leading-snug mb-4"><?= htmlspecialchars($post['title']) ?></h1>
                         <time class="text-slate-400 dark:text-slate-500 text-base font-medium"><?= date('Y년 m월 d일', strtotime($post['published_at'])) ?></time>
@@ -100,7 +100,7 @@ $id = $_GET['id'] ?? null;
                 </article>
 
                 <!-- 모바일: 위아래 꽉 채워서 (flex-col, w-full) -->
-                <nav class="mt-10 flex flex-col md:flex-row gap-4 justify-between items-center">
+                <nav class="mt-10 flex flex-col md:flex-row gap-4 justify-between items-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-full md:w-auto">
                         <?php if ($prevPost): ?>
                             <a href="?page=together&sub=column&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-indigo-500 transition-all shadow-sm w-full md:w-auto">
@@ -123,7 +123,7 @@ $id = $_GET['id'] ?? null;
                     </div>
                 </nav>
 
-                <div class="mt-12 text-center">
+                <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="300">
                     <a href="?page=together&sub=column&mode=list" class="inline-flex items-center px-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-200 rounded-full text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">전체 칼럼 목록</a>
                 </div>
             </div>
@@ -145,7 +145,7 @@ $id = $_GET['id'] ?? null;
             $posts = $stmt->fetchAll();
         ?>
             <div class="max-w-3xl mx-auto">
-                <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700" data-aos="fade-up" data-aos-delay="100">
                     <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr><th scope="col" class="px-6 py-3 w-40">일자</th><th scope="col" class="px-6 py-3">제목</th></tr>

@@ -5,7 +5,7 @@ $sub = $_GET['sub'] ?? 'vision';
 <?php if ($sub === 'vision'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
         <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Vision & Philosophy</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">비전과 철학</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -13,13 +13,13 @@ $sub = $_GET['sub'] ?? 'vision';
                     창대교회의 비전과 목회 철학입니다.
                 </p>
             </div>
-            <img src="/assets/img/vision.jpg" alt="창대교회 비전과 철학" class="w-full max-w-5xl mx-auto rounded-lg shadow-lg dark:shadow-black/20">
+            <img src="/assets/img/vision.jpg" alt="창대교회 비전과 철학" class="w-full max-w-5xl mx-auto rounded-lg shadow-lg dark:shadow-black/20" data-aos="fade-up" data-aos-delay="200">
         </section>
     </div>
 <?php elseif ($sub === 'staff'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
         <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving People</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">섬기는 사람들</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -41,22 +41,22 @@ $sub = $_GET['sub'] ?? 'vision';
                     // 필요 시 추가
                 ];
                 ?>
-                <?php foreach ($staffs as $staff): ?>
-                <div class="group">
+                <?php $delay = 0; foreach ($staffs as $staff): ?>
+                <div class="group" data-aos="fade-up" data-aos-delay="<?= $delay * 100 ?>">
                     <div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 mb-4">
                         <img src="<?= $staff['img'] ?>" alt="<?= $staff['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <h3 class="text-2xl font-bold text-charcoal dark:text-white"><?= $staff['name'] ?></h3>
                     <p class="text-lg font-medium text-deepblue dark:text-blue-400 mb-1"><?= $staff['role'] ?></p>
                 </div>
-                <?php endforeach; ?>
+                <?php $delay++; endforeach; ?>
             </div>
         </section>
     </div>
 <?php elseif ($sub === 'cell'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
         <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Cell Groups</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목장</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -78,8 +78,8 @@ $sub = $_GET['sub'] ?? 'vision';
                     ['name' => 'GST유년부', 'leader' => '이명희 디렉터', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
                 ];
                 ?>
-                <?php foreach ($cells as $cell): ?>
-                <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100 dark:border-gray-700">
+                <?php $delay = 0; foreach ($cells as $cell): ?>
+                <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100 dark:border-gray-700" data-aos="fade-up" data-aos-delay="<?= $delay * 100 ?>">
                     <div class="aspect-video w-full overflow-hidden bg-gray-200 dark:bg-gray-700">
                         <img src="<?= $cell['img'] ?>" alt="<?= $cell['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
@@ -89,7 +89,7 @@ $sub = $_GET['sub'] ?? 'vision';
                         <p class="text-lg text-gray-500 dark:text-gray-400"><?= $cell['desc'] ?? '' ?></p>
                     </div>
                 </div>
-                <?php endforeach; ?>
+                <?php $delay++; endforeach; ?>
             </div>
         </section>
     </div>
@@ -99,7 +99,7 @@ $sub = $_GET['sub'] ?? 'vision';
             <?php
             // 제목 영역 HTML (모바일/데스크탑 분기 처리를 위해 변수화)
             $studyTitleHtml = '
-            <div class="text-center mb-12 lg:mb-16">
+            <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Christian Living Study</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">삶공부</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -117,7 +117,7 @@ $sub = $_GET['sub'] ?? 'vision';
 
             <div class="flex flex-col lg:flex-row gap-12">
                 <!-- Left Image Section -->
-                <div class="lg:w-1/3 order-1">
+                <div class="lg:w-1/3 order-1" data-aos="fade-up" data-aos-delay="200">
                     <div class="sticky top-24">
                         <div class="aspect-square lg:aspect-[1/3] w-full rounded-2xl overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700">
                             <img src="/assets/img/intro_study.jpg" 
@@ -147,9 +147,10 @@ $sub = $_GET['sub'] ?? 'vision';
                             ['title' => '말씀중보기도의 삶', 'desc' => '하나님의 임재 속에서 기도하는 법을 배웁니다.']
                         ];
 
+                        $delay = 0;
                         foreach ($courses as $course):
                         ?>
-                        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-lg transition-shadow flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-lg transition-shadow flex flex-col md:flex-row md:items-center gap-4 md:gap-8" data-aos="fade-up" data-aos-delay="<?= $delay * 50 ?>">
                             <h3 class="text-2xl font-bold text-slate-800 dark:text-white md:w-[35%] flex-shrink-0">
                                 <?= $course['title'] ?>
                             </h3>
@@ -157,7 +158,7 @@ $sub = $_GET['sub'] ?? 'vision';
                                 <?= $course['desc'] ?>
                             </p>
                         </div>
-                        <?php endforeach; ?>
+                        <?php $delay++; endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -166,7 +167,7 @@ $sub = $_GET['sub'] ?? 'vision';
 <?php elseif ($sub === 'news'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
         <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Church News</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">교회소식</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -195,7 +196,7 @@ $sub = $_GET['sub'] ?? 'vision';
             ?>
 
             <div class="max-w-3xl mx-auto">
-                <article class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                <article class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700" data-aos="fade-up" data-aos-delay="100">
                     
                     <header class="py-4 px-8 md:py-6 md:px-12 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
                         <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white leading-tight mb-0">
@@ -213,7 +214,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 </article>
 
                 <!-- 좌우 배치 유지 (Mobile side-by-side) -->
-                <nav class="mt-10 flex flex-row gap-4 justify-between items-center">
+                <nav class="mt-10 flex flex-row gap-4 justify-between items-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-1/2 sm:w-auto">
                         <?php if ($prevPost): ?>
                             <a href="?page=intro&sub=news&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm">
@@ -251,7 +252,7 @@ $sub = $_GET['sub'] ?? 'vision';
                     </div>
                 </nav>
 
-                <div class="mt-12 text-center">
+                <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="300">
                     <a href="?page=intro&sub=news&mode=list" class="inline-flex items-center px-6 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-full text-sm font-bold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         전체 소식 목록
@@ -278,15 +279,15 @@ $sub = $_GET['sub'] ?? 'vision';
                 $posts = $stmt->fetchAll();
             ?>
                 <div class="max-w-3xl mx-auto">
-                    <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-8">
+                    <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-8" data-aos="fade-up" data-aos-delay="100">
                         <ul class="divide-y divide-slate-100 dark:divide-slate-700">
-                            <?php if (count($posts) > 0): foreach ($posts as $post): ?>
-                            <li class="group">
+                            <?php if (count($posts) > 0): $delay = 0; foreach ($posts as $post): ?>
+                            <li class="group" data-aos="fade-up" data-aos-delay="<?= $delay * 50 ?>">
                                 <a href="?page=intro&sub=news&id=<?= $post['id'] ?>" class="block p-6 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                                     <h4 class="font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-lg"><?= htmlspecialchars($post['title']) ?></h4>
                                 </a>
                             </li>
-                            <?php endforeach; else: ?>
+                            <?php $delay++; endforeach; else: ?>
                                 <li class="p-8 text-center text-slate-500">등록된 소식이 없습니다.</li>
                             <?php endif; ?>
                         </ul>
@@ -314,7 +315,7 @@ $sub = $_GET['sub'] ?? 'vision';
 <?php elseif ($sub === 'location'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
         <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Location</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">오시는 길</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -323,12 +324,12 @@ $sub = $_GET['sub'] ?? 'vision';
                 </p>
             </div>
 
-            <div class="mb-10 shadow-lg rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white aspect-square md:aspect-auto md:h-[450px]">
+            <div class="mb-10 shadow-lg rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white aspect-square md:aspect-auto md:h-[450px]" data-aos="fade-up" data-aos-delay="100">
                 <div id="daumRoughmapContainer1772859002282" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100% !important;"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-slate-800 p-8 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-start gap-4 shadow-sm">
+                <div class="bg-white dark:bg-slate-800 p-8 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-start gap-4 shadow-sm" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-10 h-10 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center shrink-0">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     </div>
@@ -338,7 +339,7 @@ $sub = $_GET['sub'] ?? 'vision';
                     </div>
                 </div>
 
-                <a href="tel:031-979-9182" class="group bg-white dark:bg-slate-800 p-8 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-start gap-4 hover:border-blue-500 transition-all shadow-sm">
+                <a href="tel:031-979-9182" class="group bg-white dark:bg-slate-800 p-8 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-start gap-4 hover:border-blue-500 transition-all shadow-sm" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-10 h-10 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                     </div>
@@ -349,7 +350,7 @@ $sub = $_GET['sub'] ?? 'vision';
                     </div>
                 </a>
 
-                <div class="bg-white dark:bg-slate-800 p-8 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-start gap-4 shadow-sm">
+                <div class="bg-white dark:bg-slate-800 p-8 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-start gap-4 shadow-sm" data-aos="fade-up" data-aos-delay="400">
                     <div class="w-10 h-10 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center shrink-0">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
                     </div>

@@ -39,7 +39,7 @@ if ($sub === 'sermon' || $sub === 'worship'):
 ?>
 
 <div class="max-w-5xl mx-auto px-4 py-12 md:py-20">
-    <div class="text-center mb-10">
+    <div class="text-center mb-10" data-aos="fade-up">
         <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Sunday Worship Service</span>
         <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">
             <?= htmlspecialchars($post['title']) ?>
@@ -63,7 +63,7 @@ if ($sub === 'sermon' || $sub === 'worship'):
         </div>
     </div>
 
-    <div class="mb-16 relative group">
+    <div class="mb-16 relative group" data-aos="fade-up" data-aos-delay="100">
         <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-400 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
         <div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border border-slate-200 dark:border-slate-700">
             <?php if ($youtube_id): ?>
@@ -77,7 +77,7 @@ if ($sub === 'sermon' || $sub === 'worship'):
         </div>
     </div>
 
-    <nav class="flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12">
+    <nav class="flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12" data-aos="fade-up" data-aos-delay="200">
     
         <div class="w-full sm:w-auto flex justify-start">
             <?php if ($prevPost): ?>
@@ -149,7 +149,7 @@ elseif ($sub === 'videos'):
             }
 ?>
         <div class="max-w-5xl mx-auto px-4 py-12 md:py-20">
-            <div class="text-center mb-10">
+            <div class="text-center mb-10" data-aos="fade-up">
                 <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Special Videos</span>
                 <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6"><?= htmlspecialchars($post['title']) ?></h1>
                 <div class="w-12 h-1 bg-red-500 mx-auto mb-8 rounded-full"></div>
@@ -165,7 +165,7 @@ elseif ($sub === 'videos'):
                     </div>
                 </div>
             </div>
-            <div class="mb-12 relative group">
+            <div class="mb-12 relative group" data-aos="fade-up" data-aos-delay="100">
                 <div class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-red-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                 <div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border border-slate-200 dark:border-slate-700">
                     <?php if ($youtube_id): ?>
@@ -175,10 +175,10 @@ elseif ($sub === 'videos'):
                     <?php endif; ?>
                 </div>
             </div>
-            <?php if (!empty($post['content'])): ?><div class="prose prose-slate dark:prose-invert max-w-none mb-16 text-center"><?= $post['content'] ?></div><?php endif; ?>
+            <?php if (!empty($post['content'])): ?><div class="prose prose-slate dark:prose-invert max-w-none mb-16 text-center" data-aos="fade-up" data-aos-delay="200"><?= $post['content'] ?></div><?php endif; ?>
             
             <!-- 모바일: 위아래 꽉 채워서 (flex-col, w-full) -->
-            <nav class="flex flex-col md:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12">
+            <nav class="flex flex-col md:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12" data-aos="fade-up" data-aos-delay="200">
                 <div class="w-full md:w-auto flex justify-start">
                     <?php if ($prevPost): ?>
                         <a href="?page=worship&sub=videos&id=<?= $prevPost['id'] ?>" class="w-full md:w-auto group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm max-w-none md:max-w-md">
@@ -200,7 +200,7 @@ elseif ($sub === 'videos'):
                     <?php endif; ?>
                 </div>
             </nav>
-            <div class="mt-12 text-center">
+            <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="300">
                 <a href="?page=worship&sub=videos&mode=list" class="inline-flex items-center px-6 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-full text-sm font-bold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     전체 영상 목록
@@ -243,18 +243,18 @@ elseif ($sub === 'videos'):
         $posts = $stmt->fetchAll();
 ?>
     <div class="max-w-5xl mx-auto px-4 py-12 md:py-20">
-        <div class="text-center mb-10">
+        <div class="text-center mb-10" data-aos="fade-up">
             <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Special Videos</span>
             <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">특별영상</h1>
             <div class="w-12 h-1 bg-red-500 mx-auto mb-8 rounded-full"></div>
         </div>
-        <div class="flex justify-center flex-wrap gap-2 mb-8">
+        <div class="flex justify-center flex-wrap gap-2 mb-8" data-aos="fade-up" data-aos-delay="100">
             <a href="?page=worship&sub=videos&mode=list&v_cat=all" class="px-4 py-2 text-sm font-bold rounded-full transition-colors <?= $v_cat_filter === 'all' ? 'bg-red-500 text-white shadow' : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100' ?>">전체</a>
             <?php foreach($v_cats as $vc): ?>
             <a href="?page=worship&sub=videos&mode=list&v_cat=<?= urlencode($vc) ?>" class="px-4 py-2 text-sm font-bold rounded-full transition-colors <?= $v_cat_filter === $vc ? 'bg-red-500 text-white shadow' : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100' ?>"><?= $vc ?></a>
             <?php endforeach; ?>
         </div>
-        <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+        <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700" data-aos="fade-up" data-aos-delay="200">
             <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"><tr><th scope="col" class="px-6 py-3 w-40">일자</th><th scope="col" class="px-6 py-3">제목</th></tr></thead>
                 <tbody>
@@ -305,12 +305,12 @@ elseif ($sub === 'bulletin'):
             $nextPost = $data['next'];
 ?>
         <div class="max-w-4xl mx-auto px-4 py-12 md:py-20">
-            <div class="text-center mb-10">
+            <div class="text-center mb-10" data-aos="fade-up">
                 <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Weekly Bulletin</span>
                 <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6"><?= htmlspecialchars($post['title']) ?></h1>
                 <div class="w-12 h-1 bg-red-500 mx-auto rounded-full"></div>
             </div>
-            <div class="shadow-lg rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div class="shadow-lg rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
                 <div class="p-0 bg-slate-100 dark:bg-slate-900 flex flex-col">
                     <?php if (!empty($post['image_files'])): $images = json_decode($post['image_files'], true); if (is_array($images)): foreach ($images as $image): $imagePath = (strpos($image, 'bulletins/') === false) ? "bulletins/" . $image : $image; ?>
                         <div class="w-full m-0 p-0 leading-[0]"><img src="/uploads/<?= htmlspecialchars($imagePath) ?>" alt="주보 이미지" class="w-full h-auto block" loading="lazy"></div>
@@ -318,7 +318,7 @@ elseif ($sub === 'bulletin'):
                 </div>
             </div>
             <!-- 모바일: 좌우 배치 (flex-row) -->
-            <nav class="mt-12 flex flex-row gap-4 justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-12 pb-4">
+            <nav class="mt-12 flex flex-row gap-4 justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-12 pb-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="w-1/2 sm:w-auto">
                     <?php if ($prevPost): ?>
                         <a href="?page=worship&sub=bulletin&id=<?= $prevPost['id'] ?>" class="group flex items-center p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-red-500 transition-all shadow-sm">
@@ -340,7 +340,7 @@ elseif ($sub === 'bulletin'):
                     <?php endif; ?>
                 </div>
             </nav>
-            <div class="mt-12 text-center">
+            <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="300">
                 <a href="?page=worship&sub=bulletin&mode=list" class="inline-flex items-center px-6 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-full text-sm font-bold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     전체 주보 목록
@@ -366,19 +366,19 @@ elseif ($sub === 'bulletin'):
         $posts = $stmt->fetchAll();
 ?>
         <div class="max-w-4xl mx-auto px-4 py-12 md:py-20">
-            <div class="text-center mb-10">
+            <div class="text-center mb-10" data-aos="fade-up">
                 <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">주보</h1>
                 <div class="w-12 h-1 bg-red-500 mx-auto rounded-full"></div>
             </div>
-            <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+            <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700" data-aos="fade-up" data-aos-delay="100">
                 <ul class="divide-y divide-slate-100 dark:divide-slate-700">
-                    <?php if (count($posts) > 0): foreach ($posts as $post): ?>
-                    <li class="group">
+                    <?php if (count($posts) > 0): $delay=0; foreach ($posts as $post): ?>
+                    <li class="group" data-aos="fade-up" data-aos-delay="<?= $delay * 50 ?>">
                         <a href="?page=worship&sub=bulletin&id=<?= $post['id'] ?>" class="block p-6 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                             <h4 class="font-bold text-slate-800 dark:text-slate-200 group-hover:text-red-600 dark:group-hover:text-red-400 text-xl"><?= htmlspecialchars($post['title']) ?></h4>
                         </a>
                     </li>
-                    <?php endforeach; else: ?>
+                    <?php $delay++; endforeach; else: ?>
                         <li class="p-8 text-center text-slate-500">등록된 주보가 없습니다.</li>
                     <?php endif; ?>
                 </ul>

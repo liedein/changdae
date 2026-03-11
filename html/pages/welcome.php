@@ -2,7 +2,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
     <div class="flex flex-col lg:flex-row gap-12">
         <!-- Left Content Section -->
-        <div class="lg:w-2/3 order-2 lg:order-1">
+        <div class="lg:w-2/3 order-2 lg:order-1" data-aos="fade-up">
             <h1 class="text-4xl md:text-5xl font-bold text-deepblue dark:text-blue-400 mb-8 leading-tight">
                 창대교회에 오신 여러분을 환영합니다.
             </h1>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- Right Image Section -->
-        <div class="lg:w-1/3 order-1 lg:order-2">
+        <div class="lg:w-1/3 order-1 lg:order-2" data-aos="fade-up" data-aos-delay="200">
             <div class="sticky top-24">
                 <div class="aspect-square lg:aspect-[1/3] w-full rounded-lg overflow-hidden shadow-xl bg-gray-200 dark:bg-gray-700 mb-6">
                     
