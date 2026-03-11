@@ -5,6 +5,9 @@
 $sub = $_GET['sub'] ?? 'sermon';
 $id = $_GET['id'] ?? null;
 
+?>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<?php
 if ($sub === 'sermon' || $sub === 'worship'):
     $category = 'sermon'; // DB 테이블명: sermon
 
@@ -404,3 +407,7 @@ elseif ($sub === 'bulletin'):
     endif;
 endif; 
 ?>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true, offset: 50 });
+</script>

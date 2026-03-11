@@ -2,6 +2,7 @@
 $sub = $_GET['sub'] ?? 'vision';
 ?>
 
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <?php if ($sub === 'vision'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
         <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
@@ -393,3 +394,8 @@ $sub = $_GET['sub'] ?? 'vision';
         <p class="text-gray-600">페이지를 찾을 수 없습니다.</p>
     </div>
 <?php endif; ?>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true, offset: 50 });
+</script>

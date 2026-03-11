@@ -3,6 +3,7 @@ $sub = $_GET['sub'] ?? 'missionary';
 $id = $_GET['id'] ?? null;
 ?>
 
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <?php if ($sub === 'missionary'): ?>
 <!-- 파송 및 후원선교사 -->
 <div class="bg-slate-50 dark:bg-slate-900">
@@ -191,3 +192,8 @@ $id = $_GET['id'] ?? null;
 </div>
 
 <?php endif; ?>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true, offset: 50 });
+</script>

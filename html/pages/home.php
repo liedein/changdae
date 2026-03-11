@@ -23,6 +23,7 @@ if ($post && !empty($post['youtube_url'])) {
 }
 ?>
 
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <?php // --- 히어로 섹션 (간격 및 색상 조정 버전) --- ?>
 <section class="relative min-h-[90vh] bg-[#FFD400] flex flex-col justify-center px-4 md:px-10 overflow-hidden">
     <div class="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden opacity-5 pointer-events-none select-none">
@@ -53,6 +54,11 @@ if ($post && !empty($post['youtube_url'])) {
         </div>
     </div>
 </section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+</script>
 
 <style>
     /* 모바일에서 글자 크기와 자간 최적화 */
