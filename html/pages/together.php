@@ -19,11 +19,11 @@ $id = $_GET['id'] ?? null;
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             <?php
             $missionaries = [
-                ['name' => '김정민 목사', 'country' => '멕시코 과달라하라', 'org' => '(연수지) 파송 선교사', 'img' => 'https://placehold.co/400x500/1a365d/ffffff?text=Missionary'],
-                ['name' => '이민찬 선교사', 'country' => '러시아 연해주 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/1a365d/ffffff?text=Missionary'],
-                ['name' => '정필우 선교사', 'country' => '인도 북인도 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/1a365d/ffffff?text=Missionary'],
-                ['name' => '형남권 선교사', 'country' => '탄자니아 팡가웨 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/1a365d/ffffff?text=Missionary'],
-                ['name' => 'GST', 'country' => '탄자니아 팡가웨 은혜신학교', 'org' => '후원 기관 (로마니/에녹/록키/형남권/조세프/마틴/젝키)', 'img' => 'https://placehold.co/400x500/1a365d/ffffff?text=Missionary'],
+                ['name' => '김정민 목사', 'country' => '멕시코 과달라하라', 'org' => '(연수지) 파송 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+                ['name' => '이민찬 선교사', 'country' => '러시아 연해주 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+                ['name' => '정필우 선교사', 'country' => '인도 북인도 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+                ['name' => '형남권 선교사', 'country' => '탄자니아 팡가웨 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+                ['name' => 'GST', 'country' => '탄자니아 팡가웨 은혜신학교', 'org' => '후원 기관 (로마니/에녹/록키/형남권/조세프/마틴/젝키)', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
             ];
             ?>
             <?php foreach ($missionaries as $missionary): ?>
