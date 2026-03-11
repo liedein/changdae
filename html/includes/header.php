@@ -43,6 +43,7 @@ $menuItems = [
     .font-black { font-family: 'Inter', sans-serif; font-weight: 900; }
     .dark #main-header { background-color: #1a1a1a; border-bottom-color: #FFD400; }
     .dark #main-header a, .dark #main-header button { color: #FFD400; }
+    .dark #main-header a:hover, .dark #main-header button:hover { color: #000000; }
     .dark #main-header .logo-dot { color: #fff; }
 </style>
 
@@ -65,7 +66,7 @@ $menuItems = [
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
-                        <div class="absolute left-0 mt-2 w-48 bg-white border-2 border-black opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <div class="absolute left-0 mt-2 <?= $key === 'together' ? 'w-56' : 'w-48' ?> bg-white dark:bg-[#1a1a1a] border-2 border-black dark:border-[#FFD400] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_#FFD400]">
                             <div class="py-2">
                                 <?php foreach ($menu['sub'] as $subKey => $sub): ?>
                                     <a href="<?= $sub['url'] ?>" class="flex items-center px-4 py-2 text-xl font-black text-black hover:bg-[#FFD400] transition-colors uppercase">

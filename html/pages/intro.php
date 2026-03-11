@@ -9,7 +9,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Vision & Philosophy</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">비전과 철학</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     창대교회의 비전과 목회 철학입니다.
                 </p>
             </div>
@@ -23,7 +23,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving People</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">섬기는 사람들</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     창대교회를 섬기는 분들을 소개합니다.
                 </p>
             </div>
@@ -46,11 +46,8 @@ $sub = $_GET['sub'] ?? 'vision';
                     <div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 mb-4">
                         <img src="<?= $staff['img'] ?>" alt="<?= $staff['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <h3 class="text-xl font-bold text-charcoal dark:text-white"><?= $staff['name'] ?></h3>
-                    <p class="text-sm font-medium text-deepblue dark:text-blue-400 mb-1"><?= $staff['role'] ?></p>
-                    <?php if (!empty($staff['email'])): ?>
-                    <a href="mailto:<?= $staff['email'] ?>" class="text-sm text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 transition-colors"><?= $staff['email'] ?></a>
-                    <?php endif; ?>
+                    <h3 class="text-2xl font-bold text-charcoal dark:text-white"><?= $staff['name'] ?></h3>
+                    <p class="text-lg font-medium text-deepblue dark:text-blue-400 mb-1"><?= $staff['role'] ?></p>
                 </div>
                 <?php endforeach; ?>
             </div>
@@ -63,7 +60,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Cell Groups</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목장</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     성도들이 삶을 나누고 함께 기도하며 사랑을 실천하는 가족 공동체입니다.
                 </p>
             </div>
@@ -87,9 +84,9 @@ $sub = $_GET['sub'] ?? 'vision';
                         <img src="<?= $cell['img'] ?>" alt="<?= $cell['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-charcoal dark:text-white mb-1"><?= $cell['name'] ?></h3>
-                        <p class="text-deepblue dark:text-blue-400 font-medium mb-3"><?= $cell['leader'] ?></p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400"><?= $cell['desc'] ?></p>
+                        <h3 class="text-2xl font-bold text-charcoal dark:text-white mb-1"><?= $cell['name'] ?></h3>
+                        <p class="text-lg text-deepblue dark:text-blue-400 font-medium mb-3"><?= $cell['leader'] ?></p>
+                        <p class="text-lg text-gray-500 dark:text-gray-400"><?= $cell['desc'] ?? '' ?></p>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -106,7 +103,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Christian Living Study</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">삶공부</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     지식 위주의 공부에서 벗어나 삶의 변화를 목표로 합니다.<br class="hidden md:block">
                     하나님을 경험하고 성경적인 가치관을 세우는 축복의 통로입니다.
                 </p>
@@ -153,10 +150,10 @@ $sub = $_GET['sub'] ?? 'vision';
                         foreach ($courses as $course):
                         ?>
                         <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-lg transition-shadow flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-                            <h3 class="text-xl font-bold text-slate-800 dark:text-white md:w-1/4 flex-shrink-0">
+                            <h3 class="text-2xl font-bold text-slate-800 dark:text-white md:w-1/4 flex-shrink-0">
                                 <?= $course['title'] ?>
                             </h3>
-                            <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-sm md:w-3/4">
+                            <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-2xl md:w-3/4">
                                 <?= $course['desc'] ?>
                             </p>
                         </div>
@@ -173,7 +170,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Church News</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">교회소식</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     창대교회의 새로운 소식을 전해드립니다.
                 </p>
             </div>
@@ -226,10 +223,10 @@ $sub = $_GET['sub'] ?? 'vision';
                     </div>
                 </article>
 
-                <nav class="mt-10 flex flex-col sm:flex-row gap-4 justify-between items-stretch">
-                    <div class="flex-1">
+                <nav class="mt-10 flex flex-col sm:flex-row gap-4 justify-between items-center">
+                    <div class="w-full sm:w-auto">
                         <?php if ($prevPost): ?>
-                            <a href="?page=intro&sub=news&id=<?= $prevPost['id'] ?>" class="group h-full flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm">
+                            <a href="?page=intro&sub=news&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm">
                                 <svg class="w-5 h-5 mr-4 text-slate-400 group-hover:text-blue-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                 </svg>
@@ -239,15 +236,15 @@ $sub = $_GET['sub'] ?? 'vision';
                                 </div>
                             </a>
                         <?php else: ?>
-                            <div class="h-full p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50">
+                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50">
                                 <span class="text-base text-slate-400 font-bold uppercase">이전 소식이 없습니다</span>
                             </div>
                         <?php endif; ?>
                     </div>
 
-                    <div class="flex-1">
+                    <div class="w-full sm:w-auto">
                         <?php if ($nextPost): ?>
-                            <a href="?page=intro&sub=news&id=<?= $nextPost['id'] ?>" class="group h-full flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right">
+                            <a href="?page=intro&sub=news&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right">
                                 <div class="flex flex-col items-end">
                                     <span class="text-sm text-blue-500 font-bold uppercase mb-1">다음 소식</span>
                                     <span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span>
@@ -257,7 +254,7 @@ $sub = $_GET['sub'] ?? 'vision';
                                 </svg>
                             </a>
                         <?php else: ?>
-                            <div class="h-full p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right">
+                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right">
                                 <span class="text-base text-slate-400 font-bold uppercase">다음 소식이 없습니다</span>
                             </div>
                         <?php endif; ?>
@@ -281,7 +278,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Location</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">오시는 길</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
-                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     하나님의 사랑이 머무는 창대교회로 여러분을 초대합니다.
                 </p>
             </div>
@@ -296,8 +293,8 @@ $sub = $_GET['sub'] ?? 'vision';
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-800 dark:text-white mb-2 uppercase tracking-tight">Address</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">경기 고양시 덕양구 중앙로558번길 7-4<br>비전프라자 7층</p>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2 uppercase tracking-tight">주소</h3>
+                        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">경기 고양시 덕양구 중앙로558번길 7-4<br>비전프라자 7층</p>
                     </div>
                 </div>
 
@@ -306,9 +303,9 @@ $sub = $_GET['sub'] ?? 'vision';
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-800 dark:text-white mb-2 uppercase tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400">Phone</h3>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2 uppercase tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400">전화번호</h3>
                         <p class="text-xl font-bold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">031-979-9182</p>
-                        <p class="text-[10px] text-slate-400 mt-1 uppercase">Click to call</p>
+                        <p class="text-sm text-slate-400 mt-1 uppercase">Click to call</p>
                     </div>
                 </a>
 
@@ -317,12 +314,12 @@ $sub = $_GET['sub'] ?? 'vision';
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
                     </div>
                     <div>
-                        <h3 class="font-bold text-slate-800 dark:text-white mb-2 uppercase tracking-tight">Parking</h3>
-                        <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2 uppercase tracking-tight">주차</h3>
+                        <ul class="text-lg text-slate-600 dark:text-slate-400 space-y-1">
                             <li>• 건물 내 주차장</li>
                             <li>• 롯데마트 별관 주차장</li>
                         </ul>
-                        <p class="mt-3 text-[11px] font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400 inline-block px-2 py-1 uppercase rounded">Free Parking Pass</p>
+                        <p class="mt-3 text-[11px] font-bold text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400 inline-block px-2 py-1 uppercase rounded">롯데마트 별관은 주차 시간을 드립니다</p>
                     </div>
                 </div>
             </div>
