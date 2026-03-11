@@ -35,8 +35,8 @@ $sub = $_GET['sub'] ?? 'vision';
                     ['name' => '김성진', 'role' => '원로목사', 'img' => 'https://placehold.co/400x500/1e40af/ffffff?text=Staff'],
                     ['name' => '손재용', 'role' => '장로', 'img' => 'https://placehold.co/400x500/1e40af/ffffff?text=Staff'],
                     ['name' => '김옥진', 'role' => '은퇴장로', 'img' => 'https://placehold.co/400x500/1e40af/ffffff?text=Staff'],
-                    ['name' => '진숙영', 'role' => '중고등부 디렉터', 'img' => '\assets\img\staff_yga.jpg'],
-                    ['name' => '유경아', 'role' => 'GST주일학교 디렉터', 'img' => 'https://placehold.co/400x500/1e40af/ffffff?text=Staff'],
+                    ['name' => '진숙영', 'role' => '중고등부 디렉터', 'img' => 'https://placehold.co/400x500/1e40af/ffffff?text=Staff'],
+                    ['name' => '유경아', 'role' => 'GST주일학교 디렉터', 'img' => '\assets\img\staff_yga.jpg'],
                     ['name' => '이명희', 'role' => 'GST유년부 디렉터', 'img' => 'https://placehold.co/400x500/1e40af/ffffff?text=Staff'],
                     // 필요 시 추가
                 ];
