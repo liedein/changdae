@@ -73,6 +73,7 @@ if ($id) {
             </div>
             <div class="flex items-center gap-4">
                 <span class="text-sm text-slate-300 font-medium">관리자님</span>
+                <a href="password.php" class="text-sm text-slate-300 hover:text-white font-medium transition-colors">비밀번호 변경</a>
                 <a href="process.php?mode=logout" class="text-sm text-rose-300 hover:text-rose-100 font-bold">로그아웃</a>
             </div>
         </div>

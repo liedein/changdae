@@ -37,6 +37,38 @@ switch ($mode) {
         header('Location: /admin/login.php');
         exit;
 
+    case 'change_password':
+        checkAuth();
+        $current_pw = $_POST['current_password'] ?? '';
+        $new_pw = $_POST['new_password'] ?? '';
+        $confirm_pw = $_POST['confirm_password'] ?? '';
+
+        // 1. 새 비밀번호 일치 확인
+        if ($new_pw !== $confirm_pw) {
+            header('Location: /admin/password.php?error=mismatch');
+            exit;
+        }
+
+        // 2. 현재 비밀번호 확인
+        $stmt = $pdo->prepare("SELECT config_value FROM admin_config WHERE config_key = 'admin_pw'");
+        $stmt->execute();
+        $current_hash = $stmt->fetchColumn();
+
+        if (!password_verify($current_pw, $current_hash)) {
+            header('Location: /admin/password.php?error=wrong_pw');
+            exit;
+        }
+
+        // 3. 업데이트
+        $new_hash = password_hash($new_pw, PASSWORD_DEFAULT);
+        $stmt = $pdo->prepare("UPDATE admin_config SET config_value = ? WHERE config_key = 'admin_pw'");
+        $stmt->execute([$new_hash]);
+
+        // 로그아웃 처리하여 다시 로그인하게 함
+        session_destroy();
+        header('Location: /admin/login.php'); // 성공 메시지 파라미터 등을 추가할 수도 있음
+        exit;
+
     case 'write':
         checkAuth();
         $category = $_POST['category'] ?? 'news';
