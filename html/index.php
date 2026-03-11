@@ -17,6 +17,13 @@ if (!in_array($page, $allowed_pages)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>창대교회 - 영혼 구원하여 제자 삼는 교회</title>
     
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
+
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
