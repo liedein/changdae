@@ -41,7 +41,7 @@ if ($post && !empty($post['youtube_url'])) {
             </h1>
         </div>
 
-        <div class="mt-20 px-[60pt] flex flex-col md:flex-row md:items-end justify-between gap-10">
+        <div class="mt-20 px-[10%] md:px-[60pt] flex flex-col md:flex-row md:items-end justify-between gap-10">
             <p class="text-3xl md:text-4xl font-bold text-black max-w-3xl leading-tight tracking-tight">
                 하나님의 사랑이 머무는 곳,<br>
                 창대교회에 오신 여러분을 환영합니다.
