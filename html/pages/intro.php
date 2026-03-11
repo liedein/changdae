@@ -177,17 +177,21 @@ $sub = $_GET['sub'] ?? 'vision';
 
             <?php
             $id = $_GET['id'] ?? null;
+            $mode = $_GET['mode'] ?? 'view'; // view or list
+            $page_num = isset($_GET['page_num']) ? max(1, intval($_GET['page_num'])) : 1;
             $category = 'news'; 
 
-            // 데이터 가져오기 (functions.php의 getBoardPost 함수 사용)
-            $data = getBoardPost($pdo, $category, $id);
+            if ($mode === 'view') {
+                // 데이터 가져오기 (functions.php의 getBoardPost 함수 사용)
+                // ID가 없으면 자동으로 최신글을 가져옴
+                $data = getBoardPost($pdo, $category, $id);
 
-            if (!$data || !$data['current']) {
-                echo "<div class='text-center py-20 dark:text-gray-300 font-sans'>등록된 소식이 없습니다.</div>";
-            } else {
-                $post = $data['current'];
-                $prevPost = $data['prev'];
-                $nextPost = $data['next'];
+                if (!$data || !$data['current']) {
+                    echo "<div class='text-center py-20 dark:text-gray-300 font-sans'>등록된 소식이 없습니다.</div>";
+                } else {
+                    $post = $data['current'];
+                    $prevPost = $data['prev'];
+                    $nextPost = $data['next'];
             ?>
 
             <div class="max-w-3xl mx-auto">
@@ -216,15 +220,16 @@ $sub = $_GET['sub'] ?? 'vision';
                         <?php endif; ?>
 
                         <div class="prose prose-slate dark:prose-invert max-w-none 
-                                    prose-headings:font-bold prose-p:leading-relaxed prose-p:text-slate-600 dark:prose-p:text-slate-300 
-                                    text-base md:text-lg">
+                                    prose-headings:font-bold prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300 
+                                    text-base prose-p:text-lg md:prose-p:text-xl">
                             <?= $post['content'] ?>
                         </div>
                     </div>
                 </article>
 
-                <nav class="mt-10 flex flex-col sm:flex-row gap-4 justify-between items-center">
-                    <div class="w-full sm:w-auto">
+                <!-- 좌우 배치 유지 (Mobile side-by-side) -->
+                <nav class="mt-10 flex flex-row gap-4 justify-between items-center">
+                    <div class="w-1/2 sm:w-auto">
                         <?php if ($prevPost): ?>
                             <a href="?page=intro&sub=news&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm">
                                 <svg class="w-5 h-5 mr-4 text-slate-400 group-hover:text-blue-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,7 +247,7 @@ $sub = $_GET['sub'] ?? 'vision';
                         <?php endif; ?>
                     </div>
 
-                    <div class="w-full sm:w-auto">
+                    <div class="w-1/2 sm:w-auto">
                         <?php if ($nextPost): ?>
                             <a href="?page=intro&sub=news&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right">
                                 <div class="flex flex-col items-end">
@@ -262,12 +267,62 @@ $sub = $_GET['sub'] ?? 'vision';
                 </nav>
 
                 <div class="mt-12 text-center">
-                    <a href="?page=intro&sub=news" class="inline-flex items-center px-6 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-full text-sm font-bold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
+                    <a href="?page=intro&sub=news&mode=list" class="inline-flex items-center px-6 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-full text-sm font-bold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                        전체 목록 보기
+                        전체 소식 목록
                     </a>
                 </div>
             </div>
+            <?php 
+                } 
+            } else { 
+                // --- 목록 보기 모드 (mode=list) ---
+                $limit = 10;
+                $offset = ($page_num - 1) * $limit;
+                
+                // 총 게시물 수
+                $countStmt = $pdo->prepare("SELECT COUNT(*) FROM news WHERE published_at <= NOW()");
+                $countStmt->execute();
+                $total_posts = $countStmt->fetchColumn();
+                
+                // 목록 조회
+                $stmt = $pdo->prepare("SELECT id, title, published_at FROM news WHERE published_at <= NOW() ORDER BY published_at DESC LIMIT :limit OFFSET :offset");
+                $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+                $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+                $stmt->execute();
+                $posts = $stmt->fetchAll();
+            ?>
+                <div class="max-w-3xl mx-auto">
+                    <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-8">
+                        <ul class="divide-y divide-slate-100 dark:divide-slate-700">
+                            <?php if (count($posts) > 0): foreach ($posts as $post): ?>
+                            <li class="group">
+                                <a href="?page=intro&sub=news&id=<?= $post['id'] ?>" class="block p-6 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                                    <h4 class="font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-lg"><?= htmlspecialchars($post['title']) ?></h4>
+                                </a>
+                            </li>
+                            <?php endforeach; else: ?>
+                                <li class="p-8 text-center text-slate-500">등록된 소식이 없습니다.</li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="w-24">
+                            <?php if ($page_num > 1): ?>
+                                <a href="?page=intro&sub=news&mode=list&page_num=<?= $page_num - 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">이전</a>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <a href="?page=intro&sub=news" class="px-6 py-2 bg-blue-600 text-white rounded-full text-sm font-bold hover:bg-blue-700 shadow-md transition-colors">최신 소식 보기</a>
+                        
+                        <div class="w-24 text-right">
+                            <?php if ($total_posts > $page_num * $limit): ?>
+                                <a href="?page=intro&sub=news&mode=list&page_num=<?= $page_num + 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">다음</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
             <?php } ?>
         </section>
     </div>

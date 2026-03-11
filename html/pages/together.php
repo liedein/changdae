@@ -73,10 +73,14 @@ $id = $_GET['id'] ?? null;
             <div class="w-12 h-1 bg-purple-500 mx-auto mb-8 rounded-full"></div>
         </div>
         <?php
+        $mode = $_GET['mode'] ?? 'view';
+        $page_num = isset($_GET['page_num']) ? max(1, intval($_GET['page_num'])) : 1;
         $category = 'column'; 
-        // 데이터 가져오기 (functions.php의 getBoardPost 함수 사용)
-        if ($id) { // --- 상세 보기 ---
+        
+        if ($mode === 'view') { // --- 상세 보기 (기본) ---
+            // ID 없으면 최신글 로드
             $data = getBoardPost($pdo, $category, $id);
+            
             if (!$data || !$data['current']) {
                 echo "<div class='text-center py-20 dark:text-gray-300 font-sans'>요청하신 칼럼을 찾을 수 없습니다.</div>";
             } else {
@@ -95,56 +99,84 @@ $id = $_GET['id'] ?? null;
                     </div>
                 </article>
 
-                <nav class="mt-10 flex flex-col sm:flex-row gap-4 justify-between items-center">
-                    <div class="w-full sm:w-auto">
+                <!-- 모바일: 위아래 꽉 채워서 (flex-col, w-full) -->
+                <nav class="mt-10 flex flex-col md:flex-row gap-4 justify-between items-center">
+                    <div class="w-full md:w-auto">
                         <?php if ($prevPost): ?>
-                            <a href="?page=together&sub=column&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm">
+                            <a href="?page=together&sub=column&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm w-full md:w-auto">
                                 <svg class="w-5 h-5 mr-4 text-slate-400 group-hover:text-blue-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                                 <div class="flex flex-col"><span class="text-sm text-blue-500 font-bold uppercase mb-1">이전 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                             </a>
                         <?php else: ?>
-                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50"><span class="text-base text-slate-400 font-bold uppercase">이전 칼럼이 없습니다</span></div>
+                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 w-full md:w-auto"><span class="text-base text-slate-400 font-bold uppercase">이전 칼럼이 없습니다</span></div>
                         <?php endif; ?>
                     </div>
-                    <div class="w-full sm:w-auto">
+                    <div class="w-full md:w-auto">
                         <?php if ($nextPost): ?>
-                            <a href="?page=together&sub=column&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right">
+                            <a href="?page=together&sub=column&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right w-full md:w-auto">
                                 <div class="flex flex-col items-end"><span class="text-sm text-blue-500 font-bold uppercase mb-1">다음 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span></div>
                                 <svg class="w-5 h-5 ml-4 text-slate-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                             </a>
                         <?php else: ?>
-                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right"><span class="text-base text-slate-400 font-bold uppercase">다음 칼럼이 없습니다</span></div>
+                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right w-full md:w-auto"><span class="text-base text-slate-400 font-bold uppercase">다음 칼럼이 없습니다</span></div>
                         <?php endif; ?>
                     </div>
                 </nav>
 
                 <div class="mt-12 text-center">
-                    <a href="?page=together&sub=column" class="inline-flex items-center px-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-200 rounded-full text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">전체 칼럼 목록</a>
+                    <a href="?page=together&sub=column&mode=list" class="inline-flex items-center px-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-200 rounded-full text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">전체 칼럼 목록</a>
                 </div>
             </div>
             <?php }
-        } else { // --- 목록 보기 ---
-            $stmt = $pdo->prepare("SELECT id, title, published_at FROM `column` WHERE published_at <= NOW() ORDER BY published_at DESC");
+        } else { // --- 목록 보기 (mode=list) ---
+            $limit = 10;
+            $offset = ($page_num - 1) * $limit;
+
+            // Count
+            $countStmt = $pdo->prepare("SELECT COUNT(*) FROM `column` WHERE published_at <= NOW()");
+            $countStmt->execute();
+            $total_posts = $countStmt->fetchColumn();
+
+            // List
+            $stmt = $pdo->prepare("SELECT id, title, published_at FROM `column` WHERE published_at <= NOW() ORDER BY published_at DESC LIMIT :limit OFFSET :offset");
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
             $stmt->execute();
             $posts = $stmt->fetchAll();
         ?>
             <div class="max-w-3xl mx-auto">
                 <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr><th scope="col" class="px-6 py-3 w-40">일자</th><th scope="col" class="px-6 py-3">제목</th></tr>
                         </thead>
                         <tbody>
                         <?php if (count($posts) > 0): foreach ($posts as $post): ?>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td class="px-6 py-4 text-gray-500 dark:text-gray-400"><?= date('Y-m-d', strtotime($post['published_at'])) ?></td>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"><a href="?page=together&sub=column&id=<?= $post['id'] ?>" class="hover:underline"><?= htmlspecialchars($post['title']) ?></a></th>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white"><a href="?page=together&sub=column&id=<?= $post['id'] ?>" class="hover:underline"><?= htmlspecialchars($post['title']) ?></a></th>
                             </tr>
                         <?php endforeach; else: ?>
                             <tr><td colspan="2" class="text-center p-8 text-slate-500">등록된 칼럼이 없습니다.</td></tr>
                         <?php endif; ?>
                         </tbody>
                     </table>
+                </div>
+
+                <div class="mt-8 flex items-center justify-between">
+                    <div class="w-24">
+                        <?php if ($page_num > 1): ?>
+                            <a href="?page=together&sub=column&mode=list&page_num=<?= $page_num - 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">이전</a>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <a href="?page=together&sub=column" class="px-6 py-2 bg-purple-600 text-white rounded-full text-sm font-bold hover:bg-purple-700 shadow-md transition-colors">최신 칼럼 보기</a>
+                    
+                    <div class="w-24 text-right">
+                        <?php if ($total_posts > $page_num * $limit): ?>
+                            <a href="?page=together&sub=column&mode=list&page_num=<?= $page_num + 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">다음</a>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         <?php } ?>
