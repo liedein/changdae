@@ -68,14 +68,14 @@ $sub = $_GET['sub'] ?? 'vision';
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
                 <?php
                 $cells = [
-                    ['name' => '러시아목장', 'leader' => '김옥진 목자 | 신미옥 목우', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '멕시코목장', 'leader' => '손재용 목자 | 진숙영 목우', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '인도목장', 'leader' => '최홍범 목자 | 최정헌 목우', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '탄자니아목장', 'leader' => '한민성 목자 | 박혜리 목우', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '과달라하라목장', 'leader' => '김미희 목자', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => '팡가웨목장', 'leader' => '진숙영 디렉터', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => 'GST주일학교', 'leader' => '유경아 디렉터', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
-                    ['name' => 'GST유년부', 'leader' => '이명희 디렉터', 'img' => 'https://placehold.co/400x300/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '러시아목장', 'leader' => '김옥진 목자 | 신미옥 목우', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '멕시코목장', 'leader' => '손재용 목자 | 진숙영 목우', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '인도목장', 'leader' => '최홍범 목자 | 최정헌 목우', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '탄자니아목장', 'leader' => '한민성 목자 | 박혜리 목우', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '과달라하라목장', 'leader' => '김미희 목자', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => '팡가웨목장', 'leader' => '진숙영 디렉터', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => 'GST주일학교', 'leader' => '유경아 디렉터', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
+                    ['name' => 'GST유년부', 'leader' => '이명희 디렉터', 'img' => 'https://placehold.co/400x350/f3f4f6/9ca3af?text=Cell+Group'],
                 ];
                 ?>
                 <?php foreach ($cells as $cell): ?>
