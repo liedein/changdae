@@ -153,7 +153,7 @@ $sub = $_GET['sub'] ?? 'vision';
                             <h3 class="text-2xl font-bold text-slate-800 dark:text-white md:w-1/4 flex-shrink-0">
                                 <?= $course['title'] ?>
                             </h3>
-                            <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-2xl md:w-3/4">
+                            <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-xl md:w-3/4">
                                 <?= $course['desc'] ?>
                             </p>
                         </div>
@@ -221,7 +221,7 @@ $sub = $_GET['sub'] ?? 'vision';
 
                         <div class="prose prose-slate dark:prose-invert max-w-none 
                                     prose-headings:font-bold prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300 
-                                    text-base prose-p:text-lg md:prose-p:text-xl">
+                                    text-lg prose-p:text-lg md:prose-p:text-xl">
                             <?= $post['content'] ?>
                         </div>
                     </div>

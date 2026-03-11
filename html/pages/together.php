@@ -8,9 +8,9 @@ $id = $_GET['id'] ?? null;
 <div class="bg-slate-50 dark:bg-slate-900">
     <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
         <div class="text-center mb-16">
-            <span class="inline-block px-3 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Missionaries</span>
+            <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Missionaries</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">파송 및 후원선교사</h2>
-            <div class="w-12 h-1 bg-purple-500 mx-auto mb-8 rounded-full"></div>
+            <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
             <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
                 땅 끝까지 이르러 내 증인이 되리라 하신 주님의 지상명령을 따라 창대교회가 함께 동역하며 후원하는 선교사님들입니다.
             </p>
@@ -31,14 +31,14 @@ $id = $_GET['id'] ?? null;
                 <div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 mb-4 relative">
                     <img src="<?= $missionary['img'] ?>" alt="<?= $missionary['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     <!-- 국가/지역 뱃지 -->
-                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-deepblue dark:text-blue-400 shadow-sm">
+                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-deepindigo dark:text-indigo-400 shadow-sm">
                         <?= $missionary['country'] ?>
                     </div>
                 </div>
                 <h3 class="text-xl font-bold text-charcoal dark:text-white"><?= $missionary['name'] ?></h3>
                 <p class="text-base font-medium text-gray-500 dark:text-gray-400 mb-1"><?= $missionary['org'] ?></p>
                 <div class="mt-2">
-                    <button class="text-base text-deepblue dark:text-blue-400 font-medium hover:underline">기도편지 보기 &rarr;</button>
+                    <button class="text-base text-deepindigo dark:text-indigo-400 font-medium hover:underline">기도편지 보기 &rarr;</button>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -51,9 +51,9 @@ $id = $_GET['id'] ?? null;
 <div class="bg-slate-50 dark:bg-slate-900">
     <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
         <div class="text-center mb-16">
-            <span class="inline-block px-3 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving Neighbors</span>
+            <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving Neighbors</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">이웃섬김</h2>
-            <div class="w-12 h-1 bg-purple-500 mx-auto mb-8 rounded-full"></div>
+            <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
             <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-lg">
                 지역 사회와 함께하는 창대교회의 나눔 사역입니다.
             </p>
@@ -68,9 +68,9 @@ $id = $_GET['id'] ?? null;
 <div class="bg-slate-50 dark:bg-slate-900">
     <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
         <div class="text-center mb-16">
-            <span class="inline-block px-3 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Pastoral Column</span>
+            <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Pastoral Column</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목회칼럼</h2>
-            <div class="w-12 h-1 bg-purple-500 mx-auto mb-8 rounded-full"></div>
+            <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
         </div>
         <?php
         $mode = $_GET['mode'] ?? 'view';
@@ -103,9 +103,9 @@ $id = $_GET['id'] ?? null;
                 <nav class="mt-10 flex flex-col md:flex-row gap-4 justify-between items-center">
                     <div class="w-full md:w-auto">
                         <?php if ($prevPost): ?>
-                            <a href="?page=together&sub=column&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm w-full md:w-auto">
-                                <svg class="w-5 h-5 mr-4 text-slate-400 group-hover:text-blue-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                                <div class="flex flex-col"><span class="text-sm text-blue-500 font-bold uppercase mb-1">이전 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span></div>
+                            <a href="?page=together&sub=column&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-indigo-500 transition-all shadow-sm w-full md:w-auto">
+                                <svg class="w-5 h-5 mr-4 text-slate-400 group-hover:text-indigo-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                <div class="flex flex-col"><span class="text-sm text-indigo-500 font-bold uppercase mb-1">이전 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                             </a>
                         <?php else: ?>
                             <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 w-full md:w-auto"><span class="text-base text-slate-400 font-bold uppercase">이전 칼럼이 없습니다</span></div>
@@ -113,9 +113,9 @@ $id = $_GET['id'] ?? null;
                     </div>
                     <div class="w-full md:w-auto">
                         <?php if ($nextPost): ?>
-                            <a href="?page=together&sub=column&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right w-full md:w-auto">
-                                <div class="flex flex-col items-end"><span class="text-sm text-blue-500 font-bold uppercase mb-1">다음 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span></div>
-                                <svg class="w-5 h-5 ml-4 text-slate-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            <a href="?page=together&sub=column&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-indigo-500 transition-all shadow-sm text-right w-full md:w-auto">
+                                <div class="flex flex-col items-end"><span class="text-sm text-indigo-500 font-bold uppercase mb-1">다음 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span></div>
+                                <svg class="w-5 h-5 ml-4 text-slate-400 group-hover:text-indigo-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                             </a>
                         <?php else: ?>
                             <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right w-full md:w-auto"><span class="text-base text-slate-400 font-bold uppercase">다음 칼럼이 없습니다</span></div>
@@ -170,7 +170,7 @@ $id = $_GET['id'] ?? null;
                         <?php endif; ?>
                     </div>
                     
-                    <a href="?page=together&sub=column" class="px-6 py-2 bg-purple-600 text-white rounded-full text-sm font-bold hover:bg-purple-700 shadow-md transition-colors">최신 칼럼 보기</a>
+                    <a href="?page=together&sub=column" class="px-6 py-2 bg-indigo-600 text-white rounded-full text-sm font-bold hover:bg-indigo-700 shadow-md transition-colors">최신 칼럼 보기</a>
                     
                     <div class="w-24 text-right">
                         <?php if ($total_posts > $page_num * $limit): ?>

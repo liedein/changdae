@@ -182,8 +182,8 @@ elseif ($sub === 'videos'):
                 <div class="w-full md:w-auto flex justify-start">
                     <?php if ($prevPost): ?>
                         <a href="?page=worship&sub=videos&id=<?= $prevPost['id'] ?>" class="w-full md:w-auto group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm max-w-none md:max-w-md">
-                            <svg class="w-6 h-6 mr-4 text-slate-300 group-hover:text-indigo-500 transform group-hover:-translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                            <div class="flex flex-col overflow-hidden"><span class="text-sm text-indigo-500 font-bold uppercase mb-1">이전 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($prevPost['title']) ?></span></div>
+                            <svg class="w-6 h-6 mr-4 text-slate-300 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <div class="flex flex-col overflow-hidden"><span class="text-sm text-red-500 font-bold uppercase mb-1">이전 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                         </a>
                     <?php else: ?>
                         <div class="w-full md:w-auto p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50"><span class="text-base text-slate-400 font-bold uppercase">이전 영상이 없습니다</span></div>
@@ -192,8 +192,8 @@ elseif ($sub === 'videos'):
                 <div class="w-full md:w-auto flex justify-end text-right">
                     <?php if ($nextPost): ?>
                         <a href="?page=worship&sub=videos&id=<?= $nextPost['id'] ?>" class="w-full md:w-auto group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm max-w-none md:max-w-md">
-                            <div class="flex flex-col items-end overflow-hidden"><span class="text-sm text-indigo-500 font-bold uppercase mb-1">다음 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($nextPost['title']) ?></span></div>
-                            <svg class="w-6 h-6 ml-4 text-slate-300 group-hover:text-indigo-500 transform group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            <div class="flex flex-col items-end overflow-hidden"><span class="text-sm text-red-500 font-bold uppercase mb-1">다음 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($nextPost['title']) ?></span></div>
+                            <svg class="w-6 h-6 ml-4 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
                     <?php else: ?>
                         <div class="w-full md:w-auto p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right"><span class="text-base text-slate-400 font-bold uppercase">다음 영상이 없습니다</span></div>
@@ -321,9 +321,9 @@ elseif ($sub === 'bulletin'):
             <nav class="mt-12 flex flex-row gap-4 justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-12 pb-4">
                 <div class="w-1/2 sm:w-auto">
                     <?php if ($prevPost): ?>
-                        <a href="?page=worship&sub=bulletin&id=<?= $prevPost['id'] ?>" class="group flex items-center p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm">
-                            <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-blue-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                            <div class="flex flex-col"><span class="text-sm text-blue-500 font-bold uppercase mb-1">이전 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span></div>
+                        <a href="?page=worship&sub=bulletin&id=<?= $prevPost['id'] ?>" class="group flex items-center p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-red-500 transition-all shadow-sm">
+                            <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <div class="flex flex-col"><span class="text-sm text-red-500 font-bold uppercase mb-1">이전 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                         </a>
                     <?php else: ?>
                         <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50"><span class="text-base text-slate-400 font-bold uppercase">이전 주보가 없습니다</span></div>
@@ -331,9 +331,9 @@ elseif ($sub === 'bulletin'):
                 </div>
                 <div class="w-1/2 sm:w-auto">
                     <?php if ($nextPost): ?>
-                        <a href="?page=worship&sub=bulletin&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right">
-                            <div class="flex flex-col items-end"><span class="text-sm text-blue-500 font-bold uppercase mb-1">다음 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span></div>
-                            <svg class="w-5 h-5 ml-3 text-slate-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <a href="?page=worship&sub=bulletin&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-red-500 transition-all shadow-sm text-right">
+                            <div class="flex flex-col items-end"><span class="text-sm text-red-500 font-bold uppercase mb-1">다음 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span></div>
+                            <svg class="w-5 h-5 ml-3 text-slate-400 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
                     <?php else: ?>
                         <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right"><span class="text-base text-slate-400 font-bold uppercase">다음 주보가 없습니다</span></div>
@@ -375,7 +375,7 @@ elseif ($sub === 'bulletin'):
                     <?php if (count($posts) > 0): foreach ($posts as $post): ?>
                     <li class="group">
                         <a href="?page=worship&sub=bulletin&id=<?= $post['id'] ?>" class="block p-6 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                            <h4 class="font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-xl"><?= htmlspecialchars($post['title']) ?></h4>
+                            <h4 class="font-bold text-slate-800 dark:text-slate-200 group-hover:text-red-600 dark:group-hover:text-red-400 text-xl"><?= htmlspecialchars($post['title']) ?></h4>
                         </a>
                     </li>
                     <?php endforeach; else: ?>
