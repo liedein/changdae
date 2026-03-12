@@ -41,7 +41,7 @@ if ($sub === 'sermon' || $sub === 'worship'):
     }
 ?>
 
-<div class="max-w-5xl mx-auto px-4 py-12 md:py-20">
+<div class="max-w-5xl mx-auto px-4 py-10 md:py-20">
     <div class="text-center mb-10" data-aos="fade-up">
         <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Sunday Worship Service</span>
         <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">
@@ -97,10 +97,6 @@ if ($sub === 'sermon' || $sub === 'worship'):
                         </span>
                     </div>
                 </a>
-            <?php else: ?>
-                <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50">
-                    <span class="text-base text-slate-400 font-bold uppercase">이전 설교가 없습니다</span>
-                </div>
             <?php endif; ?>
         </div>
 
@@ -119,10 +115,6 @@ if ($sub === 'sermon' || $sub === 'worship'):
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </a>
-            <?php else: ?>
-                <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right">
-                    <span class="text-base text-slate-400 font-bold uppercase">다음 설교가 없습니다</span>
-                </div>
             <?php endif; ?>
         </div>
     </nav>
@@ -151,7 +143,7 @@ elseif ($sub === 'videos'):
                 }
             }
 ?>
-        <div class="max-w-5xl mx-auto px-4 py-12 md:py-20">
+        <div class="max-w-5xl mx-auto px-4 py-10 md:py-20">
             <div class="text-center mb-10" data-aos="fade-up">
                 <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Special Videos</span>
                 <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6"><?= htmlspecialchars($post['title']) ?></h1>
@@ -168,7 +160,7 @@ elseif ($sub === 'videos'):
                     </div>
                 </div>
             </div>
-            <div class="mb-12 relative group" data-aos="fade-up" data-aos-delay="100">
+            <div class="mb-8 relative group" data-aos="fade-up" data-aos-delay="100">
                 <div class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-red-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                 <div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border border-slate-200 dark:border-slate-700">
                     <?php if ($youtube_id): ?>
@@ -188,8 +180,6 @@ elseif ($sub === 'videos'):
                             <svg class="w-6 h-6 mr-4 text-slate-300 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                             <div class="flex flex-col overflow-hidden"><span class="text-sm text-red-500 font-bold uppercase mb-1">이전 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                         </a>
-                    <?php else: ?>
-                        <div class="w-full md:w-auto p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50"><span class="text-base text-slate-400 font-bold uppercase">이전 영상이 없습니다</span></div>
                     <?php endif; ?>
                 </div>
                 <div class="w-full md:w-auto flex justify-end text-right">
@@ -198,8 +188,6 @@ elseif ($sub === 'videos'):
                             <div class="flex flex-col items-end overflow-hidden"><span class="text-sm text-red-500 font-bold uppercase mb-1">다음 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($nextPost['title']) ?></span></div>
                             <svg class="w-6 h-6 ml-4 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
-                    <?php else: ?>
-                        <div class="w-full md:w-auto p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right"><span class="text-base text-slate-400 font-bold uppercase">다음 영상이 없습니다</span></div>
                     <?php endif; ?>
                 </div>
             </nav>
@@ -245,7 +233,7 @@ elseif ($sub === 'videos'):
         $stmt->execute($params);
         $posts = $stmt->fetchAll();
 ?>
-    <div class="max-w-5xl mx-auto px-4 py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-4 py-10 md:py-20">
         <div class="text-center mb-10" data-aos="fade-up">
             <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Special Videos</span>
             <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">특별영상</h1>
@@ -307,7 +295,7 @@ elseif ($sub === 'bulletin'):
             $prevPost = $data['prev'];
             $nextPost = $data['next'];
 ?>
-        <div class="max-w-4xl mx-auto px-4 py-12 md:py-20">
+        <div class="max-w-4xl mx-auto px-4 py-10 md:py-20">
             <div class="text-center mb-10" data-aos="fade-up">
                 <span class="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 shadow-sm border border-red-100 dark:border-red-800">Weekly Bulletin</span>
                 <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6"><?= htmlspecialchars($post['title']) ?></h1>
@@ -328,8 +316,6 @@ elseif ($sub === 'bulletin'):
                             <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                             <div class="flex flex-col"><span class="text-sm text-red-500 font-bold uppercase mb-1">이전 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                         </a>
-                    <?php else: ?>
-                        <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50"><span class="text-base text-slate-400 font-bold uppercase">이전 주보가 없습니다</span></div>
                     <?php endif; ?>
                 </div>
                 <div class="w-1/2 sm:w-auto">
@@ -338,8 +324,6 @@ elseif ($sub === 'bulletin'):
                             <div class="flex flex-col items-end"><span class="text-sm text-red-500 font-bold uppercase mb-1">다음 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span></div>
                             <svg class="w-5 h-5 ml-3 text-slate-400 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
-                    <?php else: ?>
-                        <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right"><span class="text-base text-slate-400 font-bold uppercase">다음 주보가 없습니다</span></div>
                     <?php endif; ?>
                 </div>
             </nav>
@@ -368,7 +352,7 @@ elseif ($sub === 'bulletin'):
         $stmt->execute();
         $posts = $stmt->fetchAll();
 ?>
-        <div class="max-w-4xl mx-auto px-4 py-12 md:py-20">
+        <div class="max-w-4xl mx-auto px-4 py-10 md:py-20">
             <div class="text-center mb-10" data-aos="fade-up">
                 <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight mb-6">주보</h1>
                 <div class="w-12 h-1 bg-red-500 mx-auto rounded-full"></div>

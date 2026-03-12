@@ -7,8 +7,8 @@ $id = $_GET['id'] ?? null;
 <?php if ($sub === 'missionary'): ?>
 <!-- 파송 및 후원선교사 -->
 <div class="bg-slate-50 dark:bg-slate-900">
-    <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
-        <div class="text-center mb-12" data-aos="fade-up">
+    <section class="max-w-7xl mx-auto px-4 py-10 md:py-20">
+        <div class="text-center mb-8" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Missionaries</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">파송 및 후원선교사</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -50,8 +50,8 @@ $id = $_GET['id'] ?? null;
 <?php elseif ($sub === 'neighbor'): ?>
 <!-- 이웃섬김 -->
 <div class="bg-slate-50 dark:bg-slate-900">
-    <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
-        <div class="text-center mb-12" data-aos="fade-up">
+    <section class="max-w-7xl mx-auto px-4 py-10 md:py-20">
+        <div class="text-center mb-8" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving Neighbors</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">이웃섬김</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -67,8 +67,8 @@ $id = $_GET['id'] ?? null;
 
 <?php elseif ($sub === 'column'): ?>
 <div class="bg-slate-50 dark:bg-slate-900">
-    <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
-        <div class="text-center mb-12" data-aos="fade-up">
+    <section class="max-w-7xl mx-auto px-4 py-10 md:py-20">
+        <div class="text-center mb-8" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Pastoral Column</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목회칼럼</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -108,8 +108,6 @@ $id = $_GET['id'] ?? null;
                                 <svg class="w-5 h-5 mr-4 text-slate-400 group-hover:text-indigo-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                                 <div class="flex flex-col"><span class="text-sm text-indigo-500 font-bold uppercase mb-1">이전 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                             </a>
-                        <?php else: ?>
-                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 w-full md:w-auto"><span class="text-base text-slate-400 font-bold uppercase">이전 칼럼이 없습니다</span></div>
                         <?php endif; ?>
                     </div>
                     <div class="w-full md:w-auto">
@@ -118,8 +116,6 @@ $id = $_GET['id'] ?? null;
                                 <div class="flex flex-col items-end"><span class="text-sm text-indigo-500 font-bold uppercase mb-1">다음 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span></div>
                                 <svg class="w-5 h-5 ml-4 text-slate-400 group-hover:text-indigo-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                             </a>
-                        <?php else: ?>
-                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right w-full md:w-auto"><span class="text-base text-slate-400 font-bold uppercase">다음 칼럼이 없습니다</span></div>
                         <?php endif; ?>
                     </div>
                 </nav>

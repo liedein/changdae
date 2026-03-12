@@ -1,6 +1,6 @@
 <!-- 환영합니다 -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20">
     <div class="flex flex-col lg:flex-row gap-12">
         <!-- Left Content Section -->
         <div class="lg:w-2/3 order-2 lg:order-1" data-aos="fade-up">

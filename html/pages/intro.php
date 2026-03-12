@@ -5,11 +5,11 @@ $sub = $_GET['sub'] ?? 'vision';
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <?php if ($sub === 'vision'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
-            <div class="text-center mb-12" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-10 md:py-20">
+            <div class="text-center mb-6" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Vision & Philosophy</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">비전과 철학</h2>
-                <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
+                <div class="w-12 h-1 bg-blue-500 mx-auto mb-6 rounded-full"></div>
                 <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     창대교회의 비전과 목회 철학입니다.
                 </p>
@@ -19,11 +19,11 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'staff'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
-            <div class="text-center mb-12" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-10 md:py-20">
+            <div class="text-center mb-6" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving People</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">섬기는 사람들</h2>
-                <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
+                <div class="w-12 h-1 bg-blue-500 mx-auto mb-6 rounded-full"></div>
                 <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     창대교회를 섬기는 분들을 소개합니다.
                 </p>
@@ -56,11 +56,11 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'cell'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
-            <div class="text-center mb-12" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-10 md:py-20">
+            <div class="text-center mb-6" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Cell Groups</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목장</h2>
-                <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
+                <div class="w-12 h-1 bg-blue-500 mx-auto mb-6 rounded-full"></div>
                 <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     성도들이 삶을 나누고 함께 기도하며 사랑을 실천하는 가족 공동체입니다.
                 </p>
@@ -96,14 +96,14 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'study'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-6xl mx-auto px-4 py-12 md:py-20">
+        <section class="max-w-6xl mx-auto px-4 py-10 md:py-20">
             <?php
             // 제목 영역 HTML (모바일/데스크탑 분기 처리를 위해 변수화)
             $studyTitleHtml = '
-            <div class="text-center mb-10 lg:mb-12" data-aos="fade-up">
+            <div class="text-center mb-10 lg:mb-6" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Christian Living Study</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">삶공부</h2>
-                <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
+                <div class="w-12 h-1 bg-blue-500 mx-auto mb-6 rounded-full"></div>
                 <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     지식 위주의 공부에서 벗어나 삶의 변화를 목표로 합니다.<br class="hidden md:block">
                     하나님을 경험하고 성경적인 가치관을 세우는 축복의 통로입니다.
@@ -167,11 +167,11 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'news'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
-            <div class="text-center mb-12" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-10 md:py-20">
+            <div class="text-center mb-6" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Church News</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">교회소식</h2>
-                <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
+                <div class="w-12 h-1 bg-blue-500 mx-auto mb-6 rounded-full"></div>
                 <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     창대교회의 새로운 소식을 전해드립니다.
                 </p>
@@ -206,8 +206,8 @@ $sub = $_GET['sub'] ?? 'vision';
                     </header>
 
                     <div class="p-8 md:p-12">
-                        <div class="prose prose-slate dark:prose-invert max-w-none 
-                                    prose-headings:font-bold prose-p:leading-[2.2] prose-p:mb-8 prose-p:text-slate-600 dark:prose-p:text-slate-300 
+                        <div class="prose prose-slate dark:prose-invert max-w-none font-serif
+                                    prose-headings:font-bold prose-p:leading-[1.6] prose-p:mb-6 prose-p:text-slate-600 dark:prose-p:text-slate-300 
                                     text-xl prose-p:text-xl md:prose-p:text-2xl">
                             <?= $post['content'] ?>
                         </div>
@@ -227,10 +227,6 @@ $sub = $_GET['sub'] ?? 'vision';
                                     <span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span>
                                 </div>
                             </a>
-                        <?php else: ?>
-                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50">
-                                <span class="text-base text-slate-400 font-bold uppercase">이전 소식이 없습니다</span>
-                            </div>
                         <?php endif; ?>
                     </div>
 
@@ -245,10 +241,6 @@ $sub = $_GET['sub'] ?? 'vision';
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
                             </a>
-                        <?php else: ?>
-                            <div class="p-5 bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-700 rounded-xl opacity-50 text-right">
-                                <span class="text-base text-slate-400 font-bold uppercase">다음 소식이 없습니다</span>
-                            </div>
                         <?php endif; ?>
                     </div>
                 </nav>
@@ -280,7 +272,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 $posts = $stmt->fetchAll();
             ?>
                 <div class="max-w-3xl mx-auto">
-                    <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 mb-6" data-aos="fade-up" data-aos-delay="100">
                         <ul class="divide-y divide-slate-100 dark:divide-slate-700">
                             <?php if (count($posts) > 0): $delay = 0; foreach ($posts as $post): ?>
                             <li class="group" data-aos="fade-up" data-aos-delay="<?= $delay * 50 ?>">
@@ -315,11 +307,11 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'location'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
-            <div class="text-center mb-12" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-10 md:py-20">
+            <div class="text-center mb-6" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Location</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">오시는 길</h2>
-                <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
+                <div class="w-12 h-1 bg-blue-500 mx-auto mb-6 rounded-full"></div>
                 <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed text-xl">
                     하나님의 사랑이 머무는 창대교회로 여러분을 초대합니다.
                 </p>
@@ -379,15 +371,12 @@ $sub = $_GET['sub'] ?? 'vision';
     </script>
 
     <style>
-        /* 1. 카카오맵 기본 하단 정보 영역 및 마커 라벨 강제 제거 */
-        .root_daum_roughmap .wrap_controllers,
-        .root_daum_roughmap .roughmap_maker_label,
-        .root_daum_roughmap .hide,
-        .root_daum_roughmap .foot_type1 { display: none !important; }
+        /* 1. 카카오맵 마커 라벨 숨김 (로드뷰, 길찾기 등 하단 메뉴는 표시) */
+        .root_daum_roughmap .roughmap_maker_label { display: none !important; }
         
-        /* 2. 지도 크기 반응형 처리 (부모 컨테이너 비율을 따르도록 100% 설정) */
-        .root_daum_roughmap { width: 100% !important; height: 100% !important; border: none !important; padding: 0 !important; }
-        .root_daum_roughmap .wrap_map { height: 100% !important; border: none !important; }
+        /* 2. 지도 크기 반응형 처리 (FlexBox로 하단 메뉴 공간 자동 확보) */
+        .root_daum_roughmap { width: 100% !important; height: 100% !important; border: none !important; padding: 0 !important; display: flex !important; flex-direction: column !important; }
+        .root_daum_roughmap .wrap_map { flex: 1 !important; height: auto !important; border: none !important; }
     </style>
 <?php else: ?>
     <div class="max-w-7xl mx-auto px-4 py-16 text-center">

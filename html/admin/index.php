@@ -104,8 +104,8 @@ if ($id) {
                         <?php if ($mode === 'update'): ?>
                             <a href="?cat=<?= $category ?>&list_page=<?= $list_page ?>" class="text-sm text-blue-600 hover:underline">+ 새 글 등록하기</a>
                         <?php endif; ?>
-                        <button type="submit" form="post-form" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-bold shadow-md transition-all text-sm">
-                            <?= $mode === 'update' ? '수정 완료' : '등록 완료' ?>
+                        <button type="submit" form="post-form" id="submit-btn" disabled class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-bold shadow-md transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                            <?= $mode === 'update' ? '수정' : '등록' ?>
                         </button>
                     </div>
                 </div>
@@ -122,13 +122,13 @@ if ($id) {
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">게시일자</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">게시일자 <span class="text-red-500">*</span></label>
                             <input type="date" id="date-input" required 
                                 value="<?= date('Y-m-d', strtotime($post['published_at'] ?? date('Y-m-d'))) ?>"
                                 class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">제목</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">제목 <?php if(in_array($category, ['sermon', 'videos'])): ?><span class="text-red-500">*</span><?php endif; ?></label>
                             <input type="text" name="title" required value="<?= htmlspecialchars($post['title'] ?? '') ?>"
                                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                    placeholder="제목을 입력하세요">
@@ -138,17 +138,17 @@ if ($id) {
                     <?php if ($category === 'sermon'): ?>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">성경 본문</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">성경 본문 <span class="text-red-500">*</span></label>
                             <input type="text" name="passage" value="<?= htmlspecialchars($post['passage'] ?? '') ?>"
                                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">설교자</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">설교자 <span class="text-red-500">*</span></label>
                             <input type="text" name="preacher" value="<?= htmlspecialchars($post['preacher'] ?? '김은택 담임목사') ?>"
                                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크 (선택)</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크 <span class="text-red-500">*</span></label>
                             <input type="url" name="youtube_url" value="<?= htmlspecialchars($post['youtube_url'] ?? '') ?>"
                                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                    placeholder="https://youtu.be/...">
@@ -159,7 +159,7 @@ if ($id) {
                     <?php if ($category === 'videos'): ?>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">영상 분류</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">영상 분류 <span class="text-red-500">*</span></label>
                             <select name="video_category" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <?php 
                                 $v_cats = ['간증', '찬양', '행사', '기타'];
@@ -172,7 +172,7 @@ if ($id) {
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">유튜브 링크 <span class="text-red-500">*</span></label>
                             <input type="url" name="youtube_url" value="<?= htmlspecialchars($post['youtube_url'] ?? '') ?>"
                                    class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                    placeholder="https://youtu.be/...">
@@ -182,7 +182,7 @@ if ($id) {
 
                     <?php if ($category === 'bulletin'): ?>
                     <div class="space-y-4">
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 (※ 수정 시에만 드래그로 순서 조정 가능)</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 <span class="text-red-500">*</span> <span class="text-xs font-normal text-slate-500">(※ 수정 시에만 드래그로 순서 조정 가능)</span></label>
                         <input type="file" id="bulletin-upload" name="images[]" multiple accept="image/*"
                             class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors mb-4">
                         
@@ -196,7 +196,7 @@ if ($id) {
                                 <div class="relative cursor-move bg-white p-2 rounded-lg border border-slate-200 shadow-sm group item-existing">
                                     <img src="/uploads/<?= htmlspecialchars($path) ?>" class="h-32 w-auto rounded object-cover">
                                     <input type="hidden" name="existing_images[]" value="<?= htmlspecialchars($img) ?>">
-                                    <button type="button" onclick="this.parentElement.remove()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center shadow-md">×</button>
+                                    <button type="button" onclick="this.parentElement.remove(); checkForm();" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center shadow-md">×</button>
                                 </div>
                             <?php endforeach; endif; ?>
                         </div>
@@ -205,7 +205,7 @@ if ($id) {
 
                     <?php if ($category !== 'bulletin'): ?>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">내용</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">내용 <?php if(in_array($category, ['news', 'column'])): ?><span class="text-red-500">*</span><?php endif; ?></label>
                         <div class="bg-white">
                             <div id="editor-container"><?= $post['content'] ?? '' ?></div>
                             <input type="hidden" name="content" id="content-input">
@@ -259,7 +259,50 @@ if ($id) {
     </div>
 
     <script>
+        // Global function for form validation
+        let checkForm; 
+
         document.addEventListener('DOMContentLoaded', function() {
+            const category = '<?= $category ?>';
+            const submitBtn = document.getElementById('submit-btn');
+            
+            // 유효성 검사 함수
+            checkForm = function() {
+                let isValid = false;
+                const dateVal = document.getElementById('date-input').value.trim();
+
+                if (category === 'news' || category === 'column') {
+                    // 소식, 칼럼: 게시일자, 내용
+                    const contentVal = quill ? quill.getText().trim() : '';
+                    isValid = (dateVal !== '' && contentVal !== '');
+                } else if (category === 'sermon') {
+                    // 예배: 게시일자, 제목, 성경본문, 설교자, 유튜브
+                    const titleVal = document.querySelector('input[name="title"]').value.trim();
+                    const passageVal = document.querySelector('input[name="passage"]').value.trim();
+                    const preacherVal = document.querySelector('input[name="preacher"]').value.trim();
+                    const youtubeVal = document.querySelector('input[name="youtube_url"]').value.trim();
+                    isValid = (dateVal !== '' && titleVal !== '' && passageVal !== '' && preacherVal !== '' && youtubeVal !== '');
+                } else if (category === 'videos') {
+                    // 영상: 게시일자, 제목, 분류, 유튜브
+                    const titleVal = document.querySelector('input[name="title"]').value.trim();
+                    const categoryVal = document.querySelector('select[name="video_category"]').value;
+                    const youtubeVal = document.querySelector('input[name="youtube_url"]').value.trim();
+                    isValid = (dateVal !== '' && titleVal !== '' && categoryVal !== '' && youtubeVal !== '');
+                } else if (category === 'bulletin') {
+                    // 주보: 게시일자, 주보 이미지 (새로 업로드 or 기존 이미지 존재)
+                    const newFiles = document.getElementById('bulletin-upload').files.length;
+                    const existingCount = document.querySelectorAll('input[name="existing_images[]"]').length;
+                    isValid = (dateVal !== '' && (newFiles > 0 || existingCount > 0));
+                }
+
+                submitBtn.disabled = !isValid;
+                if (isValid) {
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                } else {
+                    submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            };
+
             // 1. Quill 에디터 설정 (카테고리가 주보가 아닐 때만)
             <?php if ($category !== 'bulletin'): ?>
             var quill = new Quill('#editor-container', {
@@ -274,6 +317,7 @@ if ($id) {
                 },
                 theme: 'snow'
             });
+            quill.on('text-change', checkForm); // 내용 변경 시 체크
             <?php endif; ?>
 
             // 2. 주보 이미지 정렬 설정
@@ -285,6 +329,7 @@ if ($id) {
             const uploadInput = document.getElementById('bulletin-upload');
             if (uploadInput) {
                 uploadInput.addEventListener('change', function(e) {
+                    checkForm(); // 파일 선택 시 체크
                     const files = Array.from(e.target.files);
                     files.forEach((file) => {
                         const reader = new FileReader();
@@ -294,7 +339,7 @@ if ($id) {
                             div.innerHTML = `
                                 <img src="${event.target.result}" class="h-32 w-auto rounded object-cover">
                                 <span class="absolute top-1 left-1 bg-blue-600 text-white text-[10px] px-1 rounded font-bold">NEW</span>
-                                <button type="button" onclick="this.parentElement.remove()" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">×</button>
+                                <button type="button" onclick="this.parentElement.remove(); checkForm();" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">×</button>
                             `;
                             sortContainer.appendChild(div);
                         };
@@ -303,6 +348,10 @@ if ($id) {
                 });
             }
             <?php endif; ?>
+
+            // 모든 Input, Select 변경 감지
+            document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', checkForm));
+            checkForm(); // 초기 로드 시 한 번 실행
 
             // 3. 폼 제출 통합 처리 (시간 고정 및 에디터 내용 결합)
             const form = document.getElementById('post-form');
