@@ -61,7 +61,22 @@ if ($id) {
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS with Typography Plugin -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
@@ -207,7 +222,7 @@ if ($id) {
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">내용 <?php if(in_array($category, ['news', 'column'])): ?><span class="text-red-500">*</span><?php endif; ?></label>
                         <div class="bg-white">
-                            <div id="editor-container"><?= $post['content'] ?? '' ?></div>
+                            <div id="editor-container" class="prose prose-slate max-w-none font-serif prose-headings:font-bold prose-p:!leading-[1.6] prose-p:mb-8 prose-p:text-slate-600 prose-p:text-xl"><?= $post['content'] ?? '' ?></div>
                             <input type="hidden" name="content" id="content-input">
                         </div>
                     </div>
