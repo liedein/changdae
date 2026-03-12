@@ -207,7 +207,7 @@ $sub = $_GET['sub'] ?? 'vision';
 
                     <div class="p-8 md:p-12">
                         <div class="prose prose-slate dark:prose-invert max-w-none font-serif
-                                    prose-headings:font-bold prose-p:leading-[1.6] prose-p:mb-6 prose-p:text-slate-600 dark:prose-p:text-slate-300 
+                                    prose-headings:font-bold prose-p:leading-[1.6] prose-p:mb-8 prose-p:text-slate-600 dark:prose-p:text-slate-300 
                                     text-xl prose-p:text-xl md:prose-p:text-2xl">
                             <?= $post['content'] ?>
                         </div>
