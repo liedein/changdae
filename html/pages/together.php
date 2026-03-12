@@ -7,8 +7,8 @@ $id = $_GET['id'] ?? null;
 <?php if ($sub === 'missionary'): ?>
 <!-- 파송 및 후원선교사 -->
 <div class="bg-slate-50 dark:bg-slate-900">
-    <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-        <div class="text-center mb-16" data-aos="fade-up">
+    <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+        <div class="text-center mb-12" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Missionaries</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">파송 및 후원선교사</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -50,8 +50,8 @@ $id = $_GET['id'] ?? null;
 <?php elseif ($sub === 'neighbor'): ?>
 <!-- 이웃섬김 -->
 <div class="bg-slate-50 dark:bg-slate-900">
-    <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-        <div class="text-center mb-16" data-aos="fade-up">
+    <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+        <div class="text-center mb-12" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving Neighbors</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">이웃섬김</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -59,7 +59,7 @@ $id = $_GET['id'] ?? null;
                 지역 사회와 함께하는 창대교회의 나눔 사역입니다.
             </p>
         </div>
-        <div class="text-center py-20" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-center py-16" data-aos="fade-up" data-aos-delay="100">
             <p class="text-gray-600 dark:text-gray-400">준비 중인 페이지입니다.</p>
         </div>
     </section>
@@ -67,8 +67,8 @@ $id = $_GET['id'] ?? null;
 
 <?php elseif ($sub === 'column'): ?>
 <div class="bg-slate-50 dark:bg-slate-900">
-    <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-        <div class="text-center mb-16" data-aos="fade-up">
+    <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+        <div class="text-center mb-12" data-aos="fade-up">
             <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Pastoral Column</span>
             <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목회칼럼</h2>
             <div class="w-12 h-1 bg-indigo-500 mx-auto mb-8 rounded-full"></div>
@@ -186,7 +186,7 @@ $id = $_GET['id'] ?? null;
 
 <?php else: ?>
 <!-- 기본 페이지 -->
-<div class="max-w-7xl mx-auto px-4 py-20 text-center">
+<div class="max-w-7xl mx-auto px-4 py-16 text-center">
     <h2 class="text-2xl font-bold mb-4">준비 중입니다</h2>
     <p class="text-gray-600">해당 페이지를 준비하고 있습니다.</p>
 </div>

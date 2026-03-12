@@ -5,8 +5,8 @@ $sub = $_GET['sub'] ?? 'vision';
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <?php if ($sub === 'vision'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+            <div class="text-center mb-12" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Vision & Philosophy</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">비전과 철학</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -19,8 +19,8 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'staff'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+            <div class="text-center mb-12" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Serving People</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">섬기는 사람들</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -56,8 +56,8 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'cell'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+            <div class="text-center mb-12" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Cell Groups</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">목장</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -96,11 +96,11 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'study'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+        <section class="max-w-6xl mx-auto px-4 py-12 md:py-20">
             <?php
             // 제목 영역 HTML (모바일/데스크탑 분기 처리를 위해 변수화)
             $studyTitleHtml = '
-            <div class="text-center mb-12 lg:mb-16" data-aos="fade-up">
+            <div class="text-center mb-10 lg:mb-12" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Christian Living Study</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">삶공부</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -167,8 +167,8 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'news'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+            <div class="text-center mb-12" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Church News</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">교회소식</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -315,8 +315,8 @@ $sub = $_GET['sub'] ?? 'vision';
     </div>
 <?php elseif ($sub === 'location'): ?>
     <div class="bg-slate-50 dark:bg-slate-900">
-        <section class="max-w-7xl mx-auto px-4 py-16 md:py-24">
-            <div class="text-center mb-16" data-aos="fade-up">
+        <section class="max-w-7xl mx-auto px-4 py-12 md:py-20">
+            <div class="text-center mb-12" data-aos="fade-up">
                 <span class="inline-block px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold tracking-widest uppercase text-xs rounded-full mb-4">Location</span>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 dark:text-white mb-6">오시는 길</h2>
                 <div class="w-12 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
@@ -390,7 +390,7 @@ $sub = $_GET['sub'] ?? 'vision';
         .root_daum_roughmap .wrap_map { height: 100% !important; border: none !important; }
     </style>
 <?php else: ?>
-    <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+    <div class="max-w-7xl mx-auto px-4 py-16 text-center">
         <p class="text-gray-600">페이지를 찾을 수 없습니다.</p>
     </div>
 <?php endif; ?>

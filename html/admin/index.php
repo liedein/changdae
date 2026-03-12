@@ -19,8 +19,21 @@ if (!array_key_exists($category, $category_map)) {
 
 $table = $category;
 
-// 1. 목록 조회 (우측 사이드바용)
-$stmt = $pdo->prepare("SELECT * FROM `{$table}` ORDER BY published_at DESC");
+// 1. 목록 조회 (우측 사이드바용 - 페이지네이션 적용)
+$list_page = isset($_GET['list_page']) ? max(1, intval($_GET['list_page'])) : 1;
+$list_limit = 10;
+$list_offset = ($list_page - 1) * $list_limit;
+
+// 전체 개수 조회
+$countStmt = $pdo->prepare("SELECT COUNT(*) FROM `{$table}`");
+$countStmt->execute();
+$total_list_count = $countStmt->fetchColumn();
+$total_pages = ceil($total_list_count / $list_limit);
+
+// 목록 조회 (10개씩)
+$stmt = $pdo->prepare("SELECT * FROM `{$table}` ORDER BY published_at DESC LIMIT :limit OFFSET :offset");
+$stmt->bindValue(':limit', $list_limit, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $list_offset, PDO::PARAM_INT);
 $stmt->execute();
 $posts = $stmt->fetchAll();
 
@@ -53,7 +66,7 @@ if ($id) {
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <style>
-        .ql-editor { min-height: 400px; font-size: 16px; background-color: #ffffff; color: #334155; }
+        .ql-editor { min-height: 320px; font-size: 16px; background-color: #ffffff; color: #334155; }
         .ql-toolbar.ql-snow { background: #f8fafc; border-color: #e2e8f0; border-top-left-radius: 8px; border-top-right-radius: 8px; }
         .ql-container.ql-snow { border-color: #e2e8f0; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
     </style>
@@ -81,17 +94,24 @@ if ($id) {
 
     <div class="flex flex-1 overflow-hidden">
         <main class="flex-1 overflow-y-auto p-6 bg-slate-50">
-            <div class="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl shadow-sm p-8">
-                <div class="flex justify-between items-center mb-6 border-b pb-4">
+            <div class="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+                <!-- Sticky Header & Button Moved Here -->
+                <div class="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-slate-100 px-6 py-4 flex justify-between items-center">
                     <h2 class="text-xl font-bold text-gray-800">
                         <?= $category_map[$category] ?> <?= $mode === 'update' ? '수정' : '등록' ?>
                     </h2>
-                    <?php if ($mode === 'update'): ?>
-                        <a href="?cat=<?= $category ?>" class="text-sm text-blue-600 hover:underline">+ 새 글 등록하기</a>
-                    <?php endif; ?>
+                    <div class="flex items-center gap-4">
+                        <?php if ($mode === 'update'): ?>
+                            <a href="?cat=<?= $category ?>&list_page=<?= $list_page ?>" class="text-sm text-blue-600 hover:underline">+ 새 글 등록하기</a>
+                        <?php endif; ?>
+                        <button type="submit" form="post-form" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-bold shadow-md transition-all text-sm">
+                            <?= $mode === 'update' ? '수정 완료' : '등록 완료' ?>
+                        </button>
+                    </div>
                 </div>
 
-                <form action="process.php" method="POST" enctype="multipart/form-data" class="space-y-6" id="post-form">
+                <div class="p-6">
+                <form action="process.php" method="POST" enctype="multipart/form-data" class="space-y-5" id="post-form">
                     <input type="hidden" name="mode" value="<?= $mode ?>">
                     <input type="hidden" name="category" value="<?= $category ?>">
                     <input type="hidden" name="published_at" id="final-published-at">
@@ -100,7 +120,7 @@ if ($id) {
                         <input type="hidden" name="id" value="<?= $post['id'] ?>">
                     <?php endif; ?>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">게시일자</label>
                             <input type="date" id="date-input" required 
@@ -116,7 +136,7 @@ if ($id) {
                     </div>
 
                     <?php if ($category === 'sermon'): ?>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">성경 본문</label>
                             <input type="text" name="passage" value="<?= htmlspecialchars($post['passage'] ?? '') ?>"
@@ -137,7 +157,7 @@ if ($id) {
                     <?php endif; ?>
 
                     <?php if ($category === 'videos'): ?>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">영상 분류</label>
                             <select name="video_category" class="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -162,7 +182,7 @@ if ($id) {
 
                     <?php if ($category === 'bulletin'): ?>
                     <div class="space-y-4">
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 (드래그로 순서 조정)</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">주보 이미지 (※ 수정 시에만 드래그로 순서 조정 가능)</label>
                         <input type="file" id="bulletin-upload" name="images[]" multiple accept="image/*"
                             class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors mb-4">
                         
@@ -170,7 +190,7 @@ if ($id) {
                             <?php 
                             if ($mode === 'update' && !empty($post['image_files'])):
                                 $imgs = json_decode($post['image_files'], true);
-                                foreach ($imgs as $img): 
+                                if (is_array($imgs)) foreach ($imgs as $img): 
                                     $path = (strpos($img, 'bulletins/') === false ? 'bulletins/'.$img : $img);
                             ?>
                                 <div class="relative cursor-move bg-white p-2 rounded-lg border border-slate-200 shadow-sm group item-existing">
@@ -193,25 +213,29 @@ if ($id) {
                     </div>
                     <?php endif; ?>
 
-                    <div class="flex justify-end pt-4">
-                        <button type="submit" class="px-8 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-bold shadow-lg transition-all">
-                            <?= $mode === 'update' ? '수정 완료' : '등록 완료' ?>
-                        </button>
-                    </div>
+                    <!-- Bottom Button Removed (Moved to Header) -->
                 </form>
+                </div>
             </div>
         </main>
 
         <aside class="w-80 bg-white border-l border-slate-200 flex-shrink-0 flex flex-col shadow-inner">
             <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
-                <h3 class="font-bold text-slate-500 uppercase tracking-wider text-xs">목록 (<?= count($posts) ?>)</h3>
-                <a href="?cat=<?= $category ?>" class="text-xs text-blue-500 hover:text-blue-700 font-bold transition-colors">새로고침</a>
+                <h3 class="font-bold text-slate-500 uppercase tracking-wider text-xs">목록 (<?= $total_list_count ?>)</h3>
+                <div class="flex items-center gap-1">
+                    <?php if ($list_page > 1): ?>
+                        <a href="?cat=<?= $category ?>&id=<?= $id ?>&list_page=<?= $list_page - 1 ?>" class="px-2 py-0.5 bg-white border border-slate-300 rounded text-xs font-bold text-slate-600 hover:bg-slate-50">이전</a>
+                    <?php endif; ?>
+                    <?php if ($list_page < $total_pages): ?>
+                        <a href="?cat=<?= $category ?>&id=<?= $id ?>&list_page=<?= $list_page + 1 ?>" class="px-2 py-0.5 bg-white border border-slate-300 rounded text-xs font-bold text-slate-600 hover:bg-slate-50">다음</a>
+                    <?php endif; ?>
+                </div>
             </div>
             <div class="flex-1 overflow-y-auto p-2 space-y-2">
                 <?php if (count($posts) > 0): ?>
                     <?php foreach ($posts as $item): ?>
                     <div class="group flex items-center justify-between p-3 rounded-md hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-all <?= ($id == $item['id']) ? 'bg-blue-50 border-blue-200' : '' ?>">
-                        <a href="?cat=<?= $category ?>&id=<?= $item['id'] ?>" class="flex-1 min-w-0">
+                        <a href="?cat=<?= $category ?>&id=<?= $item['id'] ?>&list_page=<?= $list_page ?>" class="flex-1 min-w-0">
                             <div class="text-xs text-gray-500 mb-0.5"><?= date('Y-m-d', strtotime($item['published_at'])) ?></div>
                             <div class="text-sm font-medium text-gray-900 truncate"><?= htmlspecialchars($item['title']) ?></div>
                         </a>
