@@ -149,7 +149,7 @@ $pcMenuStyles = [
     <!-- Menu Drawer (3/4 Width) -->
     <div class="relative w-3/4 h-full bg-slate-50 dark:bg-slate-900 shadow-2xl overflow-y-auto flex flex-col transition-transform duration-300">
         <!-- Background Logo (Inside Drawer, Left Center) -->
-        <img src="/assets/img/gosin_logo.png" alt="Gosin Logo" class="absolute left-0 top-1/2 -translate-y-1/2 h-[400px] object-contain opacity-10 dark:opacity-20 dark:invert pointer-events-none z-0">
+        <img src="/assets/img/gosin_logo.png" alt="Gosin Logo" class="absolute left-0 top-1/2 -translate-y-1/2 h-[350px] object-contain opacity-10 dark:opacity-20 dark:invert pointer-events-none z-0">
 
         <button id="mobile-menu-close" class="absolute top-6 right-6 z-50 p-2 border border-slate-300 dark:border-slate-600 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
