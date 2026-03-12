@@ -96,7 +96,7 @@ $id = $_GET['id'] ?? null;
                         <time class="text-slate-400 dark:text-slate-500 text-base font-medium"><?= date('Y년 m월 d일', strtotime($post['published_at'])) ?></time>
                     </header>
                     <div class="p-8 md:p-12">
-                        <div class="prose prose-slate dark:prose-invert max-w-none prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:mb-6 text-lg md:text-lg font-serif"><?= $post['content'] ?></div>
+                        <div class="prose prose-slate dark:prose-invert max-w-none prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:mb-2 text-lg md:text-xl font-serif"><?= $post['content'] ?></div>
                     </div>
                 </article>
 
