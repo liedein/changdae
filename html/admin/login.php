@@ -13,7 +13,7 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
     <title>관리자 로그인 - 창대교회</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 flex items-center justify-center h-screen">
+<body class="bg-slate-400 flex items-center justify-center h-screen">
     <div class="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md border border-slate-100">
         <div class="text-center mb-10">
             <div class="inline-block p-3 rounded-full bg-blue-50 mb-4">

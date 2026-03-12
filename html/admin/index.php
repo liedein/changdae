@@ -93,7 +93,7 @@ if ($id) {
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-        <main class="flex-1 overflow-y-auto p-6 bg-slate-50">
+        <main class="flex-1 overflow-y-auto p-6 bg-slate-400">
             <div class="max-w-4xl mx-auto bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
                 <!-- Sticky Header & Button Moved Here -->
                 <div class="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-slate-100 px-6 py-4 flex justify-between items-center">
@@ -219,22 +219,22 @@ if ($id) {
             </div>
         </main>
 
-        <aside class="w-80 bg-white border-l border-slate-200 flex-shrink-0 flex flex-col shadow-inner">
-            <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+        <aside class="w-80 bg-gray-100 border-l border-slate-200 flex-shrink-0 flex flex-col shadow-inner">
+            <div class="p-4 border-b border-slate-200 bg-gray-200 flex justify-between items-center">
                 <h3 class="font-bold text-slate-500 uppercase tracking-wider text-xs">목록 (<?= $total_list_count ?>)</h3>
                 <div class="flex items-center gap-1">
                     <?php if ($list_page > 1): ?>
-                        <a href="?cat=<?= $category ?>&id=<?= $id ?>&list_page=<?= $list_page - 1 ?>" class="px-2 py-0.5 bg-white border border-slate-300 rounded text-xs font-bold text-slate-600 hover:bg-slate-50">이전</a>
+                        <a href="?cat=<?= $category ?>&id=<?= $id ?>&list_page=<?= $list_page - 1 ?>" class="px-2 py-0.5 bg-slate-700 border border-slate-700 rounded text-xs font-bold text-white hover:bg-slate-800">이전</a>
                     <?php endif; ?>
                     <?php if ($list_page < $total_pages): ?>
-                        <a href="?cat=<?= $category ?>&id=<?= $id ?>&list_page=<?= $list_page + 1 ?>" class="px-2 py-0.5 bg-white border border-slate-300 rounded text-xs font-bold text-slate-600 hover:bg-slate-50">다음</a>
+                        <a href="?cat=<?= $category ?>&id=<?= $id ?>&list_page=<?= $list_page + 1 ?>" class="px-2 py-0.5 bg-slate-700 border border-slate-700 rounded text-xs font-bold text-white hover:bg-slate-800">다음</a>
                     <?php endif; ?>
                 </div>
             </div>
             <div class="flex-1 overflow-y-auto p-2 space-y-2">
                 <?php if (count($posts) > 0): ?>
                     <?php foreach ($posts as $item): ?>
-                    <div class="group flex items-center justify-between p-3 rounded-md hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-all <?= ($id == $item['id']) ? 'bg-blue-50 border-blue-200' : '' ?>">
+                    <div class="group flex items-center justify-between p-3 rounded-md bg-white hover:bg-white border border-transparent hover:border-gray-300 shadow-sm transition-all <?= ($id == $item['id']) ? '!bg-blue-50 !border-blue-200' : '' ?>">
                         <a href="?cat=<?= $category ?>&id=<?= $item['id'] ?>&list_page=<?= $list_page ?>" class="flex-1 min-w-0">
                             <div class="text-xs text-gray-500 mb-0.5"><?= date('Y-m-d', strtotime($item['published_at'])) ?></div>
                             <div class="text-sm font-medium text-gray-900 truncate"><?= htmlspecialchars($item['title']) ?></div>
@@ -243,7 +243,7 @@ if ($id) {
                             <input type="hidden" name="mode" value="delete">
                             <input type="hidden" name="id" value="<?= $item['id'] ?>">
                             <input type="hidden" name="category" value="<?= $category ?>">
-                            <button type="submit" class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-full transition-colors" title="삭제">
+                            <button type="submit" class="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-100 rounded-full transition-colors" title="삭제">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
