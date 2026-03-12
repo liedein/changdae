@@ -25,7 +25,7 @@ if (!in_array($page, $allowed_pages)) {
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
 
     <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
