@@ -91,12 +91,12 @@ $id = $_GET['id'] ?? null;
         ?>
             <div class="max-w-3xl mx-auto">
                 <article class="bg-white dark:bg-slate-800 shadow-sm sm:shadow-md sm:rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700" data-aos="fade-up" data-aos-delay="100">
-                    <header class="p-8 md:p-12 border-b border-slate-100 dark:border-slate-700 text-center">
+                    <header class="p-6 md:p-10 border-b border-slate-100 dark:border-slate-700 text-center">
                         <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white leading-snug mb-4"><?= htmlspecialchars($post['title']) ?></h1>
                         <time class="text-slate-400 dark:text-slate-500 text-base font-medium"><?= date('Y년 m월 d일', strtotime($post['published_at'])) ?></time>
                     </header>
-                    <div class="p-8 md:p-12">
-                        <div class="prose prose-slate dark:prose-invert max-w-none prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300 text-lg md:text-xl font-serif"><?= $post['content'] ?></div>
+                    <div class="p-6 md:p-10">
+                        <div class="prose prose-slate dark:prose-invert max-w-none prose-p:leading-relaxed prose-p:text-slate-600 dark:prose-p:text-slate-300 text-lg md:text-xl font-serif"><?= $post['content'] ?></div>
                     </div>
                 </article>
 
