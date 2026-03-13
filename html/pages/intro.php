@@ -325,7 +325,7 @@ $sub = $_GET['sub'] ?? 'vision';
                     <a href="https://map.kakao.com" target="_blank">
                         <img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" alt="카카오맵" class="h-3.5 w-auto">
                     </a>
-                    <div class="flex items-center text-xs text-gray-600 tracking-tighter font-sans">
+                    <div class="flex items-center text-sm text-gray-600 tracking-tighter font-sans">
                         <a href="https://map.kakao.com/?from=roughmap&q=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&rv=on" target="_blank" class="hover:underline">로드뷰</a>
                         <span class="mx-2 h-2.5 w-px bg-gray-300"></span>
                         <a href="https://map.kakao.com/?from=roughmap&eName=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&eX=463720.62500000146&eY=1145750.625" target="_blank" class="hover:underline font-bold text-black">길찾기</a>
