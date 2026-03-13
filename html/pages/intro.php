@@ -319,13 +319,13 @@ $sub = $_GET['sub'] ?? 'vision';
             </div>
 
             <div class="map-wrapper flex flex-col w-full h-[400px] mb-10 shadow-lg" data-aos="fade-up" data-aos-delay="100">
-                <div id="daumRoughmapContainer1773408280918" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                <div id="daumRoughmapContainer1773408280918" class="root_daum_roughmap root_daum_roughmap_landing w-full grow"></div>
 
-                <div class="bg-[#F9F9F9] border-t border-gray-200 px-3 py-2 flex justify-between items-center shrink-0 h-[32px] z-10">
+                <div class="bg-[#F9F9F9] border-t border-gray-200 px-3 py-2 flex justify-between items-center shrink-0 h-[36px] z-10">
                     <a href="https://map.kakao.com" target="_blank">
                         <img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" alt="카카오맵" class="h-3.5 w-auto">
                     </a>
-                    <div class="flex items-center text-xs text-gray-600 tracking-tighter font-sans">
+                    <div class="flex items-center text-sm text-gray-600 tracking-tighter font-sans">
                         <a href="https://map.kakao.com/?from=roughmap&q=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&rv=on" target="_blank" class="hover:underline">로드뷰</a>
                         <span class="mx-2 h-2.5 w-px bg-gray-300"></span>
                         <a href="https://map.kakao.com/?from=roughmap&eName=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&eX=463720.62500000146&eY=1145750.625" target="_blank" class="hover:underline font-bold text-black">길찾기</a>
@@ -386,11 +386,18 @@ $sub = $_GET['sub'] ?? 'vision';
             "timestamp" : "1773408280918",
             "key" : "j8yax6qhh68",
             "mapWidth" : "100%",
-            "mapHeight" : "368"
+            "mapHeight" : ""
         }).render();
     </script>
 
     <style>
+        /* 1. 카카오 약도 내부 컨테이너들이 부모 높이를 따라가도록 설정 */
+        .root_daum_roughmap, 
+        .root_daum_roughmap .wrap_map {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
         /* 카카오 약도 기본 정보창(주소, 전화번호) 숨기기 */
         .root_daum_roughmap .wrap_infos {
             display: none !important;
