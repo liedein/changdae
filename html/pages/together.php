@@ -96,7 +96,7 @@ $id = $_GET['id'] ?? null;
                         <time class="text-slate-400 dark:text-slate-500 text-base font-medium"><?= date('Y년 m월 d일', strtotime($post['published_at'])) ?></time>
                     </header>
                     <div class="p-8 md:p-12">
-                        <div class="prose prose-slate dark:prose-invert max-w-none prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:mb-2 text-lg md:text-xl font-serif"><?= $post['content'] ?></div>
+                        <div class="prose prose-slate dark:prose-invert max-w-none prose-p:leading-loose prose-p:text-slate-600 dark:prose-p:text-slate-300 text-lg md:text-xl font-serif"><?= $post['content'] ?></div>
                     </div>
                 </article>
 
@@ -112,7 +112,7 @@ $id = $_GET['id'] ?? null;
                     </div>
                     <div class="w-full md:w-auto">
                         <?php if ($nextPost): ?>
-                            <a href="?page=together&sub=column&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-indigo-500 transition-all shadow-sm text-right w-full md:w-auto">
+                            <a href="?page=together&sub=column&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-end p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-indigo-500 transition-all shadow-sm text-right w-full md:w-auto">
                                 <div class="flex flex-col items-end"><span class="text-sm text-indigo-500 font-bold uppercase mb-1">다음 칼럼</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span></div>
                                 <svg class="w-5 h-5 ml-4 text-slate-400 group-hover:text-indigo-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                             </a>

@@ -74,8 +74,8 @@ if ($post && !empty($post['youtube_url'])) {
 <?php // --- 최신 설교 영상 섹션 (상단 선 제거 및 기존 너비 유지) --- ?>
 <section class="py-20 bg-white dark:bg-[#1a1a1a] transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-6"> <div class="flex flex-col md:flex-row justify-between items-baseline mb-10 border-b-4 border-black dark:border-[#FFD400] pb-6" data-aos="fade-up">
-            <h2 class="text-6xl md:text-8xl font-black text-black dark:text-[#FFD400] tracking-tighter italic uppercase">Sunday</h2>
-            <p class="text-xl font-bold text-black dark:text-white mt-4 md:mt-0 uppercase tracking-widest">Worship Service</p>
+            <h2 class="text-6xl md:text-8xl font-black text-black dark:text-[#FFD400] tracking-tighter italic uppercase">금주의 말씀</h2>
+            <p class="text-xl font-bold text-black dark:text-white mt-4 md:mt-0 uppercase tracking-widest">Sunday Worship Service</p>
         </div>
 
         <?php if ($post): ?>
@@ -91,15 +91,15 @@ if ($post && !empty($post['youtube_url'])) {
                 <div class="mt-10 grid grid-cols-1 md:grid-cols-3 border-t-2 border-l-2 border-black dark:border-[#FFD400]">
                     <div class="p-8 border-r-2 border-b-2 border-black dark:border-[#FFD400] bg-white dark:bg-[#262626]">
                         <span class="block text-sm font-black uppercase mb-2 text-gray-400">Subject</span>
-                        <h3 class="text-3xl font-black text-black dark:text-white leading-none"><?= htmlspecialchars($post['title']) ?></h3>
+                        <h3 class="text-2xl font-black text-black dark:text-white leading-none"><?= htmlspecialchars($post['title']) ?></h3>
                     </div>
                     <div class="p-8 border-r-2 border-b-2 border-black dark:border-[#FFD400] bg-white dark:bg-[#262626]">
                         <span class="block text-sm font-black uppercase mb-2 text-gray-400">Passage</span>
-                        <p class="text-2xl font-bold text-black dark:text-white italic leading-none"><?= htmlspecialchars($post['passage']) ?></p>
+                        <p class="text-2xl font-bold text-black dark:text-white leading-none"><?= htmlspecialchars($post['passage']) ?></p>
                     </div>
                     <div class="p-8 border-r-2 border-b-2 border-black dark:border-[#FFD400] bg-white dark:bg-[#262626]">
                         <span class="block text-sm font-black uppercase mb-2 text-gray-400">Preacher</span>
-                        <p class="text-2xl font-bold text-black dark:text-white italic leading-none"><?= htmlspecialchars($post['preacher']) ?></p>
+                        <p class="text-2xl font-bold text-black dark:text-white leading-none"><?= htmlspecialchars($post['preacher']) ?></p>
                     </div>
                 </div>
 
