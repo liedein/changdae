@@ -318,20 +318,18 @@ $sub = $_GET['sub'] ?? 'vision';
                 </p>
             </div>
 
-            <div class="mb-10 shadow-lg rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white aspect-square md:aspect-auto md:h-[450px] flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                <!-- 일반지도 영역 -->
-                <div id="daumRoughmapContainer1773408280918" class="root_daum_roughmap root_daum_roughmap_landing w-full grow" style="width:100% !important;"></div>
-                
-                <!-- 이미지 지도의 하단 디자인 차용 (로드뷰, 길찾기, 크게보기) -->
-                <div class="bg-[#F9F9F9] border-t border-gray-200 px-3 py-2 flex justify-between items-center shrink-0 h-[32px]">
+            <div class="map-wrapper flex flex-col w-full h-[400px] mb-10 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                <div id="daumRoughmapContainer1773408280918" class="root_daum_roughmap root_daum_roughmap_landing w-full grow"></div>
+
+                <div class="bg-[#F9F9F9] border-t border-gray-200 px-3 py-2 flex justify-between items-center shrink-0 h-[32px] z-10">
                     <a href="https://map.kakao.com" target="_blank">
-                        <img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" alt="카카오맵" class="h-4 w-auto">
+                        <img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" alt="카카오맵" class="h-3.5 w-auto">
                     </a>
-                    <div class="flex items-center text-[11px] text-black tracking-tighter">
+                    <div class="flex items-center text-[11px] text-gray-600 tracking-tighter font-sans">
                         <a href="https://map.kakao.com/?from=roughmap&q=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&rv=on" target="_blank" class="hover:underline">로드뷰</a>
-                        <span class="mx-2 h-2.5 w-px bg-[#d0d0d0]"></span>
-                        <a href="https://map.kakao.com/?from=roughmap&eName=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&eX=463720.62500000146&eY=1145750.625" target="_blank" class="hover:underline">길찾기</a>
-                        <span class="mx-2 h-2.5 w-px bg-[#d0d0d0]"></span>
+                        <span class="mx-2 h-2.5 w-px bg-gray-300"></span>
+                        <a href="https://map.kakao.com/?from=roughmap&eName=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&eX=463720.62500000146&eY=1145750.625" target="_blank" class="hover:underline font-bold text-black">길찾기</a>
+                        <span class="mx-2 h-2.5 w-px bg-gray-300"></span>
                         <a href="https://map.kakao.com/?urlX=463720.62500000146&urlY=1145750.625&name=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&map_type=TYPE_MAP&from=roughmap" target="_blank" class="hover:underline">지도 크게 보기</a>
                     </div>
                 </div>
@@ -382,17 +380,32 @@ $sub = $_GET['sub'] ?? 'vision';
             "timestamp" : "1773408280918",
             "key" : "j8yax6qhh68",
             "mapWidth" : "100%",
-            "mapHeight" : "450"
+            "mapHeight" : "368"
         }).render();
     </script>
 
     <style>
-        /* 1. 카카오맵 마커 라벨 숨김 (로드뷰, 길찾기 등 하단 메뉴는 표시) */
-        .root_daum_roughmap .roughmap_maker_label { display: none !important; }
+        /* 카카오 약도 기본 정보창(주소, 전화번호) 숨기기 */
+        .root_daum_roughmap .wrap_infos {
+            display: none !important;
+        }
         
-        /* 2. 지도 크기 반응형 처리 (FlexBox로 하단 메뉴 공간 자동 확보) */
-        .root_daum_roughmap { width: 100% !important; height: auto !important; flex-grow: 1 !important; border: none !important; padding: 0 !important; display: flex !important; flex-direction: column !important; }
-        .root_daum_roughmap .wrap_map { flex: 1 !important; height: auto !important; border: none !important; }
+        /* 약도 기본 테두리 제거 및 커스텀 디자인 통합 */
+        .root_daum_roughmap {
+            border: none !important;
+            width: 100% !important;
+        }
+        
+        .root_daum_roughmap .wrap_map {
+            height: 100% !important;
+        }
+
+        /* 지도 컨테이너 둥근 모서리 적용 */
+        .map-wrapper {
+            overflow: hidden;
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.5rem; /* rounded-lg */
+        }
     </style>
 <?php else: ?>
     <div class="max-w-7xl mx-auto px-4 py-16 text-center">
