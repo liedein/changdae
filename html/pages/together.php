@@ -162,16 +162,16 @@ $id = $_GET['id'] ?? null;
 
                 <div class="mt-8 flex items-center justify-between">
                     <div class="w-24">
-                        <?php if ($page_num > 1): ?>
-                            <a href="?page=together&sub=column&mode=list&page_num=<?= $page_num - 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">이전</a>
+                        <?php if ($total_posts > $page_num * $limit): ?>
+                            <a href="?page=together&sub=column&mode=list&page_num=<?= $page_num + 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">이전</a>
                         <?php endif; ?>
                     </div>
                     
                     <a href="?page=together&sub=column" class="px-6 py-2 bg-indigo-600 text-white rounded-full text-sm font-bold hover:bg-indigo-700 shadow-md transition-colors">최신 칼럼 보기</a>
                     
                     <div class="w-24 text-right">
-                        <?php if ($total_posts > $page_num * $limit): ?>
-                            <a href="?page=together&sub=column&mode=list&page_num=<?= $page_num + 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">다음</a>
+                        <?php if ($page_num > 1): ?>
+                            <a href="?page=together&sub=column&mode=list&page_num=<?= $page_num - 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">다음</a>
                         <?php endif; ?>
                     </div>
                 </div>

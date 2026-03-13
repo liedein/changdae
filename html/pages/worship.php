@@ -263,16 +263,16 @@ elseif ($sub === 'videos'):
         
         <div class="mt-8 flex items-center justify-between">
             <div class="w-24">
-                <?php if ($page_num > 1): ?>
-                    <a href="?page=worship&sub=videos&mode=list&v_cat=<?= urlencode($v_cat_filter) ?>&page_num=<?= $page_num - 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">이전</a>
+                <?php if ($total_posts > $page_num * $limit): ?>
+                    <a href="?page=worship&sub=videos&mode=list&v_cat=<?= urlencode($v_cat_filter) ?>&page_num=<?= $page_num + 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">이전</a>
                 <?php endif; ?>
             </div>
             
             <a href="?page=worship&sub=videos" class="px-6 py-2 bg-red-500 text-white rounded-full text-sm font-bold hover:bg-red-600 shadow-md transition-colors">최신 영상 보기</a>
             
             <div class="w-24 text-right">
-                <?php if ($total_posts > $page_num * $limit): ?>
-                    <a href="?page=worship&sub=videos&mode=list&v_cat=<?= urlencode($v_cat_filter) ?>&page_num=<?= $page_num + 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">다음</a>
+                <?php if ($page_num > 1): ?>
+                    <a href="?page=worship&sub=videos&mode=list&v_cat=<?= urlencode($v_cat_filter) ?>&page_num=<?= $page_num - 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">다음</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -381,16 +381,16 @@ elseif ($sub === 'bulletin'):
             
             <div class="mt-8 flex items-center justify-between">
                 <div class="w-24">
-                    <?php if ($page_num > 1): ?>
-                        <a href="?page=worship&sub=bulletin&mode=list&page_num=<?= $page_num - 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">이전</a>
+                    <?php if ($total_posts > $page_num * $limit): ?>
+                        <a href="?page=worship&sub=bulletin&mode=list&page_num=<?= $page_num + 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">이전</a>
                     <?php endif; ?>
                 </div>
                 
                 <a href="?page=worship&sub=bulletin" class="px-6 py-2 bg-red-500 text-white rounded-full text-sm font-bold hover:bg-red-600 shadow-md transition-colors">최신 주보 보기</a>
                 
                 <div class="w-24 text-right">
-                    <?php if ($total_posts > $page_num * $limit): ?>
-                        <a href="?page=worship&sub=bulletin&mode=list&page_num=<?= $page_num + 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">다음</a>
+                    <?php if ($page_num > 1): ?>
+                        <a href="?page=worship&sub=bulletin&mode=list&page_num=<?= $page_num - 1 ?>" class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">다음</a>
                     <?php endif; ?>
                 </div>
             </div>
