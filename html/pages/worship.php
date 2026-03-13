@@ -318,7 +318,7 @@ elseif ($sub === 'bulletin'):
                             <span class="absolute top-1/2 left-[-0.5rem] -translate-y-1/2 text-[6rem] font-black text-slate-100 dark:text-slate-700 leading-none md:hidden z-0 select-none group-hover:text-slate-50 dark:group-hover:text-slate-900/20 transition-colors">&lt;</span>
                             <!-- PC 아이콘 -->
                             <svg class="hidden md:block w-5 h-5 mr-3 text-slate-400 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                            <div class="relative z-10 flex flex-col items-start pl-6 md:pl-0"><span class="text-sm text-red-500 font-bold uppercase mb-1">이전 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1 text-left"><?= htmlspecialchars($prevPost['title']) ?></span></div>
+                            <div class="relative z-10 flex flex-col items-start pl-1 md:pl-0"><span class="text-sm text-red-500 font-bold uppercase mb-1">이전 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1 text-left"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                         </a>
                     <?php endif; ?>
                 </div>
@@ -327,7 +327,7 @@ elseif ($sub === 'bulletin'):
                         <a href="?page=worship&sub=bulletin&id=<?= $nextPost['id'] ?>" class="relative group flex items-center justify-end md:justify-between w-full px-3 py-6 md:p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-red-500 transition-all shadow-sm overflow-hidden h-full text-right">
                             <!-- 모바일 배경 텍스트 화살표 -->
                             <span class="absolute top-1/2 right-[-0.5rem] -translate-y-1/2 text-[6rem] font-black text-slate-100 dark:text-slate-700 leading-none md:hidden z-0 select-none group-hover:text-red-50 dark:group-hover:text-red-900/20 transition-colors">&gt;</span>
-                            <div class="relative z-10 flex flex-col items-end pr-6 md:pr-0"><span class="text-sm text-red-500 font-bold uppercase mb-1">다음 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1 text-right"><?= htmlspecialchars($nextPost['title']) ?></span></div>
+                            <div class="relative z-10 flex flex-col items-end pr-1 md:pr-0"><span class="text-sm text-red-500 font-bold uppercase mb-1">다음 주보</span><span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1 text-right"><?= htmlspecialchars($nextPost['title']) ?></span></div>
                             <!-- PC 아이콘 -->
                             <svg class="hidden md:block w-5 h-5 ml-3 text-slate-400 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
