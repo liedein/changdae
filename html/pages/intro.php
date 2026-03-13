@@ -319,8 +319,8 @@ $sub = $_GET['sub'] ?? 'vision';
             </div>
 
             <div class="mb-10 shadow-lg rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-white aspect-square md:aspect-auto md:h-[450px] flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                <!-- 일반지도 영역
-                <div id="daumRoughmapContainer1773357787035" class="root_daum_roughmap root_daum_roughmap_landing w-full grow" style="width:100% !important;"></div> -->
+                <!-- 일반지도 영역 -->
+                <div id="daumRoughmapContainer1773408280918" class="root_daum_roughmap root_daum_roughmap_landing w-full grow" style="width:100% !important;"></div>
                 
                 <!-- 이미지 지도의 하단 디자인 차용 (로드뷰, 길찾기, 크게보기) -->
                 <div class="bg-[#F9F9F9] border-t border-gray-200 px-3 py-2 flex justify-between items-center shrink-0 h-[32px]">
@@ -328,11 +328,11 @@ $sub = $_GET['sub'] ?? 'vision';
                         <img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" alt="카카오맵" class="h-4 w-auto">
                     </a>
                     <div class="flex items-center text-[11px] text-black tracking-tighter">
-                        <a href="https://map.kakao.com/?from=roughmap&srcid=2093648020&confirmid=2093648020&q=%EB%AC%B8%EB%9E%98%EB%8F%99%20%EA%BD%83%EB%B0%AD%EC%A0%95%EC%9B%90&rv=on" target="_blank" class="hover:underline">로드뷰</a>
+                        <a href="https://map.kakao.com/?from=roughmap&q=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&rv=on" target="_blank" class="hover:underline">로드뷰</a>
                         <span class="mx-2 h-2.5 w-px bg-[#d0d0d0]"></span>
-                        <a href="https://map.kakao.com/?from=roughmap&eName=%EB%AC%B8%EB%9E%98%EB%8F%99%20%EA%BD%83%EB%B0%AD%EC%A0%95%EC%9B%90&eX=477619.0000000001&eY=1116190.9999999998" target="_blank" class="hover:underline">길찾기</a>
+                        <a href="https://map.kakao.com/?from=roughmap&eName=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&eX=463720.62500000146&eY=1145750.625" target="_blank" class="hover:underline">길찾기</a>
                         <span class="mx-2 h-2.5 w-px bg-[#d0d0d0]"></span>
-                        <a href="https://map.kakao.com?map_type=TYPE_MAP&from=roughmap&srcid=2093648020&itemId=2093648020&q=%EB%AC%B8%EB%9E%98%EB%8F%99%20%EA%BD%83%EB%B0%AD%EC%A0%95%EC%9B%90&urlX=477619.0000000001&urlY=1116190.9999999998" target="_blank" class="hover:underline">지도 크게 보기</a>
+                        <a href="https://map.kakao.com/?urlX=463720.62500000146&urlY=1145750.625&name=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C558%EB%B2%88%EA%B8%B8%207-4&map_type=TYPE_MAP&from=roughmap" target="_blank" class="hover:underline">지도 크게 보기</a>
                     </div>
                 </div>
             </div>
@@ -379,8 +379,8 @@ $sub = $_GET['sub'] ?? 'vision';
     <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
     <script charset="UTF-8">
         new daum.roughmap.Lander({
-            "timestamp" : "1773357787035",
-            "key" : "j7vecgiv8qt",
+            "timestamp" : "1773408280918",
+            "key" : "j8yax6qhh68",
             "mapWidth" : "100%",
             "mapHeight" : "450"
         }).render();
