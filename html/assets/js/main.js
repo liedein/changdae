@@ -96,10 +96,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.createElement("div");
     modal.id = "image-modal";
     modal.className =
-      "fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4 cursor-zoom-out";
+      "fixed inset-0 z-[60] bg-black/95 hidden overflow-y-auto cursor-zoom-out";
     modal.innerHTML = `
-            <img src="" alt="Zoomed Image" class="max-w-full max-h-full object-contain rounded-md shadow-2xl transition-transform duration-300 scale-95 opacity-0">
-            <button class="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none">
+            <div class="min-h-full w-full flex items-center justify-center p-4 md:p-10">
+                <img src="" alt="Zoomed Image" class="w-full max-w-5xl h-auto rounded shadow-2xl transition-all duration-300 scale-95 opacity-0 bg-white">
+            </div>
+            <button class="fixed top-6 right-6 z-[70] text-white/80 hover:text-white focus:outline-none bg-black/50 hover:bg-black/80 rounded-full p-2 transition-colors">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         `;
