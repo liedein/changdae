@@ -206,8 +206,8 @@ $sub = $_GET['sub'] ?? 'vision';
                     </header>
 
                     <div class="p-8 md:p-12">
-                        <div class="prose prose-slate dark:prose-invert max-w-none font-serif 
-                                    prose-headings:font-bold prose-p:leading-relaxed prose-p:mb-8 prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:text-lg md:prose-p:text-xl">
+                        <div class="prose prose-slate dark:prose-invert max-w-none font-serif pb-10 md:pb-20 
+                                    prose-headings:font-bold prose-p:leading-relaxed prose-p:mb-3 prose-p:text-slate-600 dark:prose-p:text-slate-300 prose-p:text-lg md:prose-p:text-xl">
                             <?= $post['content'] ?>
                         </div>
                     </div>
@@ -215,30 +215,26 @@ $sub = $_GET['sub'] ?? 'vision';
 
                 <!-- 좌우 배치 유지 (Mobile side-by-side) -->
                 <nav class="mt-10 flex flex-row gap-4 justify-between items-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-1/2 sm:w-auto">
+                    <div class="w-1/2 sm:w-auto flex-1 max-w-sm">
                         <?php if ($prevPost): ?>
-                            <a href="?page=intro&sub=news&id=<?= $prevPost['id'] ?>" class="group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm">
-                                <svg class="w-5 h-5 mr-4 text-slate-400 group-hover:text-blue-500 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                                </svg>
-                                <div class="flex flex-col">
+                            <a href="?page=intro&sub=news&id=<?= $prevPost['id'] ?>" class="relative group block w-full p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm overflow-hidden h-full">
+                                <svg class="absolute top-1/2 left-0 -translate-y-1/2 w-24 h-24 text-slate-100 dark:text-slate-700 group-hover:text-blue-50 dark:group-hover:text-blue-900/20 transition-colors transform -translate-x-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path></svg>
+                                <div class="relative z-10 flex flex-col items-start pl-4">
                                     <span class="text-sm text-blue-500 font-bold uppercase mb-1">이전 소식</span>
-                                    <span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($prevPost['title']) ?></span>
+                                    <span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1 text-left"><?= htmlspecialchars($prevPost['title']) ?></span>
                                 </div>
                             </a>
                         <?php endif; ?>
                     </div>
 
-                    <div class="w-1/2 sm:w-auto">
+                    <div class="w-1/2 sm:w-auto flex-1 max-w-sm flex justify-end">
                         <?php if ($nextPost): ?>
-                            <a href="?page=intro&sub=news&id=<?= $nextPost['id'] ?>" class="group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm text-right">
-                                <div class="flex flex-col items-end">
+                            <a href="?page=intro&sub=news&id=<?= $nextPost['id'] ?>" class="relative group block w-full p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm overflow-hidden h-full">
+                                <svg class="absolute top-1/2 right-0 -translate-y-1/2 w-24 h-24 text-slate-100 dark:text-slate-700 group-hover:text-blue-50 dark:group-hover:text-blue-900/20 transition-colors transform translate-x-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>
+                                <div class="relative z-10 flex flex-col items-end pr-4">
                                     <span class="text-sm text-blue-500 font-bold uppercase mb-1">다음 소식</span>
-                                    <span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1"><?= htmlspecialchars($nextPost['title']) ?></span>
+                                    <span class="text-base font-semibold text-slate-700 dark:text-slate-300 line-clamp-1 text-right"><?= htmlspecialchars($nextPost['title']) ?></span>
                                 </div>
-                                <svg class="w-5 h-5 ml-4 text-slate-400 group-hover:text-blue-500 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
                             </a>
                         <?php endif; ?>
                     </div>
