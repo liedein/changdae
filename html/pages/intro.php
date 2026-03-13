@@ -323,7 +323,7 @@ $sub = $_GET['sub'] ?? 'vision';
                 <div id="daumRoughmapContainer1773357787035" class="root_daum_roughmap root_daum_roughmap_landing w-full grow" style="width:100% !important;"></div>
                 
                 <!-- 이미지 지도의 하단 디자인 차용 (로드뷰, 길찾기, 크게보기) -->
-                <div class="bg-[#F9F9F9] border-t border-gray-200 px-3 py-2 flex justify-between items-center shrink-0 h-[32px]">
+                <!-- <div class="bg-[#F9F9F9] border-t border-gray-200 px-3 py-2 flex justify-between items-center shrink-0 h-[32px]">
                     <a href="https://map.kakao.com" target="_blank">
                         <img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" alt="카카오맵" class="h-4 w-auto">
                     </a>
@@ -334,7 +334,7 @@ $sub = $_GET['sub'] ?? 'vision';
                         <span class="mx-2 h-2.5 w-px bg-[#d0d0d0]"></span>
                         <a href="https://map.kakao.com?map_type=TYPE_MAP&from=roughmap&srcid=2093648020&itemId=2093648020&q=%EB%AC%B8%EB%9E%98%EB%8F%99%20%EA%BD%83%EB%B0%AD%EC%A0%95%EC%9B%90&urlX=477619.0000000001&urlY=1116190.9999999998" target="_blank" class="hover:underline">지도 크게 보기</a>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
