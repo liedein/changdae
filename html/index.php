@@ -24,44 +24,8 @@ if (!in_array($page, $allowed_pages)) {
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png">
 
-    <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        charcoal: '#333333',
-                        deepblue: '#1a365d',
-                    },
-                    fontFamily: {
-                        sans: ['Pretendard', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
-                    },
-                    typography: {
-                        DEFAULT: {
-                            css: {
-                                p: { margin: 0 },
-                                h1: { margin: 0 },
-                                h2: { margin: 0 },
-                                h3: { margin: 0 },
-                                h4: { margin: 0 },
-                                h5: { margin: 0 },
-                                h6: { margin: 0 },
-                                ul: { margin: 0 },
-                                ol: { margin: 0 },
-                                li: { margin: 0 },
-                                blockquote: { margin: 0 },
-                                pre: { margin: 0 },
-                                figure: { margin: 0 },
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 빌드된 Tailwind CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
     
     <!-- Pretendard Font -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />

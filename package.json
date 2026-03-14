@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "창대교회 웹사이트 Tailwind CSS 빌드 환경",
   "scripts": {
-    "dev": "tailwindcss -i ./html/assets/css/input.css -o ./html/assets/css/style.css --watch",
-    "build": "tailwindcss -i ./html/assets/css/input.css -o ./html/assets/css/style.css --minify"
+    "dev": "tailwindcss -i ./input.css -o ./html/assets/css/style.css --watch",
+    "build": "tailwindcss -i ./input.css -o ./html/assets/css/style.css --minify"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
