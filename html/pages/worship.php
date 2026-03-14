@@ -322,7 +322,7 @@ elseif ($sub === 'bulletin'):
                     .dark .bulletin-invert-test {
                         filter: invert(1) hue-rotate(180deg);
                     }
-                </!-->
+                </style>
                 
                 <div class="p-0 md:p-6 bg-slate-100 dark:bg-slate-900 grid grid-cols-1 <?= $gridColsClass ?> gap-1 md:gap-6">
                     <?php if (!empty($images)): foreach ($images as $image): $imagePath = (strpos($image, 'bulletins/') === false) ? "bulletins/" . $image : $image; ?>
