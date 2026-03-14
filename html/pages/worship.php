@@ -302,10 +302,24 @@ elseif ($sub === 'bulletin'):
                 <div class="w-12 h-1 bg-red-500 mx-auto rounded-full"></div>
             </div>
             <div class="max-w-[1800px] mx-auto md:px-4 shadow-lg rounded-none md:rounded-lg overflow-hidden border-y md:border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
-                <div class="p-0 md:p-6 bg-slate-100 dark:bg-slate-900 grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-6">
-                    <?php if (!empty($post['image_files'])): $images = json_decode($post['image_files'], true); if (is_array($images)): foreach ($images as $image): $imagePath = (strpos($image, 'bulletins/') === false) ? "bulletins/" . $image : $image; ?>
-                        <div class="w-full m-0 p-0 leading-[0] shadow-none md:shadow-md md:rounded-lg overflow-hidden group"><img src="/uploads/<?= htmlspecialchars($imagePath) ?>" alt="주보 이미지" class="w-full h-auto block cursor-pointer zoomable-image loading="lazy"></div>
-                    <?php endforeach; endif; endif; ?>
+                <?php
+                $images = [];
+                $gridColsClass = 'md:grid-cols-3'; // 기본 3열
+                if (!empty($post['image_files'])) {
+                    $decoded = json_decode($post['image_files'], true);
+                    if (is_array($decoded)) {
+                        $images = $decoded;
+                        $imageCount = count($images);
+                        if (in_array($imageCount, [2, 4, 8])) {
+                            $gridColsClass = 'md:grid-cols-2';
+                        }
+                    }
+                }
+                ?>
+                <div class="p-0 md:p-6 bg-slate-100 dark:bg-slate-900 grid grid-cols-1 <?= $gridColsClass ?> gap-1 md:gap-6">
+                    <?php if (!empty($images)): foreach ($images as $image): $imagePath = (strpos($image, 'bulletins/') === false) ? "bulletins/" . $image : $image; ?>
+                        <div class="w-full m-0 p-0 leading-[0] shadow-none md:shadow-md md:rounded-lg overflow-hidden group"><img src="/uploads/<?= htmlspecialchars($imagePath) ?>" alt="주보 이미지" class="w-full h-auto block cursor-pointer zoomable-image" loading="lazy"></div>
+                    <?php endforeach; endif; ?>
                 </div>
             </div>
             <!-- 모바일: 좌우 배치 (flex-row) -->
