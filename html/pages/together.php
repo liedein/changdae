@@ -17,32 +17,63 @@ $id = $_GET['id'] ?? null;
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-            <?php
-            $missionaries = [
-                ['name' => '김정민 목사', 'country' => '멕시코 과달라하라', 'org' => '(연수지) 파송 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
-                ['name' => '이민찬 선교사', 'country' => '러시아 연해주 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
-                ['name' => '정필우 선교사', 'country' => '인도 북인도 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
-                ['name' => '형남권 선교사', 'country' => '탄자니아 팡가웨 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
-                ['name' => 'GST', 'country' => '탄자니아 팡가웨 은혜신학교', 'org' => '후원 기관 (로마니/에녹/록키/형남권/조세프/마틴/젝키)', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
-            ];
-            ?>
-            <?php $delay = 0; foreach ($missionaries as $missionary): ?>
-            <div class="group" data-aos="fade-up" data-aos-delay="<?= $delay * 100 ?>">
-                <div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 mb-4 relative">
-                    <img src="<?= $missionary['img'] ?>" alt="<?= $missionary['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                    <!-- 국가/지역 뱃지 -->
-                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-deepindigo dark:text-indigo-400 shadow-sm">
-                        <?= $missionary['country'] ?>
+        <?php
+        // 파송 선교사 배열
+        $sentMissionaries = [
+            ['name' => '김정민 목사', 'country' => '멕시코 과달라하라', 'org' => '(연수지) 파송 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+        ];
+
+        // 후원 선교사 및 기관 배열
+        $supportedMissionaries = [
+            ['name' => '이민찬 선교사', 'country' => '러시아 연해주 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+            ['name' => '정필우 선교사', 'country' => '인도 북인도 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+            ['name' => '형남권 선교사', 'country' => '탄자니아 팡가웨 지역', 'org' => '후원 선교사', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+            ['name' => 'GST', 'country' => '탄자니아 팡가웨 은혜신학교', 'org' => '후원 기관 (로마니/에녹/록키/형남권/조세프/마틴/젝키)', 'img' => 'https://placehold.co/400x500/3730a3/ffffff?text=Missionary'],
+        ];
+        ?>
+
+        <!-- (연수지) 파송 선교사 섹션 -->
+        <div class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-8 border-l-4 border-indigo-500 pl-4" data-aos="fade-up">(연수지) 파송 선교사</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                <?php $delay = 0; foreach ($sentMissionaries as $missionary): ?>
+                <div class="group" data-aos="fade-up" data-aos-delay="<?= $delay * 100 ?>">
+                    <div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 mb-4 relative">
+                        <img src="<?= $missionary['img'] ?>" alt="<?= $missionary['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-deepindigo dark:text-indigo-400 shadow-sm">
+                            <?= $missionary['country'] ?>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-charcoal dark:text-white"><?= $missionary['name'] ?></h3>
+                    <p class="text-base font-medium text-gray-500 dark:text-gray-400 mb-1"><?= $missionary['org'] ?></p>
+                    <div class="mt-2">
+                        <button class="text-base text-deepindigo dark:text-indigo-400 font-medium hover:underline">기도편지 보기 &rarr;</button>
                     </div>
                 </div>
-                <h3 class="text-xl font-bold text-charcoal dark:text-white"><?= $missionary['name'] ?></h3>
-                <p class="text-base font-medium text-gray-500 dark:text-gray-400 mb-1"><?= $missionary['org'] ?></p>
-                <div class="mt-2">
-                    <button class="text-base text-deepindigo dark:text-indigo-400 font-medium hover:underline">기도편지 보기 &rarr;</button>
-                </div>
+                <?php $delay++; endforeach; ?>
             </div>
-            <?php $delay++; endforeach; ?>
+        </div>
+
+        <!-- 후원 선교사 및 기관 섹션 -->
+        <div>
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-8 border-l-4 border-indigo-500 pl-4" data-aos="fade-up">후원 선교사 및 기관</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                <?php $delay = 0; foreach ($supportedMissionaries as $missionary): ?>
+                <div class="group" data-aos="fade-up" data-aos-delay="<?= $delay * 100 ?>">
+                    <div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 mb-4 relative">
+                        <img src="<?= $missionary['img'] ?>" alt="<?= $missionary['name'] ?>" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-deepindigo dark:text-indigo-400 shadow-sm">
+                            <?= $missionary['country'] ?>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-charcoal dark:text-white"><?= $missionary['name'] ?></h3>
+                    <p class="text-base font-medium text-gray-500 dark:text-gray-400 mb-1"><?= $missionary['org'] ?></p>
+                    <div class="mt-2">
+                        <button class="text-base text-deepindigo dark:text-indigo-400 font-medium hover:underline">기도편지 보기 &rarr;</button>
+                    </div>
+                </div>
+                <?php $delay++; endforeach; ?>
+            </div>
         </div>
     </section>
 </div>
