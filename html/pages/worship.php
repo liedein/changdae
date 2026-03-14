@@ -82,7 +82,7 @@ if ($sub === 'sermon' || $sub === 'worship'):
 
     <nav class="flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12" data-aos="fade-up" data-aos-delay="200">
     
-        <div class="w-full sm:w-auto flex justify-start">
+        <div class="w-full md:w-auto flex justify-start">
             <?php if ($prevPost): ?>
                 <a href="?page=worship&sub=sermon&id=<?= $prevPost['id'] ?>" class="w-full md:w-auto group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm md:max-w-md">
                     <svg class="w-6 h-6 mr-4 text-slate-300 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,9 +100,9 @@ if ($sub === 'sermon' || $sub === 'worship'):
             <?php endif; ?>
         </div>
 
-        <div class="w-full sm:w-auto flex justify-end text-right">
+        <div class="w-full md:w-auto flex justify-end text-right">
             <?php if ($nextPost): ?>
-                <a href="?page=worship&sub=sermon&id=<?= $nextPost['id'] ?>" class="w-full md:w-auto group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm md:max-w-md">
+                <a href="?page=worship&sub=sermon&id=<?= $nextPost['id'] ?>" class="w-full md:w-auto group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all text-right shadow-sm md:max-w-md">
                     <div class="flex flex-col items-end overflow-hidden">
                         <span class="text-sm text-red-500 font-bold uppercase mb-1">
                             <?= isset($nextPost['published_at']) ? date('Y. m. d', strtotime($nextPost['published_at'])) : '다음글' ?>
@@ -161,7 +161,7 @@ elseif ($sub === 'videos'):
                 </div>
             </div>
             <div class="mb-8 relative group" data-aos="fade-up" data-aos-delay="100">
-                <div class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-red-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                 <div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border border-slate-200 dark:border-slate-700">
                     <?php if ($youtube_id): ?>
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/<?= $youtube_id ?>?rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -176,7 +176,7 @@ elseif ($sub === 'videos'):
             <nav class="flex flex-col md:flex-row gap-4 justify-between items-center border-t border-slate-100 dark:border-slate-800 pt-12" data-aos="fade-up" data-aos-delay="200">
                 <div class="w-full md:w-auto flex justify-start">
                     <?php if ($prevPost): ?>
-                        <a href="?page=worship&sub=videos&id=<?= $prevPost['id'] ?>" class="w-full md:w-auto group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm max-w-none md:max-w-md">
+                        <a href="?page=worship&sub=videos&id=<?= $prevPost['id'] ?>" class="w-full md:w-auto group flex items-center p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm max-w-none md:max-w-md">
                             <svg class="w-6 h-6 mr-4 text-slate-300 group-hover:text-red-500 transform group-hover:-translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                             <div class="flex flex-col overflow-hidden"><span class="text-sm text-red-500 font-bold uppercase mb-1">이전 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($prevPost['title']) ?></span></div>
                         </a>
@@ -184,7 +184,7 @@ elseif ($sub === 'videos'):
                 </div>
                 <div class="w-full md:w-auto flex justify-end text-right">
                     <?php if ($nextPost): ?>
-                        <a href="?page=worship&sub=videos&id=<?= $nextPost['id'] ?>" class="w-full md:w-auto group flex items-center justify-end p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm text-right max-w-none md:max-w-md">
+                        <a href="?page=worship&sub=videos&id=<?= $nextPost['id'] ?>" class="w-full md:w-auto group flex items-center justify-end p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-red-500 transition-all shadow-sm text-right max-w-none md:max-w-md">
                             <div class="flex flex-col items-end overflow-hidden"><span class="text-sm text-red-500 font-bold uppercase mb-1">다음 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($nextPost['title']) ?></span></div>
                             <svg class="w-6 h-6 ml-4 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
@@ -311,7 +311,7 @@ elseif ($sub === 'bulletin'):
             <!-- 모바일: 좌우 배치 (flex-row) -->
             <div class="max-w-4xl mx-auto px-4">
                 <nav class="mt-12 flex flex-row gap-4 justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-12 pb-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-1/2 sm:w-auto flex-1 max-w-sm">
+                <div class="w-1/2 md:w-auto flex-1 max-w-sm">
                     <?php if ($prevPost): ?>
                         <a href="?page=worship&sub=bulletin&id=<?= $prevPost['id'] ?>" class="relative group flex items-center w-full px-3 py-6 md:p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-red-500 transition-all shadow-sm overflow-hidden h-full">
                             <!-- 모바일 배경 텍스트 화살표 -->
@@ -322,7 +322,7 @@ elseif ($sub === 'bulletin'):
                         </a>
                     <?php endif; ?>
                 </div>
-                <div class="w-1/2 sm:w-auto flex-1 max-w-sm flex justify-end">
+                <div class="w-1/2 md:w-auto flex-1 max-w-sm flex justify-end">
                     <?php if ($nextPost): ?>
                         <a href="?page=worship&sub=bulletin&id=<?= $nextPost['id'] ?>" class="relative group flex items-center justify-end md:justify-between w-full px-3 py-6 md:p-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-red-500 transition-all shadow-sm overflow-hidden h-full text-right">
                             <!-- 모바일 배경 텍스트 화살표 -->
