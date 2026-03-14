@@ -232,7 +232,7 @@ $sub = $_GET['sub'] ?? 'vision';
 
                     <div class="w-1/2 sm:w-auto flex-1 max-w-sm flex justify-end">
                         <?php if ($nextPost): ?>
-                            <a href="?page=intro&sub=news&id=<?= $nextPost['id'] ?>" class="relative group flex items-center justify-end md:justify-between w-full px-3 py-6 md:p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm overflow-hidden h-full text-right">
+                            <a href="?page=intro&sub=news&id=<?= $nextPost['id'] ?>" class="relative group flex items-center justify-end md:justify-end w-full px-3 py-6 md:p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 transition-all shadow-sm overflow-hidden h-full text-right">
                                 <!-- 모바일 배경 텍스트 화살표 -->
                                 <span class="absolute top-1/2 right-[-1.5rem] -translate-y-1/2 text-[10rem] font-black text-slate-100 dark:text-slate-700 leading-[0] pb-6 md:hidden z-0 select-none group-hover:text-blue-50 dark:group-hover:text-blue-900/20 transition-colors">&gt;</span>
                                 <div class="relative z-10 flex flex-col items-end pr-1 md:pr-0">
