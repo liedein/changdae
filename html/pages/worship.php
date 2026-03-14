@@ -184,7 +184,7 @@ elseif ($sub === 'videos'):
                 </div>
                 <div class="w-full md:w-auto flex justify-end text-right">
                     <?php if ($nextPost): ?>
-                        <a href="?page=worship&sub=videos&id=<?= $nextPost['id'] ?>" class="w-full md:w-auto group flex items-center justify-between p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm max-w-none md:max-w-md">
+                        <a href="?page=worship&sub=videos&id=<?= $nextPost['id'] ?>" class="w-full md:w-auto group flex items-center justify-end p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-indigo-500 transition-all shadow-sm text-right max-w-none md:max-w-md">
                             <div class="flex flex-col items-end overflow-hidden"><span class="text-sm text-red-500 font-bold uppercase mb-1">다음 영상</span><span class="text-base font-bold text-slate-700 dark:text-slate-300 truncate"><?= htmlspecialchars($nextPost['title']) ?></span></div>
                             <svg class="w-6 h-6 ml-4 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>
