@@ -316,9 +316,17 @@ elseif ($sub === 'bulletin'):
                     }
                 }
                 ?>
+
+                <!-- 다크모드 주보 이미지 반전 스타일 -->
+                <style>
+                    .dark .bulletin-invert-test {
+                        filter: invert(1) hue-rotate(180deg);
+                    }
+                </!-->
+                
                 <div class="p-0 md:p-6 bg-slate-100 dark:bg-slate-900 grid grid-cols-1 <?= $gridColsClass ?> gap-1 md:gap-6">
                     <?php if (!empty($images)): foreach ($images as $image): $imagePath = (strpos($image, 'bulletins/') === false) ? "bulletins/" . $image : $image; ?>
-                        <div class="w-full m-0 p-0 leading-[0] shadow-none md:shadow-md md:rounded-lg overflow-hidden group"><img src="/uploads/<?= htmlspecialchars($imagePath) ?>" alt="주보 이미지" class="w-full h-auto block cursor-pointer zoomable-image" loading="lazy"></div>
+                        <div class="w-full m-0 p-0 leading-[0] shadow-none md:shadow-md md:rounded-lg overflow-hidden group"><img src="/uploads/<?= htmlspecialchars($imagePath) ?>" alt="주보 이미지" class="w-full h-auto block cursor-pointer zoomable-image bulletin-invert-test" loading="lazy"></div>
                     <?php endforeach; endif; ?>
                 </div>
             </div>
