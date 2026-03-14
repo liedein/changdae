@@ -11,7 +11,7 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 로그인 - 창대교회</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="bg-slate-400 flex items-center justify-center h-screen">
     <div class="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md border border-slate-100">
