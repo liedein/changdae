@@ -21,7 +21,7 @@ if (!in_array($page, $allowed_pages)) {
     <meta property="og:type" content="website">
     <meta property="og:title" content="창대교회 - 영혼 구원하여 제자 삼는 교회">
     <meta property="og:description" content="하나님의 사랑이 머무는 곳, 창대교회에 오신 여러분을 환영합니다.">
-    <meta property="og:image" content="/assets/img/android-chrome-512x512.png">
+    <meta property="og:image" content="/assets/img/changdae_OGI.png">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
